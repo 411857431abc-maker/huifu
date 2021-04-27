@@ -25,7 +25,6 @@ class Trans extends BsPay{
 			    $params['risk_check_info'] = json_encode($params['risk_check_info']);
 			}
 		}
-        var_dump($params);
 		# 请求接口获取应答
 		$this->result = self::post($funcCode, $params, $merChantKey);
     }
