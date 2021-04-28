@@ -97,7 +97,7 @@ class BsPayRequests {
             $result = array('Content-type: application/x-www-form-urlencoded');
         }
         
-        $sdk_version = defined("SDK_VERSION") ? SDK_VERSION : "v1.0.0";
+        $sdk_version = defined("SDK_VERSION") ? SDK_VERSION : "php#v1.0.0";
         array_push($result, 'sdk_version:' . $sdk_version);
         array_push($result, 'format:JSON');
         array_push($result, 'charset:UTF-8');

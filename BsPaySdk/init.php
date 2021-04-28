@@ -10,7 +10,7 @@ if (!defined("BSPAY_CORE")) {
     define("BSPAY_CORE", SDK_BASE."/../BsPayCore");
 }
 if (!defined("SDK_VERSION")) {
-    define("SDK_VERSION", "v1.0.0");
+    define("SDK_VERSION", "php#v1.0.0");
 }
 
 # 设置是否调试模式
