@@ -1,7 +1,7 @@
 <?php
 namespace BsPayDemo;
 
- use BsPaySdk\Trans;
+use BsPaySdk\BsPayClient;
  use BsPayDemo\constants\DemoConstants;
 
  # 以下配置为开发联调时覆盖SDK的配置项，需在引入SDK的init.php之前配置以覆盖SDK初始配置
@@ -99,12 +99,12 @@ $trans_params = array(
     "pay_scene"=>"02",
 );
 
-$trans = new Trans();
+$trans = new BsPayClient();
 
 # 请求聚合反扫接口
-$trans->request("top.trans.authCodePay", $trans_params);
+$trans->postRequest("top.trans.authCodePay", $trans_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-#$trans->request($query_params, "top.trans.authCodePay", "merchantKey2");
+#$trans->postRequest($query_params, "top.trans.authCodePay", "merchantKey2");
 
 if ($trans->isError()){
     //失败处理
@@ -123,9 +123,9 @@ if ($trans->isError()){
  
 
  # 请求交易查询接口
- $trans->request("topqur.transQuery", $query_params);
+ $trans->postRequest("topqur.transQuery", $query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->request($query_params, "topqur.transQuery", "merchantKey2");
+ #$trans->postRequest($query_params, "topqur.transQuery", "merchantKey2");
  # 对进件结果进行处理
  if ($trans->isError()){
      //失败处理

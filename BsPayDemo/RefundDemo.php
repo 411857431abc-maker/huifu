@@ -1,7 +1,7 @@
 <?php
 namespace BsPayDemo;
 
-use BsPaySdk\Trans;
+use BsPaySdk\BsPayClient;
 use BsPayDemo\constants\DemoConstants;
 
 # 以下配置为开发联调时覆盖SDK的配置项，需在引入SDK的init.php之前配置以覆盖SDK初始配置
@@ -83,12 +83,12 @@ $trans_params = array(
     "notify_url" => "virgo://http://www.vclinker.com"
 );
 
-$trans = new Trans();
+$trans = new BsPayClient();
 
 # 请求交易退货接口
-$trans->request("toprrc.refund", $trans_params);
+$trans->postRequest("toprrc.refund", $trans_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-# $trans->request($query_params, "toprrc.refund", "merchantKey2");
+# $trans->postRequest($query_params, "toprrc.refund", "merchantKey2");
 
 if ($trans->isError()) {
     // 失败处理
@@ -108,9 +108,9 @@ $query_params = array(
 );
 
 # 请求交易查询接口
-$trans->request("topqur.refundQuery", $query_params);
+$trans->postRequest("topqur.refundQuery", $query_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-# $trans->request($query_params, "topqur.refundQuery", "merchantKey2");
+# $trans->postRequest($query_params, "topqur.refundQuery", "merchantKey2");
 # 对进件结果进行处理
 if ($trans->isError()) {
     // 失败处理

@@ -32,7 +32,7 @@ require_once BSPAY_CORE."/BsPay.php";
 require_once BSPAY_CORE."/BsLoader.php";
 
 # 交易类 Trans
-require_once SDK_BASE."/Trans.php";
+require_once SDK_BASE."/BsPayClient.php";
 
 
 
