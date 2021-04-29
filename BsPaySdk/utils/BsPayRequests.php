@@ -4,7 +4,7 @@ use BsPaySdk\BsPay;
 use BsPaySdk\config\MerConfig;
 
 class BsPayRequests {
-    public function curl_request(MerConfig $merConfig, $url, $postFields = null, $headers=null, $is_json=false) {
+    public function curl_request(MerConfig $merConfig, $url, $postFields = null, $file = null, $headers=null, $is_json=false) {
         BsPay::writeLog("curl方法参数:". json_encode(func_get_args(), JSON_UNESCAPED_UNICODE), "INFO");
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -15,14 +15,15 @@ class BsPayRequests {
         if (is_array($postFields) && 0 < count($postFields)) {
             curl_setopt($ch, CURLOPT_POST, true);
             if ($is_json) {
-                $body = $this->get_request_body($merConfig, $postFields);
+                $body = $this->get_request_body($merConfig, $postFields, $file);
                 $json_data =  json_encode($body);
                 BsPay::writeLog("post-json请求参数:".  json_encode($body, JSON_UNESCAPED_UNICODE), "INFO");
                 array_push($headers, "Content-Length:". strlen($json_data));
                 curl_setopt($ch, CURLOPT_POSTFIELDS, $json_data);
             }else{
-                BsPay::writeLog("post-form请求参数:". json_encode($postFields, JSON_UNESCAPED_UNICODE), "INFO");
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+				$body = $this->get_request_body($merConfig, $postFields, $file);
+                BsPay::writeLog("post-form请求参数:". json_encode($body, JSON_UNESCAPED_UNICODE), "INFO");
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
             }
         }
         
@@ -106,7 +107,7 @@ class BsPayRequests {
         return $result;
     }
     
-    protected function get_request_body(MerConfig $merChantConfig, $post_data){
+    protected function get_request_body(MerConfig $merChantConfig, $post_data, $file = null){
         $body = array();
         $body['sys_id'] = $merChantConfig->sys_id;
         $data = json_encode($post_data);
@@ -115,7 +116,9 @@ class BsPayRequests {
         $sign = BsPayTools::sha_with_rsa_sign($merChantConfig->rsa_private_key, $data);
         $body['sign'] = $sign;
         $body['sign_type'] = "RSA2";
-        
+		if(!empty($file)){
+			$body['file'] = $file;
+		}
         return $body;
     }
 }

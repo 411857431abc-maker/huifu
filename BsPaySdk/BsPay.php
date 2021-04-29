@@ -132,16 +132,23 @@ class BsPay
         return $req_url;
     }
     
-    public function post($funcCode, $params=array(), $merchantKey){
+    public function post($funcCode, $params=array(), $file = null, $merchantKey){
         # 获取商户配置信息
         $merchantConfig = self::getConfig($merchantKey);
         # 根据功能编码获取实际请求路径
         $req_url = $this->getRequestUrl($funcCode);
         $request_params = $this->do_empty_data($params);
+		$is_json=true;
         # 获取请求头
-        $header =  array('Content-Type:application/json');
+		if (empty($file)){
+			$header =  array('Content-Type:application/json');			 
+		}else{
+			$header =  array('Content-Type:multipart/form-data');
+			$is_json=false;
+		}
+       
         # 请求
-        return $this->bs_request->curl_request($merchantConfig, $req_url, $request_params, $header, true);
+        return $this->bs_request->curl_request($merchantConfig, $req_url, $request_params, $file, $header, $is_json);
     }
     
     public function get($funcCode, $params=array(), $merchantKey){

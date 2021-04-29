@@ -18,7 +18,7 @@ class BsPayClient extends BsPay{
      * @param    array
      * @return   array
      */
-    public function postRequest($funcCode, $params=array(), $merChantKey = 'default'){
+    public function postRequest($funcCode, $params=array(), $file=null, $merChantKey = 'default'){
 		# 风控信息要上送json字符串，如果上送的是对象，则将其转为json字符串
         if (array_key_exists("risk_check_info", $params) && isset($params['risk_check_info'])) {
 			if (!is_string($params['risk_check_info'])) {
@@ -26,6 +26,6 @@ class BsPayClient extends BsPay{
 			}
 		}
 		# 请求接口获取应答
-		$this->result = self::post($funcCode, $params, $merChantKey);
+		$this->result = self::post($funcCode, $params, $file, $merChantKey);
     }
 }
