@@ -36,7 +36,7 @@ class BsPayRequests {
             BsPay::writeLog(curl_error($ch), "ERROR");
         }
         curl_close($ch);
-        BsPay::writeLog("curl返回参数:". $statuCode .  json_encode($response, JSON_UNESCAPED_UNICODE), "INFO");
+        BsPay::writeLog("curl返回参数:". $statuCode .  $response, "INFO");
         
         $isError = false;
         $respObj = '';
