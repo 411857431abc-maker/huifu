@@ -135,6 +135,9 @@ class BsPay
     public function post($funcCode, $params=array(), $file = null, $merchantKey){
         # 获取商户配置信息
         $merchantConfig = self::getConfig($merchantKey);
+		if(empty($merchantConfig)){
+			throw new \Exception('系统公私密钥配置不存在');
+		}
         # 根据功能编码获取实际请求路径
         $req_url = $this->getRequestUrl($funcCode);
         $request_params = $this->do_empty_data($params);
