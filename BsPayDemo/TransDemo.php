@@ -54,12 +54,12 @@ $trans_params = array(
      ),
     // 风控信息
     // 注意，风控信息为JSON字符串
-    "risk_check_info"=> array(
-        "riskMngInfo"=> array(
-            "subTradeType"=>"4300"
+    "risk_check_info" => json_encode(array(
+        "riskMngInfo" => array(
+            "subTradeType" => "4300"
         ),
         "ipAddr"=>"139.207.19.246"
-    ),
+    )),
     // 异步通知地址
     "notify_url"=>"virgo://http://www.vclinker.com",
 
