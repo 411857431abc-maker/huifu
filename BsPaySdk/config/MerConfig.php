@@ -1,5 +1,5 @@
 <?php
-namespace BsPayCore\config;
+namespace BsPaySdk\config;
 
 class MerConfig {
 

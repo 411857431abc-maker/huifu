@@ -6,9 +6,7 @@ ini_set('date.timezone','Asia/Shanghai');
 if (!defined("SDK_BASE")) {
     define("SDK_BASE", dirname(__FILE__));
 }
-if (!defined("BSPAY_CORE")) {
-    define("BSPAY_CORE", SDK_BASE."/../BsPayCore");
-}
+
 if (!defined("SDK_VERSION")) {
     define("SDK_VERSION", "php#v1.0.0");
 }
@@ -28,11 +26,18 @@ if (!defined("PROD_MODE")) {
     define("PROD_MODE", true);
 }
 
-require_once BSPAY_CORE."/BsPay.php";
-require_once BSPAY_CORE."/BsLoader.php";
+
+require_once SDK_BASE."/config/MerConfig.php";
+require_once SDK_BASE."/utils/BsPayRequests.php";
+require_once SDK_BASE."/utils/BsPayTools.php";
+
+require_once SDK_BASE."/BsPay.php";
 
 # 交易类 Trans
 require_once SDK_BASE."/BsPayClient.php";
+
+
+
 
 
 

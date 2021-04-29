@@ -1,7 +1,7 @@
 <?php
-namespace BsPayCore\utils;
-use BsPayCore\BsPay;
-use BsPayCore\config\MerConfig;
+namespace BsPaySdk\utils;
+use BsPaySdk\BsPay;
+use BsPaySdk\config\MerConfig;
 
 class BsPayRequests {
     public function curl_request(MerConfig $merConfig, $url, $postFields = null, $headers=null, $is_json=false) {

@@ -1,5 +1,5 @@
 <?php
-namespace BsPayCore\utils;
+namespace BsPaySdk\utils;
 
 class BsPayTools
 {

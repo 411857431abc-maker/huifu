@@ -1,7 +1,7 @@
 <?php
 
 namespace BsPayDemo;
-use BsPayCore\BsPay;
+use BsPaySdk\BsPay;
 
 /**
  * init方法参数介绍

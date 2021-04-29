@@ -1,9 +1,9 @@
 <?php
-namespace BsPayCore;
+namespace BsPaySdk;
 
-use BsPayCore\config\MerConfig;
-use BsPayCore\utils\BsPayRequests;
-use BsPayCore\utils\BsPayTools;
+use BsPaySdk\config\MerConfig;
+use BsPaySdk\utils\BsPayRequests;
+use BsPaySdk\utils\BsPayTools;
 
 class BsPay
 {

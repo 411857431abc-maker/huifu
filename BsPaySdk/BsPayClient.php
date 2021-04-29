@@ -1,7 +1,7 @@
 <?php
 namespace BsPaySdk;
 
-use BsPayCore\BsPay;
+use BsPaySdk\BsPay;
 
 class BsPayClient extends BsPay{
 
