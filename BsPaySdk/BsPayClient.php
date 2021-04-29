@@ -18,13 +18,26 @@ class BsPayClient extends BsPay{
      * @param    array
      * @return   array
      */
-    public function postRequest($funcCode, $params=array(), $file=null, $merChantKey = 'default'){
+    public function postRequest($funcCode, $params=array(), $merChantKey = 'default'){
 		# 风控信息要上送json字符串，如果上送的是对象，则将其转为json字符串
         if (array_key_exists("risk_check_info", $params) && isset($params['risk_check_info'])) {
 			if (!is_string($params['risk_check_info'])) {
 			    $params['risk_check_info'] = json_encode($params['risk_check_info']);
 			}
 		}
+		# 请求接口获取应答
+		$this->result = self::post($funcCode, $params, "", $merChantKey);
+    }
+
+	/**
+     * 文件上传请求接口
+     * @Author   wen.shao
+     * @DateTime 2021-04-29
+     * @version  V1.0.0
+     * @param    array
+     * @return   array
+     */
+    public function postFileRequest($funcCode, $params=array(), $file=null, $merChantKey = 'default'){
 		# 请求接口获取应答
 		$this->result = self::post($funcCode, $params, $file, $merChantKey);
     }

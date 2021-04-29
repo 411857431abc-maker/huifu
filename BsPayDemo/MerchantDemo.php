@@ -46,7 +46,7 @@ $req = new BsPayClient();
 # 请求交易退货接口
 $req->postRequest("ssproxy.queryFqMerFeeDetail", $req_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-# $req->postRequest($query_params, "ssproxy.queryFqMerFeeDetail", "merchantKey2");
+# $req->postRequest("ssproxy.queryFqMerFeeDetail", $req_params, "merchantKey2");
 
 if ($req->isError()) {
     // 失败处理

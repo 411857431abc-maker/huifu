@@ -45,9 +45,9 @@ $req_params['file_type'] = 'F01';
 $req = new BsPayClient();
 
 # 请求文件上传接口
-$req->postRequest("ssproxy.file.upload",$req_params, $file);
+$req->postFileRequest("ssproxy.file.upload",$req_params, $file);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-# $req->postRequest($query_params, "ssproxy.queryFqMerFeeDetail", "merchantKey2");
+# $req->postFileRequest("ssproxy.file.upload",$req_params, $file, "merchantKey2");
 
 if ($req->isError()) {
     // 失败处理
