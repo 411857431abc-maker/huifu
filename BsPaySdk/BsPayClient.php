@@ -10,11 +10,9 @@ class BsPayClient extends BsPay{
 
     /**
      * 请求接口
-     * @Author   kefeng.zheng
-     * @DateTime 2021-04-25
-     * @version  V1.0.0
-     * @param    array
-     * @return   array
+     * @param string $funcCode 接口功能编码
+     * @param array 请求接口参数集合
+     * @param string $merChantKey 商户配置名
      */
     public function postRequest($funcCode, $params=array(), $merChantKey = 'default'){
 		# 风控信息要上送json字符串，如果上送的是对象，则将其转为json字符串
@@ -27,13 +25,12 @@ class BsPayClient extends BsPay{
 		$this->result = self::post($funcCode, $params, "", $merChantKey);
     }
 
-	/**
+    /**
      * 文件上传请求接口
-     * @Author   wen.shao
-     * @DateTime 2021-04-29
-     * @version  V1.0.0
-     * @param    array
-     * @return   array
+     * @param string $funcCode 接口功能编码
+     * @param array $params 请求接口参数集合
+     * @param \CURLFile $file 待上传的文件
+     * @param string $merChantKey 商户配置名
      */
     public function postFileRequest($funcCode, $params=array(), $file=null, $merChantKey = 'default'){
 		# 请求接口获取应答

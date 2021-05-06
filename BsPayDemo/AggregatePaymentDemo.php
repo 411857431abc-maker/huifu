@@ -2,7 +2,7 @@
 namespace BsPayDemo;
 
 use BsPaySdk\BsPayClient;
- use BsPayDemo\constants\DemoConstants;
+use BsPayDemo\constants\DemoConstants;
  
  /**
   * 聚合反扫调用实例
