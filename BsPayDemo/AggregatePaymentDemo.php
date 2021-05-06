@@ -3,6 +3,10 @@ namespace BsPayDemo;
 
 use BsPaySdk\BsPayClient;
  use BsPayDemo\constants\DemoConstants;
+ 
+ /**
+  * 聚合反扫调用实例
+  */
 
  # 以下配置为开发联调时覆盖SDK的配置项，需在引入SDK的init.php之前配置以覆盖SDK初始配置
  # 设置是否调试模式，不配置默认关闭：false
@@ -46,7 +50,7 @@ $trans_params = array(
     "trans_amt"=>"0.02",
     // 商品描述
     "goods_desc"=>"测试商品",
-    "auth_code" => DemoConstants::WX_AUTH_CODE,
+    "auth_code" => "281394300366988233",
     // 设备信息
     "terminal_device_info"=>array (
             "device_type"=>"4",
