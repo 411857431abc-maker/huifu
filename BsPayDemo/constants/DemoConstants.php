@@ -24,4 +24,9 @@ class DemoConstants{
      * 微信用户展示的付款二维码
      */
     const WX_AUTH_CODE = "135519197427874038";
+	
+	/**
+     * 取现卡序列号
+     */
+    const TOKEN_NO = "10010356033";
 }

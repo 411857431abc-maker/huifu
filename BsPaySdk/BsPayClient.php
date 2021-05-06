@@ -26,6 +26,19 @@ class BsPayClient extends BsPay{
 			}
 		}
 		# 请求接口获取应答
-		$this->result = self::post($funcCode, $params, $merChantKey);
+		$this->result = self::post($funcCode, $params, "", $merChantKey);
+    }
+
+	/**
+     * 文件上传请求接口
+     * @Author   wen.shao
+     * @DateTime 2021-04-29
+     * @version  V1.0.0
+     * @param    array
+     * @return   array
+     */
+    public function postFileRequest($funcCode, $params=array(), $file=null, $merChantKey = 'default'){
+		# 请求接口获取应答
+		$this->result = self::post($funcCode, $params, $file, $merChantKey);
     }
 }
