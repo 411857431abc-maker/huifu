@@ -61,6 +61,7 @@ $trans_params = array(
     // 传入分帐遇到优惠的处理规则 1-按比例分 2-按顺序保障 3-只给交易商户
     "term_div_coupon_type"=>"3",
     // 分账串
+    // 注意只有真实分账场景才需要传入分账串，请避免传入多个分账方为同一商户的分账串
     "acct_split_bunch"=>array(
         "acct_infos" => array(
             // 分账方1
@@ -68,7 +69,7 @@ $trans_params = array(
                 "huifu_id"=>DemoConstants::DEMO_HUIFU_ID,
                 "div_amt"=>"0.01"
             ),
-            // 分账方21
+            // 分账方2
             array(
                 "huifu_id"=>DemoConstants::DIV_HUIFU_ID,
                 "div_amt"=>"0.01"
