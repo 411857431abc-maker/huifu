@@ -59,7 +59,7 @@ $trans_params = array(
     // 原交易请求流水号
     // "org_req_seq_id" => "2021050609311601234567890",
     // "hf_seq_id" => "002900TOP2A210506093117P359ac132fcd00000",
-    "party_order_id" => "03242105063427755900272",
+    "party_order_id" => "03242105063840898400756",
     // 原交易请求日期，指原交易的请求日期，当根据原交易流水号退货时必送
     "org_req_date" => "20210506",
     // 退款金额
@@ -109,11 +109,11 @@ $query_params = array(
     "req_seq_id" => $reqSeqId
 );
 
-# 请求交易查询接口
+# 请求退款查询接口
 $trans->postRequest("topqur.refundQuery", $query_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
 # $trans->postRequest($query_params, "topqur.refundQuery", "merchantKey2");
-# 对进件结果进行处理
+# 对查询结果进行处理
 if ($trans->isError()) {
     // 失败处理
     var_dump($trans->result);

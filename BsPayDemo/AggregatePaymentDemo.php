@@ -50,7 +50,7 @@ $trans_params = array(
     "trans_amt"=>"0.02",
     // 商品描述
     "goods_desc"=>"测试商品",
-    "auth_code" => "281394300366988233",
+    "auth_code" => "283394822366188285",
     // 设备信息
     "terminal_device_info"=>array (
             "device_type"=>"4",
