@@ -5,16 +5,8 @@ namespace BsPayDemo;
 use BsPaySdk\BsPayClient;
 use BsPayDemo\constants\DemoConstants;
 
-define("DEBUG", true);
-define("PROD_MODE", true);
-define("LOG", dirname(__FILE__)."/log");
-// 加载基础 adapay 基础类
-// SDK 初始化文件加载
-require_once  dirname(__FILE__). "/../BsPaySdk/init.php";
 // 配置商户信息
 require_once  dirname(__FILE__). "/config.php";
-// 配置商户信息
-require_once  dirname(__FILE__). "/constants/DemoConstants.php";
 
 $nowStr = date("YmdHis");
 $nowDate = date("Ymd");
