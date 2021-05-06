@@ -1,8 +1,6 @@
 <?php
 namespace BsPaySdk;
 
-use BsPaySdk\BsPay;
-
 class BsPayClient extends BsPay{
 
     public function __construct()
