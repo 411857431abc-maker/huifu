@@ -49,7 +49,7 @@ $trans = new BsPayClient();
 # 请求取现交易接口
 $trans->postRequest("toppas.enchashment", $trans_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-#$trans->postRequest($query_params, "toppas.enchashment", "merchantKey2");
+#$trans->postRequest("toppas.enchashment", $trans_params, "merchantKey2");
 
 if ($trans->isError()){
     //失败处理
@@ -75,7 +75,7 @@ if ($trans->isError()){
  # 请求取现查询接口
  $trans->postRequest("topqur.cashQuery", $query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "topqur.cashQuery", "merchantKey2");
+ #$trans->postRequest("topqur.cashQuery", $query_params, "merchantKey2");
  # 对取现查询结果进行处理
  if ($trans->isError()){
      //失败处理

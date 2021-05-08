@@ -75,7 +75,7 @@ $trans = new BsPayClient();
 # 请求交易退货接口
 $trans->postRequest("toprrc.refund", $trans_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-# $trans->postRequest($query_params, "toprrc.refund", "merchantKey2");
+# $trans->postRequest("toprrc.refund", $trans_params, "merchantKey2");
 
 if ($trans->isError()) {
     // 失败处理

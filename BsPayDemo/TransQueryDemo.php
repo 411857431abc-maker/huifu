@@ -26,7 +26,7 @@ require_once  dirname(__FILE__). "/config.php";
  # 请求交易查询接口
  $trans->postRequest("topqur.transQuery", $query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "topqur.transQuery", "merchantKey2");
+ #$trans->postRequest("topqur.transQuery", $query_params, "merchantKey2");
  # 对查询结果进行处理
  if ($trans->isError()){
      //失败处理

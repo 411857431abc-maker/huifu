@@ -79,7 +79,7 @@ $trans = new BsPayClient();
 # 请求银行卡分期签约接口
 $trans->postRequest("top.bccredit.sign", $sign_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-#$trans->postRequest($query_params, "top.bccredit.sign", "merchantKey2");
+#$trans->postRequest("top.bccredit.sign", $sign_params, "merchantKey2");
 
 if ($trans->isError()){
     //失败处理
@@ -200,7 +200,7 @@ $payment_params = array(
 # 请求银行卡分期支付请求接口
 $trans->postRequest("top.bccredit.paymentApply", $payment_params);
 # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
-#$trans->postRequest($query_params, "top.bccredit.paymentApply", "merchantKey2");
+#$trans->postRequest("top.bccredit.paymentApply", $payment_params, , "merchantKey2");
 
 if ($trans->isError()){
     //失败处理
@@ -226,7 +226,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付查询接口
  $trans->postRequest("topqur.bcCreditPayQuery", $payment_query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "topqur.bcCreditPayQuery", "merchantKey2");
+ #$trans->postRequest("topqur.bcCreditPayQuery", $payment_query_params, "merchantKey2");
  # 对银行卡分期支付查询结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -306,7 +306,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付确认接口
  $trans->postRequest("top.bccredit.paymentConfirm", $payment_confirm_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "top.bccredit.paymentConfirm", "merchantKey2");
+ #$trans->postRequest("top.bccredit.paymentConfirm", $payment_confirm_params, "merchantKey2");
  # 对银行卡分期支付确认结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -379,7 +379,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付退款接口
  $trans->postRequest("toprrc.bccredit.refund", $refund_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "toprrc.bccredit.refund", "merchantKey2");
+ #$trans->postRequest("toprrc.bccredit.refund", $refund_params, "merchantKey2");
  # 对银行卡分期支付退款结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -405,7 +405,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付退款查询接口
  $trans->postRequest("toprrc.refund", $refund_query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "toprrc.refund", "merchantKey2");
+ #$trans->postRequest("toprrc.refund", $refund_query_params, "merchantKey2");
  # 对银行卡分期支付退款查询结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -458,7 +458,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付延时交易确认接口
  $trans->postRequest("topat.payConfirm", $delay_payment_confirm_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "topat.payConfirm", "merchantKey2");
+ #$trans->postRequest("topat.payConfirm", $delay_payment_confirm_params, "merchantKey2");
  # 对银行卡分期支付延时交易确认结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -492,7 +492,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付交易延时确认查询接口
  $trans->postRequest("topqur.payConfirmQuery", $delay_payment_confirm_query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "topqur.payConfirmQuery", "merchantKey2");
+ #$trans->postRequest("topqur.payConfirmQuery", $delay_payment_confirm_query_params, "merchantKey2");
  # 对银行卡分期支付交易延时确认查询结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -549,7 +549,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付交易延时确认退款接口
  $trans->postRequest("toprrc.payConfirmRefund", $delay_payment_confirm_refund_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "toprrc.payConfirmRefund", "merchantKey2");
+ #$trans->postRequest("toprrc.payConfirmRefund", $delay_payment_confirm_refund_params, "merchantKey2");
  # 对银行卡分期支付交易延时确认退款结果进行处理
  if ($trans->isError()){
      //失败处理
@@ -579,7 +579,7 @@ if ($trans->isError()){
  # 请求银行卡分期支付延时交易确认批量查询接口
  $trans->postRequest("topqur.payConfirmListQuery", $delay_payment_confirm_list_query_params);
  # 如有多套配置，可指定使用哪套配置，指定merchanKey为初始化时设置的。
- #$trans->postRequest($query_params, "topqur.payConfirmListQuery", "merchantKey2");
+ #$trans->postRequest("topqur.payConfirmListQuery", $delay_payment_confirm_list_query_params, "merchantKey2");
  # 对银行卡分期支付延时交易确认批量查询结果进行处理
  if ($trans->isError()){
      //失败处理
