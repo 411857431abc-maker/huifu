@@ -166,7 +166,7 @@ class BsPay
         return $this->bs_request->curl_request($merchantConfig, $req_url . "?" . http_build_query($request_params), "", $header, false);
     }
    
-    protected static function addMerConfig($merchantKey, MerConfig $merConfig) {
+    public static function addMerConfig($merchantKey, MerConfig $merConfig) {
         self::$merConfigMap[$merchantKey] = $merConfig;
     }
     
