@@ -11,7 +11,7 @@ $nowStr = date("YmdHis");
 $nowDate = date("Ymd");
 $reqSeqId = $nowStr . "01234567890";
 // $merOrdId = $nowStr . "1234567890";
-$merOrdId = $reqSeqId;
+// $merOrdId = $reqSeqId;
 
 $req_params = array(
     // 请求流水号，需保证当天商户下唯一，推荐采用日期时间+几位流水号的形式
