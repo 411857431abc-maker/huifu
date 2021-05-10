@@ -53,7 +53,7 @@ $query_params = array(
     "req_seq_id"=> $reqSeqId,
 );
 # 请求交易确认查询接口
-$trans->postRequest("topqur.payConfirmQuery", $payConfirm_params);
+$trans->postRequest("topqur.payConfirmQuery", $query_params);
 
 if ($trans->isError()){
     //失败处理
@@ -86,7 +86,7 @@ $refund_params = array(
     ),
 );
 # 请求交易确认退款接口
-$trans->postRequest("toprrc.payConfirmRefund", $payConfirm_params);
+$trans->postRequest("toprrc.payConfirmRefund", $refund_params);
 
 if ($trans->isError()){
     //失败处理
@@ -100,13 +100,13 @@ echo "<br>";
 echo "<br>";
 
 
-$query_params = array(
+$query_list_params = array(
     "huifu_id"=> DemoConstants::DEMO_HUIFU_ID,
     "trans_req_seq_id"=> "2021042214110401234567890",
     "trans_req_date"=> "20210422",
 );
 # 请求交易确认批量查询接口
-$trans->postRequest("topqur.payConfirmListQuery", $payConfirm_params);
+$trans->postRequest("topqur.payConfirmListQuery", $query_list_params);
 
 if ($trans->isError()){
     //失败处理
