@@ -1,0 +1,37 @@
+kind: pipeline
+clone:
+  disable: true
+name: bspay-php-sdk-dev
+trigger:
+  branch: release*
+node:
+  instance: 172.31.13.13
+steps:
+  - name: system_start_webhook
+    image: plugins/webhook
+    settings:
+      method: GET
+      debug: true
+      urls: 'http://172.31.13.13:18080/webHook/startStep'
+  - name: manual test_other_manual
+    image: hoc/drone-manual_check
+    when:
+      event: promote
+      target: manual test
+    settings:
+      scheduler: []
+      role:
+        - 3
+        - 2
+        - 4
+      choose: group
+  - name: system_finish_webhook
+    image: plugins/webhook
+    settings:
+      method: GET
+      debug: true
+      urls: 'http://172.31.13.13:18080/webHook/endStep'
+    when:
+      status:
+        - failure
+        - success
