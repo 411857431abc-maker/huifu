@@ -62,7 +62,7 @@ function getExtendInfos() {
     $extendInfoMap["delay_acct_flag"]= "Y";
     // 渠道号
     $extendInfoMap["channel_no"]= "";
-    // 营销补贴信息
+    // 补贴支付信息
     // $extendInfoMap["combinedpay_data"]= getCombinedpayData();
     // 场景类型
     $extendInfoMap["pay_scene"]= "";

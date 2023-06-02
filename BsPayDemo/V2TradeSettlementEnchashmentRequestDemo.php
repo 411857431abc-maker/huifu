@@ -23,7 +23,7 @@ $request->setReqDate(date("Ymd"));
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 取现金额
 $request->setCashAmt("0.01");
-// 商户号
+// 取现方ID号
 $request->setHuifuId("6666000021291985");
 // 到账日期类型
 $request->setIntoAcctDateType("T0");

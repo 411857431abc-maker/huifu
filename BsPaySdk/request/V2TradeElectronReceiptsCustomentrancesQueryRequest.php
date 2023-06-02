@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 银联活动列表查询
+ * 查询小票自定义入口
  *
  * @author sdk-generator
  * @Description
  */
-class V2MerchantActivityUnionpayQueryRequest extends BaseRequest
+class V2TradeElectronReceiptsCustomentrancesQueryRequest extends BaseRequest
 {
 
     /**
@@ -21,9 +21,13 @@ class V2MerchantActivityUnionpayQueryRequest extends BaseRequest
      * 请求日期
      */
     private $reqDate;
+    /**
+     * 商户号
+     */
+    private $huifuId;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_MERCHANT_ACTIVITY_UNIONPAY_QUERY;
+        return FunctionCodeEnum::$V2_TRADE_ELECTRON_RECEIPTS_CUSTOMENTRANCES_QUERY;
     }
 
 
@@ -41,6 +45,14 @@ class V2MerchantActivityUnionpayQueryRequest extends BaseRequest
 
     public function setReqDate($reqDate) {
         $this->reqDate = $reqDate;
+    }
+
+    public function getHuifuId() {
+        return $this->huifuId;
+    }
+
+    public function setHuifuId($huifuId) {
+        $this->huifuId = $huifuId;
     }
 
 }

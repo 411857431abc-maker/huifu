@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 银联活动商户信息查询 - 示例
+ * 商户短信发送 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -10,21 +10,23 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2MerchantActivityUnionpayMerbaseinfoQueryRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2MerchantBasicdataSmsSendRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2MerchantActivityUnionpayMerbaseinfoQueryRequest;
+use BsPaySdk\request\V2MerchantBasicdataSmsSendRequest;
 
 // 2.组装请求参数
-$request = new V2MerchantActivityUnionpayMerbaseinfoQueryRequest();
+$request = new V2MerchantBasicdataSmsSendRequest();
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
-// 请求日期
+// 请求时间
 $request->setReqDate(date("Ymd"));
-// 汇付客户Id
-$request->setHuifuId("6666000103391467");
-// 银联活动商户号
-$request->setMerNo("521722712545181696");
+// 商户汇付Id
+$request->setHuifuId("6666000105013599");
+// 手机号
+$request->setPhone("13917111111");
+// 验证类型
+$request->setVerifyType("settleBankChange");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();

@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 银联活动报名进度查询
+ * 代扣绑卡查询
  *
  * @author sdk-generator
  * @Description
  */
-class V2MerchantActivityUnionpaySignStatusRequest extends BaseRequest
+class V2QuickbuckleWithholdQueryRequest extends BaseRequest
 {
 
     /**
@@ -18,24 +18,28 @@ class V2MerchantActivityUnionpaySignStatusRequest extends BaseRequest
      */
     private $reqSeqId;
     /**
-     * 请求日期
+     * 请求时间
      */
     private $reqDate;
     /**
-     * 汇付客户Id
+     * 汇付Id
      */
     private $huifuId;
     /**
-     * 报名编号与serialNumber二选一；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：521724026796785664&lt;/font&gt;
+     * 客户系统用户id 
      */
-    private $enlistId;
+    private $outCustId;
     /**
-     * 报名请求流水号报名时传递的reqSysId；与enlistId二选一；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：ZDTESTrQ202011054108473959671&lt;/font&gt;
+     * 绑卡订单号
      */
-    private $serialNumber;
+    private $orderId;
+    /**
+     * 绑卡订单日期
+     */
+    private $orderDate;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_MERCHANT_ACTIVITY_UNIONPAY_SIGN_STATUS;
+        return FunctionCodeEnum::$V2_QUICKBUCKLE_WITHHOLD_QUERY;
     }
 
 
@@ -63,20 +67,28 @@ class V2MerchantActivityUnionpaySignStatusRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getEnlistId() {
-        return $this->enlistId;
+    public function getOutCustId() {
+        return $this->outCustId;
     }
 
-    public function setEnlistId($enlistId) {
-        $this->enlistId = $enlistId;
+    public function setOutCustId($outCustId) {
+        $this->outCustId = $outCustId;
     }
 
-    public function getSerialNumber() {
-        return $this->serialNumber;
+    public function getOrderId() {
+        return $this->orderId;
     }
 
-    public function setSerialNumber($serialNumber) {
-        $this->serialNumber = $serialNumber;
+    public function setOrderId($orderId) {
+        $this->orderId = $orderId;
+    }
+
+    public function getOrderDate() {
+        return $this->orderDate;
+    }
+
+    public function setOrderDate($orderDate) {
+        $this->orderDate = $orderDate;
     }
 
 }

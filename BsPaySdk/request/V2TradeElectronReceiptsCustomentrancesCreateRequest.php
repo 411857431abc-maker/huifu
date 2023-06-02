@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 银联活动报名
+ * 创建修改小票自定义入口
  *
  * @author sdk-generator
  * @Description
  */
-class V2MerchantActivityUnionpaySignRequest extends BaseRequest
+class V2TradeElectronReceiptsCustomentrancesCreateRequest extends BaseRequest
 {
 
     /**
@@ -22,20 +22,16 @@ class V2MerchantActivityUnionpaySignRequest extends BaseRequest
      */
     private $reqDate;
     /**
-     * 汇付客户Id
+     * 商户号
      */
     private $huifuId;
     /**
-     * 活动编号
+     * 操作类型
      */
-    private $activityId;
-    /**
-     * 银联活动商户号
-     */
-    private $merNo;
+    private $operateType;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_MERCHANT_ACTIVITY_UNIONPAY_SIGN;
+        return FunctionCodeEnum::$V2_TRADE_ELECTRON_RECEIPTS_CUSTOMENTRANCES_CREATE;
     }
 
 
@@ -63,20 +59,12 @@ class V2MerchantActivityUnionpaySignRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getActivityId() {
-        return $this->activityId;
+    public function getOperateType() {
+        return $this->operateType;
     }
 
-    public function setActivityId($activityId) {
-        $this->activityId = $activityId;
-    }
-
-    public function getMerNo() {
-        return $this->merNo;
-    }
-
-    public function setMerNo($merNo) {
-        $this->merNo = $merNo;
+    public function setOperateType($operateType) {
+        $this->operateType = $operateType;
     }
 
 }

@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 银联活动商户信息查询
+ * 商户短信发送
  *
  * @author sdk-generator
  * @Description
  */
-class V2MerchantActivityUnionpayMerbaseinfoQueryRequest extends BaseRequest
+class V2MerchantBasicdataSmsSendRequest extends BaseRequest
 {
 
     /**
@@ -18,20 +18,24 @@ class V2MerchantActivityUnionpayMerbaseinfoQueryRequest extends BaseRequest
      */
     private $reqSeqId;
     /**
-     * 请求日期
+     * 请求时间
      */
     private $reqDate;
     /**
-     * 汇付客户Id
+     * 商户汇付Id
      */
     private $huifuId;
     /**
-     * 银联活动商户号
+     * 手机号
      */
-    private $merNo;
+    private $phone;
+    /**
+     * 验证类型
+     */
+    private $verifyType;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_MERCHANT_ACTIVITY_UNIONPAY_MERBASEINFO_QUERY;
+        return FunctionCodeEnum::$V2_MERCHANT_BASICDATA_SMS_SEND;
     }
 
 
@@ -59,12 +63,20 @@ class V2MerchantActivityUnionpayMerbaseinfoQueryRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getMerNo() {
-        return $this->merNo;
+    public function getPhone() {
+        return $this->phone;
     }
 
-    public function setMerNo($merNo) {
-        $this->merNo = $merNo;
+    public function setPhone($phone) {
+        $this->phone = $phone;
+    }
+
+    public function getVerifyType() {
+        return $this->verifyType;
+    }
+
+    public function setVerifyType($verifyType) {
+        $this->verifyType = $verifyType;
     }
 
 }

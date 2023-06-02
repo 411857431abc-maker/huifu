@@ -64,7 +64,7 @@ function getExtendInfos() {
     // $extendInfoMap["remark"]= "";
     // 订单失效时间
     // $extendInfoMap["time_expire"]= "";
-    // 营销补贴信息
+    // 补贴支付信息
     // $extendInfoMap["combinedpay_data"]= getCombinedpayData();
     // 分账对象
     // $extendInfoMap["acct_split_bunch"]= getAcctSplitBunchRucan();

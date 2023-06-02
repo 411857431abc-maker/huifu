@@ -22,11 +22,11 @@ class V2MerchantSettleConfigRequest extends BaseRequest
      */
     private $reqDate;
     /**
-     * 商户汇付Id
+     * 商户/用户汇付Id
      */
     private $huifuId;
     /**
-     * 渠道商汇付Id
+     * 上级汇付Id
      */
     private $upperHuifuId;
     /**

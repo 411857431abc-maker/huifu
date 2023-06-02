@@ -72,7 +72,7 @@ function getExtendInfos() {
     // $extendInfoMap["loan_undertaker"]= "";
     // 垫资账户类型
     // $extendInfoMap["loan_acct_type"]= "";
-    // 营销补贴信息
+    // 补贴支付信息
     // $extendInfoMap["combinedpay_data"]= getCombinedpayData();
     return $extendInfoMap;
 }
