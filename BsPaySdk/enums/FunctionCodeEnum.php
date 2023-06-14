@@ -5,6 +5,10 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 统一进件页面版查询
+     */
+    static $V2_MERCHANT_BUSI_STATUS_QUERY = 'v2/merchant/busi/status/query';
+    /**
      * 银行列表查询
      */
     static $V2_QUICKBUCKLE_BANK_QUERY = 'v2/quickbuckle/bank/query';
