@@ -62,6 +62,8 @@ function getExtendInfos() {
     $extendInfoMap["notify_url"]= "https://callback.service.com/xx";
     // 交易失效时间
     // $extendInfoMap["time_expire"]= "";
+    // 业务信息
+    // $extendInfoMap["biz_info"]= getBizInfo();
     return $extendInfoMap;
 }
 
@@ -91,6 +93,38 @@ function getMiniappDataRucan() {
     $dto["seq_id"] = "系统应用ID";
     // 私有信息
     // $dto["private_info"] = "";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getPayCheckWx() {
+    $dto = array();
+    // 指定支付者
+    // $dto["limit_payer"] = "";
+    // 微信实名验证
+    // $dto["real_name_flag"] = "";
+
+    return $dto;
+}
+
+function getPersonPayer() {
+    $dto = array();
+    // 姓名
+    // $dto["name"] = "";
+    // 证件类型
+    // $dto["cert_type"] = "";
+    // 证件号
+    // $dto["cert_no"] = "";
+
+    return $dto;
+}
+
+function getBizInfo() {
+    $dto = array();
+    // 付款人验证（微信）
+    // $dto["payer_check_wx"] = getPayCheckWx();
+    // 个人付款人信息
+    // $dto["person_payer"] = getPersonPayer();
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

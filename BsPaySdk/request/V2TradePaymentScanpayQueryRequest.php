@@ -18,15 +18,15 @@ class V2TradePaymentScanpayQueryRequest extends BaseRequest
      */
     private $huifuId;
     /**
-     * 汇付服务订单号out_order_no,org_hf_seq_id,org_req_seq_id 必填其一；汇付生成的服务订单号；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：1234323JKHDFE1243252&lt;/font&gt;
+     * 汇付服务订单号out_ord_id,org_hf_seq_id,org_req_seq_id 必填其一；汇付生成的服务订单号；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：1234323JKHDFE1243252&lt;/font&gt;
      */
-    private $outOrderNo;
+    private $outOrdId;
     /**
-     * 创建服务订单返回的汇付全局流水号out_order_no,org_hf_seq_id,org_req_seq_id 必填其一；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：00290TOP1GR210919004230P853ac13262200000&lt;/font&gt;
+     * 创建服务订单返回的汇付全局流水号out_ord_id,org_hf_seq_id,org_req_seq_id 必填其一；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：00290TOP1GR210919004230P853ac13262200000&lt;/font&gt;
      */
     private $orgHfSeqId;
     /**
-     * 服务订单创建请求流水号out_order_no,org_hf_seq_id,org_req_seq_id 必填其一；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：202110210012100005&lt;/font&gt;
+     * 服务订单创建请求流水号out_ord_id,org_hf_seq_id,org_req_seq_id 必填其一；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：202110210012100005&lt;/font&gt;
      */
     private $orgReqSeqId;
     /**
@@ -47,12 +47,12 @@ class V2TradePaymentScanpayQueryRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getOutOrderNo() {
-        return $this->outOrderNo;
+    public function getOutOrdId() {
+        return $this->outOrdId;
     }
 
-    public function setOutOrderNo($outOrderNo) {
-        $this->outOrderNo = $outOrderNo;
+    public function setOutOrdId($outOrdId) {
+        $this->outOrdId = $outOrdId;
     }
 
     public function getOrgHfSeqId() {
