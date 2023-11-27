@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 钱包支付退款查询 - 示例
+ * 钱包转账下单 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -10,13 +10,13 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2WalletPayRefundQueryRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2WalletTradeTransferRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2WalletPayRefundQueryRequest;
+use BsPaySdk\request\V2WalletTradeTransferRequest;
 
 // 2.组装请求参数
-$request = new V2WalletPayRefundQueryRequest();
+$request = new V2WalletTradeTransferRequest();
 // 系统号
 // $request->setSysId("test");
 // 产品号

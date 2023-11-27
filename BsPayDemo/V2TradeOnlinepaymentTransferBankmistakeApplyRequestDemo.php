@@ -43,8 +43,6 @@ $request->setBankName("招商银行");
 $request->setNotifyUrl("http://www.baidu.com");
 // 商品描述
 // $request->setGoodsDesc("test");
-// 汇款凭证文件名称
-$request->setFileName("汇付电子小票验证.jpg");
 // 汇款凭证文件内容
 $request->setCertificateContent("/9j/4QCARXhpZgAATU0…………AAB//2Q==");
 
@@ -68,6 +66,8 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
+    // 汇款凭证文件名称
+    $extendInfoMap["file_name"]= "汇付电子小票验证.jpg";
     // 备注
     $extendInfoMap["remark"]= "大额转账补入账验证";
     // 银行信息数据
@@ -77,26 +77,26 @@ function getExtendInfos() {
 
 function getBankInfoData() {
     $dto = array();
-    // 省份
-    $dto["province"] = "0031";
-    // 地区
-    $dto["area"] = "3100";
     // 银行编号
     $dto["bank_code"] = "03080000";
     // 联行号选填，参见：[银行支行编码](https://paas.huifu.com/partners/api/#/csfl/api_csfl_yhzhbm)； &lt;font color&#x3D;&quot;green&quot;&gt;示例值：102290026507&lt;/font&gt;&lt;br/&gt;对私代发非必填；
     $dto["correspondent_code"] = "103290076178";
     // 对公对私标识
     $dto["card_acct_type"] = "P";
+    // 省份
+    $dto["province"] = "0031";
+    // 地区
+    $dto["area"] = "3100";
+    // 支行名
+    $dto["subbranch_bank_name"] = "中国农业银行股份有限公司上海联洋支行";
     // 证件类型
     $dto["certificate_type"] = "01";
+    // 付款方三证合一码
+    $dto["bank_acct_three_in_one"] = "92650109MA79R8E308";
     // 手机号
     $dto["mobile_no"] = "oO6XYz…………Is3nZb/5dFj860Z+nQ==";
     // 证件号
     $dto["certify_no"] = "yL09mhS5…………WK04Kdfyg==";
-    // 支行名
-    $dto["subbranch_bank_name"] = "中国农业银行股份有限公司上海联洋支行";
-    // 付款方三证合一码
-    $dto["bank_acct_three_in_one"] = "92650109MA79R8E308";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

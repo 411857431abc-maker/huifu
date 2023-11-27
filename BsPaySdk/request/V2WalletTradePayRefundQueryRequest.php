@@ -10,7 +10,7 @@ use BsPaySdk\enums\FunctionCodeEnum;
  * @author sdk-generator
  * @Description
  */
-class V2WalletPayRefundQueryRequest extends BaseRequest
+class V2WalletTradePayRefundQueryRequest extends BaseRequest
 {
 
     /**
@@ -31,7 +31,7 @@ class V2WalletPayRefundQueryRequest extends BaseRequest
     private $data;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_WALLET_PAY_REFUND_QUERY;
+        return FunctionCodeEnum::$V2_WALLET_TRADE_PAY_REFUND_QUERY;
     }
 
 

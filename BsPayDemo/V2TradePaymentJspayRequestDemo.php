@@ -84,10 +84,10 @@ function getExtendInfos() {
     $extendInfoMap["risk_check_data"]= getRiskCheckData();
     // 设备信息
     $extendInfoMap["terminal_device_data"]= getTerminalDeviceData();
-    // 异步通知地址
-    $extendInfoMap["notify_url"]= "http://www.baidu.com";
     // 备注
     $extendInfoMap["remark"]= "String";
+    // 异步通知地址
+    $extendInfoMap["notify_url"]= "http://www.baidu.com";
     return $extendInfoMap;
 }
 

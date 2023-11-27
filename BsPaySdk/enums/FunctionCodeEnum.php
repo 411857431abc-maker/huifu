@@ -5,6 +5,14 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 钱包转账下单
+     */
+    static $V2_WALLET_TRADE_TRANSFER = 'v2/wallet/trade/transfer';
+    /**
+     * 钱包支付退款查询
+     */
+    static $V2_WALLET_TRADE_PAY_REFUND_QUERY = 'v2/wallet/trade/pay/refund/query';
+    /**
      * 快捷绑卡查询
      */
     static $V2_QUICKBUCKLE_QUERY = 'v2/quickbuckle/query';

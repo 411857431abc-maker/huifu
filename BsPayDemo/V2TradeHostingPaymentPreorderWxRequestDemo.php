@@ -58,12 +58,12 @@ function getExtendInfos() {
     $extendInfoMap["delay_acct_flag"]= "N";
     // 分账对象
     $extendInfoMap["acct_split_bunch"]= getAcctSplitBunchRucan();
-    // 异步通知地址
-    $extendInfoMap["notify_url"]= "https://callback.service.com/xx";
     // 交易失效时间
     // $extendInfoMap["time_expire"]= "";
     // 业务信息
     // $extendInfoMap["biz_info"]= getBizInfo();
+    // 交易异步通知地址
+    $extendInfoMap["notify_url"]= "https://callback.service.com/xx";
     return $extendInfoMap;
 }
 

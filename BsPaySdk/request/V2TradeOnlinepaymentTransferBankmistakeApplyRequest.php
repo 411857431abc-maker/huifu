@@ -66,10 +66,6 @@ class V2TradeOnlinepaymentTransferBankmistakeApplyRequest extends BaseRequest
      */
     private $goodsDesc;
     /**
-     * 汇款凭证文件名称
-     */
-    private $fileName;
-    /**
      * 汇款凭证文件内容
      */
     private $certificateContent;
@@ -181,14 +177,6 @@ class V2TradeOnlinepaymentTransferBankmistakeApplyRequest extends BaseRequest
 
     public function setGoodsDesc($goodsDesc) {
         $this->goodsDesc = $goodsDesc;
-    }
-
-    public function getFileName() {
-        return $this->fileName;
-    }
-
-    public function setFileName($fileName) {
-        $this->fileName = $fileName;
     }
 
     public function getCertificateContent() {
