@@ -275,6 +275,10 @@ function getAlipayData() {
     // $dto["subject"] = "";
     // 商家门店名称
     // $dto["store_name"] = "";
+    // 小程序应用的appid
+    // $dto["op_app_id"] = "";
+    // 商户业务信息
+    // $dto["ali_business_params"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
@@ -296,7 +300,7 @@ function getPayeeInfo() {
 function getUnionpayData() {
     $dto = array();
     // 收款方附加数据
-    // $dto["acq_addn_data"] = "";
+    // $dto["addn_data"] = "";
     // 地区信息
     // $dto["area_info"] = "";
     // 持卡人ip
@@ -315,7 +319,7 @@ function getUnionpayData() {
     // $dto["req_reserved"] = "";
     // 终端信息
     // $dto["term_info"] = "";
-    // 云闪付用户标识
+    // 银联用户标识
     // $dto["user_id"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
@@ -333,7 +337,7 @@ function getAcctInfosRucan() {
     $dto = array();
     // 分账金额
     // $dto["div_amt"] = "test";
-    // 被分账方ID
+    // 分账接收方ID
     // $dto["huifu_id"] = "test";
     // 账户号
     // $dto["acct_id"] = "";

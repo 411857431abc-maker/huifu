@@ -52,12 +52,12 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
-    // 备注
-    $extendInfoMap["remark"]= "1234567890";
     // 分账对象
     // $extendInfoMap["acct_split_bunch"]= getAcctSplitBunch();
     // 安全信息
     $extendInfoMap["risk_check_data"]= getRiskCheckData();
+    // 备注
+    $extendInfoMap["remark"]= "1234567890";
     return $extendInfoMap;
 }
 

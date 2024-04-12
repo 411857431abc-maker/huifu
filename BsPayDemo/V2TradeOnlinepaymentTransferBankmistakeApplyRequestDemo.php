@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 银行大额转账差错申请 - 示例
+ * 银行大额支付差错申请 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -69,7 +69,7 @@ function getExtendInfos() {
     // 汇款凭证文件名称
     $extendInfoMap["file_name"]= "汇付电子小票验证.jpg";
     // 备注
-    $extendInfoMap["remark"]= "大额转账补入账验证";
+    $extendInfoMap["remark"]= "大额支付补入账验证";
     // 银行信息数据
     $extendInfoMap["bank_info_data"]= getBankInfoData();
     return $extendInfoMap;

@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 商户分账配置查询(2022)
+ * 全域资金管理配置查询
  *
  * @author sdk-generator
  * @Description
  */
-class V2MerchantSplitQueryRequest extends BaseRequest
+class V2MerchantBusiEfpdetailRequest extends BaseRequest
 {
 
     /**
@@ -22,12 +22,16 @@ class V2MerchantSplitQueryRequest extends BaseRequest
      */
     private $reqDate;
     /**
-     * 汇付客户Id
+     * 商户汇付id
      */
     private $huifuId;
+    /**
+     * 银行类型
+     */
+    private $outFundsGateId;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_MERCHANT_SPLIT_QUERY;
+        return FunctionCodeEnum::$V2_MERCHANT_BUSI_EFPDETAIL;
     }
 
 
@@ -53,6 +57,14 @@ class V2MerchantSplitQueryRequest extends BaseRequest
 
     public function setHuifuId($huifuId) {
         $this->huifuId = $huifuId;
+    }
+
+    public function getOutFundsGateId() {
+        return $this->outFundsGateId;
+    }
+
+    public function setOutFundsGateId($outFundsGateId) {
+        $this->outFundsGateId = $outFundsGateId;
     }
 
 }
