@@ -73,14 +73,14 @@ function getSettleConfig() {
     $dto["out_settle_huifuid"] = "";
     // 结算手续费外扣时的账户类型外扣手续费账户类型； 01：基本户（为空时默认值）， 05：充值户；外扣时必填；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：01&lt;/font&gt;
     $dto["out_settle_acct_type"] = "";
-    // 节假日结算手续费率T1时无意义，D1时节假日必填按此费率结算；单位%&lt;br/&gt;需保留小数点后两位。取值范围[0.00,100.00]；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.5&lt;/font&gt;代表费率为0.50%。
-    $dto["fixed_ratio"] = "2";
     // 结算批次号settle_pattern为P0时必填；[参见结算批次说明](https://paas.huifu.com/partners/api/#/csfl/api_csfl_jspc)
     $dto["settle_batch_no"] = "300";
     // 是否优先到账settle_pattern为P0时选填， Y：是 N：否（为空默认取值）；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：Y&lt;/font&gt;
     $dto["is_priority_receipt"] = "";
     // 自定义结算处理时间settle_pattern为P1时必填，注意：00:00到00:30不能指定；格式：HHmmss；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：103000&lt;/font&gt;
     $dto["settle_time"] = "";
+    // 节假日结算手续费率settle_cycle为D1时必填。单位%，需保留小数点后两位。取值范围[0.00，100.00]，不收费请填写0.00；settle_cycle&#x3D;T1时，不生效 ；settle_cycle为D1时，遇节假日按此费率结算 ；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.05&lt;/font&gt;
+    $dto["fixed_ratio"] = "2";
     // 起结金额
     $dto["min_amt"] = "0.01";
     // 留存金额
@@ -91,6 +91,10 @@ function getSettleConfig() {
     $dto["out_settle_flag"] = "2";
     // 结算方式
     $dto["settle_pattern"] = "";
+    // 工作日结算手续费率
+    // $dto["workday_fixed_ratio"] = "";
+    // 工作日结算手续费固定金额
+    // $dto["workday_constant_amt"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

@@ -21,7 +21,7 @@ $request = new V2UserBusiModifyRequest();
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 请求日期
 $request->setReqDate(date("Ymd"));
-// 渠道商汇付Id
+// 渠道商/商户汇付Id
 $request->setUpperHuifuId("6666000104633228");
 // 汇付ID
 $request->setHuifuId("6666000104896342");
@@ -77,7 +77,7 @@ function getSettleConfig() {
     $dto["is_priority_receipt"] = "Y";
     // 自定义结算处理时间settle_pattern为P1时必填，注意：00:00到00:30不能指定；格式：HHmmss；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：103000&lt;/font&gt;
     $dto["settle_time"] = "";
-    // 节假日结算手续费率(%)
+    // 节假日结算手续费率settle_cycle为D1时必填。单位%，需保留小数点后两位。取值范围[0.00，100.00]，不收费请填写0.00；settle_cycle&#x3D;T1时，不生效 ；settle_cycle为D1时，遇节假日按此费率结算 ；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.05&lt;/font&gt;
     $dto["fixed_ratio"] = "0.1";
     // 起结金额
     $dto["min_amt"] = "0.1";
@@ -93,6 +93,10 @@ function getSettleConfig() {
     $dto["settle_abstract"] = "吃吃";
     // 结算方式
     $dto["settle_pattern"] = "P0";
+    // 工作日结算手续费率
+    // $dto["workday_fixed_ratio"] = "";
+    // 工作日结算手续费固定金额
+    // $dto["workday_constant_amt"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

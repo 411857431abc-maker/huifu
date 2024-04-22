@@ -50,42 +50,40 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
+    // 账户号
+    // $extendInfoMap["acct_id"]= "";
     // 交易有效期
     $extendInfoMap["time_expire"]= "20230418235959";
-    // 聚合正扫微信拓展参数集合
+    // 微信参数集合
     // $extendInfoMap["wx_data"]= getWxData();
-    // 支付宝扩展参数集合
+    // 支付宝参数集合
     $extendInfoMap["alipay_data"]= getAlipayData();
     // 银联参数集合
     // $extendInfoMap["unionpay_data"]= getUnionpayData();
-    // 数字人民币参数集合
-    // $extendInfoMap["dc_data"]= getDcData();
+    // 是否延迟交易
+    $extendInfoMap["delay_acct_flag"]= "N";
+    // 手续费扣款标志
+    // $extendInfoMap["fee_flag"]= "";
     // 分账对象
     $extendInfoMap["acct_split_bunch"]= getAcctSplitBunch();
-    // 传入分帐遇到优惠的处理规则
+    // 传入分账遇到优惠的处理规则
     $extendInfoMap["term_div_coupon_type"]= "0";
     // 补贴支付信息
     // $extendInfoMap["combinedpay_data"]= getCombinedpayData();
-    // 账户号
-    // $extendInfoMap["acct_id"]= "";
-    // 手续费扣款标志
-    // $extendInfoMap["fee_flag"]= "";
     // 禁用信用卡标记
     $extendInfoMap["limit_pay_type"]= "NO_CREDIT";
-    // 是否延迟交易
-    $extendInfoMap["delay_acct_flag"]= "N";
     // 商户贴息标记
     $extendInfoMap["fq_mer_discount_flag"]= "N";
     // 渠道号
     $extendInfoMap["channel_no"]= "";
     // 场景类型
     $extendInfoMap["pay_scene"]= "02";
+    // 备注
+    $extendInfoMap["remark"]= "String";
     // 安全信息
     $extendInfoMap["risk_check_data"]= getRiskCheckData();
     // 设备信息
     $extendInfoMap["terminal_device_data"]= getTerminalDeviceData();
-    // 备注
-    $extendInfoMap["remark"]= "String";
     // 异步通知地址
     $extendInfoMap["notify_url"]= "http://www.baidu.com";
     return $extendInfoMap;
@@ -189,16 +187,16 @@ function getExtendParams() {
     $dto["food_order_type"] = "qr_order";
     // 花呗分期数
     $dto["hb_fq_num"] = "";
-    // 花呗卖家承担的手续费百分比
+    // 花呗卖家手续费百分比
     $dto["hb_fq_seller_percent"] = "";
     // 行业数据回流信息
     $dto["industry_reflux_info"] = "String";
+    // 信用卡分期资产方式
+    // $dto["fq_channels"] = "";
     // 停车场id
     $dto["parking_id"] = "123wsx";
     // 系统商编号
     $dto["sys_service_provider_id"] = "1111111";
-    // 信用卡分期资产方式
-    // $dto["fq_channels"] = "";
 
     return $dto;
 }
@@ -207,9 +205,9 @@ function getGoodsDetail() {
     $dto = array();
     // 商品的编号
     $dto["goods_id"] = "12312321";
-    // 商品名称(元)
+    // 商品名称
     $dto["goods_name"] = "阿里";
-    // 商品单价
+    // 商品单价(元)
     $dto["price"] = "0.01";
     // 商品数量
     $dto["quantity"] = "20";
@@ -325,14 +323,6 @@ function getUnionpayData() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getDcData() {
-    $dto = array();
-    // 数字货币银行编号
-    // $dto["digital_bank_no"] = "";
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-}
-
 function getAcctInfosRucan() {
     $dto = array();
     // 分账金额
@@ -357,7 +347,7 @@ function getAcctSplitBunch() {
 
 function getCombinedpayData() {
     $dto = array();
-    // 补贴方汇付编号
+    // 补贴方汇付商户号
     // $dto["huifu_id"] = "test";
     // 补贴方类型
     // $dto["user_type"] = "test";
