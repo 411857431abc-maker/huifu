@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 完税凭证下载 - 示例
+ * 完税凭证查询 - 示例
  *
  * @author sdk-generator
  * @Description

@@ -5,7 +5,7 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 完税凭证下载
+ * 完税凭证查询
  *
  * @author sdk-generator
  * @Description

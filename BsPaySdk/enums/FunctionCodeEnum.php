@@ -5,6 +5,10 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 完税凭证下载
+     */
+    static $V2_HYC_TAX_DOWNLOAD = 'v2/hyc/tax/download';
+    /**
      * 用户申请单状态查询
      */
     static $V2_USER_APPLY_QUERY = 'v2/user/apply/query';
@@ -17,7 +21,7 @@ class FunctionCodeEnum
      */
     static $V2_QUICKBUCKLE_BIND_CARDINFO_QUERY = 'v2/quickbuckle/bind/cardInfo/query';
     /**
-     * 完税凭证下载
+     * 完税凭证查询
      */
     static $V2_HYC_TAX_QUERY = 'v2/hyc/tax/query';
     /**
