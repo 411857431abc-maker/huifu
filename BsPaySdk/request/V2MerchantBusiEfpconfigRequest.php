@@ -5,7 +5,7 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 全渠道资金管理配置
+ * 全域资金管理配置
  *
  * @author sdk-generator
  * @Description
@@ -50,7 +50,7 @@ class V2MerchantBusiEfpconfigRequest extends BaseRequest
      */
     private $outOrderAcctOpenFees;
     /**
-     * 全渠道资金管理补充材料id首次开通时必填；涉及文件类型：F504-全渠道资金管理补充材料；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
+     * 商户与其他支付机构签署的收单协议文件id首次开通时必填；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
      */
     private $otherPaymentInstitutionsPic;
     /**
@@ -61,10 +61,6 @@ class V2MerchantBusiEfpconfigRequest extends BaseRequest
      * 签约人信息switch_state为1时必填 jsonObject格式
      */
     private $signUserInfo;
-    /**
-     * 入账来源
-     */
-    private $acctSource;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_MERCHANT_BUSI_EFPCONFIG;
@@ -165,14 +161,6 @@ class V2MerchantBusiEfpconfigRequest extends BaseRequest
 
     public function setSignUserInfo($signUserInfo) {
         $this->signUserInfo = $signUserInfo;
-    }
-
-    public function getAcctSource() {
-        return $this->acctSource;
-    }
-
-    public function setAcctSource($acctSource) {
-        $this->acctSource = $acctSource;
     }
 
 }

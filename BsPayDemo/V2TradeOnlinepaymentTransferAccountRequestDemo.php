@@ -48,12 +48,10 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
-    // 用户客户号
+    // 收款方用户客户号
     $extendInfoMap["user_huifu_id"]= "6666000103905031";
     // 收款方账户号
     $extendInfoMap["acct_id"]= "A01199826";
-    // 页面标识
-    // $extendInfoMap["page_flag"]= "";
     // 付款方名称
     $extendInfoMap["certificate_name"]= "沈显龙";
     // 付款方银行卡号

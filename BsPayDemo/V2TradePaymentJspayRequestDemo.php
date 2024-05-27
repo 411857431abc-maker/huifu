@@ -22,7 +22,7 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 商户号
-$request->setHuifuId("6666000109133323");
+$request->setHuifuId("6666000108854952");
 // 商品描述
 $request->setGoodsDesc("hibs自动化-通用版验证");
 // 交易类型
@@ -53,13 +53,13 @@ function getExtendInfos() {
     // 账户号
     // $extendInfoMap["acct_id"]= "";
     // 交易有效期
-    $extendInfoMap["time_expire"]= "20250518235959";
+    $extendInfoMap["time_expire"]= "20230418235959";
     // 微信参数集合
-    $extendInfoMap["wx_data"]= getWxData();
+    // $extendInfoMap["wx_data"]= getWxData();
     // 支付宝参数集合
     $extendInfoMap["alipay_data"]= getAlipayData();
     // 银联参数集合
-    $extendInfoMap["unionpay_data"]= getUnionpayData();
+    // $extendInfoMap["unionpay_data"]= getUnionpayData();
     // 是否延迟交易
     $extendInfoMap["delay_acct_flag"]= "N";
     // 手续费扣款标志
@@ -79,7 +79,7 @@ function getExtendInfos() {
     // 场景类型
     $extendInfoMap["pay_scene"]= "02";
     // 备注
-    $extendInfoMap["remark"]= "string";
+    $extendInfoMap["remark"]= "String";
     // 安全信息
     $extendInfoMap["risk_check_data"]= getRiskCheckData();
     // 设备信息
@@ -92,15 +92,15 @@ function getExtendInfos() {
 function getGoodsDetailWxRucan() {
     $dto = array();
     // 商品编码
-    $dto["goods_id"] = "6934572310301";
+    // $dto["goods_id"] = "";
     // 商品名称
-    $dto["goods_name"] = "太龙双黄连口服液";
+    // $dto["goods_name"] = "";
     // 商品单价(元)
-    $dto["price"] = "43.00";
+    // $dto["price"] = "";
     // 商品数量
-    $dto["quantity"] = "1";
+    // $dto["quantity"] = "";
     // 微信侧商品编码
-    $dto["wxpay_goods_id"] = "12235413214070356458058";
+    // $dto["wxpay_goods_id"] = "";
 
     $dtoList = array();
     array_push($dtoList, $dto);
@@ -110,11 +110,11 @@ function getGoodsDetailWxRucan() {
 function getDetail() {
     $dto = array();
     // 单品列表
-    $dto["goods_detail"] = getGoodsDetailWxRucan();
+    // $dto["goods_detail"] = getGoodsDetailWxRucan();
     // 订单原价(元)
-    $dto["cost_price"] = "999.00";
+    // $dto["cost_price"] = "";
     // 商品小票ID
-    $dto["receipt_id"] = "20220628132043853798";
+    // $dto["receipt_id"] = "";
 
     return $dto;
 }
@@ -130,7 +130,9 @@ function getStoreInfo() {
     // 门店详细地址
     // $dto["ass"] = "";
 
-    return $dto;
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return $dtoList;
 }
 
 function getSceneInfo() {
@@ -144,17 +146,17 @@ function getSceneInfo() {
 function getWxData() {
     $dto = array();
     // 子商户公众账号id
-    $dto["sub_appid"] = "wxdfe9a5d141f96685";
+    // $dto["sub_appid"] = "";
     // 用户标识
-    $dto["openid"] = "o8jhotzittQSetZ-N0Yj4Hz91Rqc";
+    // $dto["openid"] = "";
     // 子商户用户标识
-    $dto["sub_openid"] = "";
+    // $dto["sub_openid"] = "";
     // 附加数据
     // $dto["attach"] = "";
     // 商品描述
     // $dto["body"] = "";
     // 商品详情
-    $dto["detail"] = getDetail();
+    // $dto["detail"] = getDetail();
     // 设备号
     // $dto["device_info"] = "";
     // 订单优惠标记
@@ -164,7 +166,7 @@ function getWxData() {
     // 开发票入口开放标识
     // $dto["receipt"] = "";
     // 场景信息
-    $dto["scene_info"] = getSceneInfo();
+    // $dto["scene_info"] = getSceneInfo();
     // 终端ip
     // $dto["spbill_create_ip"] = "";
     // 单品优惠标识
@@ -188,7 +190,7 @@ function getExtendParams() {
     // 花呗卖家手续费百分比
     $dto["hb_fq_seller_percent"] = "";
     // 行业数据回流信息
-    $dto["industry_reflux_info"] = "string";
+    $dto["industry_reflux_info"] = "String";
     // 信用卡分期资产方式
     // $dto["fq_channels"] = "";
     // 停车场id
@@ -212,7 +214,7 @@ function getGoodsDetail() {
     // 商品描述信息
     $dto["body"] = "";
     // 商品类目树
-    $dto["categories_tree"] = "string";
+    $dto["categories_tree"] = "String";
     // 商品类目
     $dto["goods_category"] = "";
     // 商品的展示地址
@@ -246,23 +248,23 @@ function getExtUserInfo() {
 function getAlipayData() {
     $dto = array();
     // 买家的支付宝唯一用户号
-    $dto["buyer_id"] = "2088702699908257";
+    $dto["buyer_id"] = "20880414938706770000";
     // 支付宝的店铺编号
     $dto["alipay_store_id"] = "";
     // 买家支付宝账号
-    $dto["buyer_logon_id"] = "string";
+    $dto["buyer_logon_id"] = "String";
     // 业务扩展参数
     $dto["extend_params"] = getExtendParams();
     // 订单包含的商品列表信息
     $dto["goods_detail"] = getGoodsDetail();
     // 商户原始订单号
-    $dto["merchant_order_no"] = "string";
+    $dto["merchant_order_no"] = "String";
     // 商户操作员编号
     $dto["operator_id"] = "123213213";
     // 销售产品码
-    $dto["product_code"] = "string";
+    $dto["product_code"] = "String";
     // 卖家支付宝用户号
-    $dto["seller_id"] = "string";
+    $dto["seller_id"] = "String";
     // 商户门店编号
     $dto["store_id"] = "";
     // 外部指定买家
@@ -324,9 +326,9 @@ function getUnionpayData() {
 function getAcctInfosRucan() {
     $dto = array();
     // 分账金额
-    $dto["div_amt"] = "0.10";
+    // $dto["div_amt"] = "test";
     // 分账接收方ID
-    $dto["huifu_id"] = "6666000109133323";
+    // $dto["huifu_id"] = "test";
     // 账户号
     // $dto["acct_id"] = "";
 
@@ -338,7 +340,7 @@ function getAcctInfosRucan() {
 function getAcctSplitBunch() {
     $dto = array();
     // 分账明细
-    $dto["acct_infos"] = getAcctInfosRucan();
+    // $dto["acct_infos"] = getAcctInfosRucan();
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

@@ -22,11 +22,11 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 商户号
-$request->setHuifuId("6666000109133323");
+$request->setHuifuId("6666000103423237");
 // 短信验证码
-$request->setSmsCode("222222");
+$request->setSmsCode("111111");
 // 商品描述
-$request->setGoodsDesc("描述");
+$request->setGoodsDesc("描述6");
 // 外部地址
 $request->setNotifyUrl("http://www.baidu.com");
 

@@ -18,11 +18,11 @@ use BsPaySdk\request\V2TradePaymentDelaytransConfirmqueryRequest;
 // 2.组装请求参数
 $request = new V2TradePaymentDelaytransConfirmqueryRequest();
 // 原请求日期
-$request->setOrgReqDate("20240513");
+$request->setOrgReqDate("20210923");
 // 原请求流水号
-$request->setOrgReqSeqId("20240513105825239x0lp7ldbus4sji");
+$request->setOrgReqSeqId("202109232638806002");
 // 商户号
-$request->setHuifuId("6666000109133323");
+$request->setHuifuId("6666000018328947");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();

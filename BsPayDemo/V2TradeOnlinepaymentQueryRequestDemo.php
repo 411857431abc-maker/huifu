@@ -18,13 +18,13 @@ use BsPaySdk\request\V2TradeOnlinepaymentQueryRequest;
 // 2.组装请求参数
 $request = new V2TradeOnlinepaymentQueryRequest();
 // 商户号
-$request->setHuifuId("6666000109133323");
+$request->setHuifuId("6666000108854952");
 // 原交易请求日期
-$request->setOrgReqDate("20240401");
+$request->setOrgReqDate("20220818");
 // 原交易返回的全局流水号原交易请求流水号、原交易返回的全局流水号至少要送其中一项；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：00290TOP1GR210919004230P853ac13262200000&lt;/font&gt;
-$request->setOrgHfSeqId("00600000000240401100725P864ac13645d00000");
+$request->setOrgHfSeqId("remark123");
 // 原交易请求流水号原交易请求流水号、原交易返回的全局流水号至少要送其中一项；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：2021091708126665001&lt;/font&gt;
-$request->setOrgReqSeqId("295700155481522176");
+$request->setOrgReqSeqId("2791018993535389");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();

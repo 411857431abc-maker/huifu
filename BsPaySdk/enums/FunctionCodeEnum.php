@@ -5,62 +5,6 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
-     * 用户列表查询
-     */
-    static $V2_USER_LIST_QUERY = 'v2/user/list/query';
-    /**
-     * 多方结算-资金查询
-     */
-    static $V2_TRADE_SETTLE_SETTLESHAREAMTQUERY = 'v2/trade/settle/settleShareAmtQuery';
-    /**
-     * 多方结算-发起
-     */
-    static $V2_TRADE_SETTLE_SETTLESHAREINSTRUCT = 'v2/trade/settle/settleShareInstruct';
-    /**
-     * 电子发票业务开通查询
-     */
-    static $V2_INVOICE_PERMISSION_QUERY = 'v2/invoice/permission/query';
-    /**
-     * 电子发票业务开通
-     */
-    static $V2_INVOICE_PERMISSION_GRANT = 'v2/invoice/permission/grant';
-    /**
-     * 商户注册状态查询
-     */
-    static $V2_INVOICE_MER_STATUS_QUERY = 'v2/invoice/mer/status/query';
-    /**
-     * 商户注册信息修改
-     */
-    static $V2_INVOICE_MER_MODIFY = 'v2/invoice/mer/modify';
-    /**
-     * 商户注册信息查询
-     */
-    static $V2_INVOICE_MER_QUERY = 'v2/invoice/mer/query';
-    /**
-     * 商户注册
-     */
-    static $V2_INVOICE_MER_REG = 'v2/invoice/mer/reg';
-    /**
-     * 上传短信验证码
-     */
-    static $V2_INVOICE_MER_UPLOAD-VERIFY-CODE = 'v2/invoice/mer/upload-verify-code';
-    /**
-     * 开票员登录
-     */
-    static $V2_INVOICE_CLERK_LOGON = 'v2/invoice/clerk/logon';
-    /**
-     * 开票员登记
-     */
-    static $V2_INVOICE_CLERK_REG = 'v2/invoice/clerk/reg';
-    /**
-     * 获取人脸认证二维码
-     */
-    static $V2_INVOICE_MER_AUTH-QRCODE_GRANT = 'v2/invoice/mer/auth-qrcode/grant';
-    /**
-     * 查询人脸认证结果
-     */
-    static $V2_INVOICE_MER_AUTH-QRCODE_QUERY = 'v2/invoice/mer/auth-qrcode/query';
-    /**
      * 完税凭证下载
      */
     static $V2_HYC_TAX_DOWNLOAD = 'v2/hyc/tax/download';
@@ -125,11 +69,11 @@ class FunctionCodeEnum
      */
     static $V2_INVOICE_OPEN = 'v2/invoice/open';
     /**
-     * 全渠道资金管理配置查询
+     * 全域资金管理配置查询
      */
     static $V2_MERCHANT_BUSI_EFPDETAIL = 'v2/merchant/busi/efpdetail';
     /**
-     * 全渠道资金管理配置
+     * 全域资金管理配置
      */
     static $V2_MERCHANT_BUSI_EFPCONFIG = 'v2/merchant/busi/efpconfig';
     /**
@@ -369,7 +313,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_TRANSSTAT_QUERY = 'v2/trade/transstat/query';
     /**
-     * 网银支付
+     * 网银支付接口
      */
     static $V2_TRADE_ONLINEPAYMENT_BANKING_FRONTPAY = 'v2/trade/onlinepayment/banking/frontpay';
     /**
@@ -853,7 +797,7 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_SPLIT_CONFIG = 'v2/merchant/split/config';
     /**
-     * 交易分账明细查询
+     * 交易分账明细查询接口
      */
     static $V2_TRADE_TRANS_SPLIT_QUERY = 'v2/trade/trans/split/query';
     /**

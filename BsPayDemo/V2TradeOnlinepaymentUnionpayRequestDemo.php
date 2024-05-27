@@ -18,19 +18,19 @@ use BsPaySdk\request\V2TradeOnlinepaymentUnionpayRequest;
 // 2.组装请求参数
 $request = new V2TradeOnlinepaymentUnionpayRequest();
 // 商户号
-$request->setHuifuId("6666000109133323");
+$request->setHuifuId("6666000105470650");
 // 请求日期
 $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 订单金额
-$request->setTransAmt("0.11");
+$request->setTransAmt("1.00");
 // 商品描述
-$request->setOrderDesc("通用性商品1");
+$request->setOrderDesc("order123");
 // 安全信息
 $request->setRiskCheckData(getRiskCheckData());
 // 三方支付数据jsonObject；pay_scene为云闪付公众号与云闪付小程序时必填
-// $request->setThirdPayData(getThirdPayData());
+$request->setThirdPayData(getThirdPayData());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -59,19 +59,19 @@ function getExtendInfos() {
     // 交易银行卡卡号
     $extendInfoMap["pay_card_no"]= "";
     // 支付卡类型
-    // $extendInfoMap["pay_card_type"]= "";
+    $extendInfoMap["pay_card_type"]= "C";
     // 订单失效时间
     $extendInfoMap["time_expire"]= "";
     // 分账对象
-    // $extendInfoMap["acct_split_bunch"]= getAcctSplitBunchRucan();
+    $extendInfoMap["acct_split_bunch"]= getAcctSplitBunchRucan();
     // 前端跳转地址
-    $extendInfoMap["front_url"]= "https://www.service.com/getresp";
+    $extendInfoMap["front_url"]= "";
     // 异步通知地址
-    $extendInfoMap["notify_url"]= "https://www.service.com/getresp";
+    $extendInfoMap["notify_url"]= "http://www.baidu.com";
     // 备注
-    $extendInfoMap["remark"]= "merPriv11";
+    $extendInfoMap["remark"]= "";
     // 支付场景
-    // $extendInfoMap["pay_scene"]= "";
+    $extendInfoMap["pay_scene"]= "U_MINIAPP";
     return $extendInfoMap;
 }
 
@@ -92,7 +92,7 @@ function getAcctInfos() {
 function getAcctSplitBunchRucan() {
     $dto = array();
     // 分账明细
-    // $dto["acct_infos"] = getAcctInfos();
+    $dto["acct_infos"] = getAcctInfos();
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
@@ -102,7 +102,7 @@ function getRiskCheckData() {
     // 基站地址
     $dto["base_station"] = "7";
     // ip地址
-    $dto["ip_addr"] = "172.28.52.52";
+    // $dto["ip_addr"] = "";
     // 纬度
     $dto["latitude"] = "4";
     // 经度

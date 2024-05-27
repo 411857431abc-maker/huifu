@@ -22,13 +22,13 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 商户号
-$request->setHuifuId("6666000109133323");
+$request->setHuifuId("6666000119640000");
 // 用户客户号
-$request->setUserHuifuId("6666000149909053");
+$request->setUserHuifuId("6666000121370000");
 // 绑卡id
-$request->setCardBindId("10049847200");
+$request->setCardBindId("10032850000");
 // 订单金额
-$request->setTransAmt("10.00");
+$request->setTransAmt("1980.00");
 // 银行扩展字段
 $request->setExtendPayData(getExtendPayData());
 // 安全信息
