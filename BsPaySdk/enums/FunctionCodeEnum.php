@@ -57,14 +57,6 @@ class FunctionCodeEnum
      */
     static $V2_INVOICE_CLERK_REG = 'v2/invoice/clerk/reg';
     /**
-     * 获取人脸认证二维码
-     */
-    static $V2_INVOICE_MER_AUTHQRCODE_GRANT = 'v2/invoice/mer/auth-qrcode/grant';
-    /**
-     * 查询人脸认证结果
-     */
-    static $V2_INVOICE_MER_AUTHQRCODE_QUERY = 'v2/invoice/mer/auth-qrcode/query';
-    /**
      * 完税凭证下载
      */
     static $V2_HYC_TAX_DOWNLOAD = 'v2/hyc/tax/download';
