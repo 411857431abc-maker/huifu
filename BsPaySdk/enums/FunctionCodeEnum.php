@@ -44,10 +44,7 @@ class FunctionCodeEnum
      * 商户注册
      */
     static $V2_INVOICE_MER_REG = 'v2/invoice/mer/reg';
-    /**
-     * 上传短信验证码
-     */
-    static $V2_INVOICE_MER_UPLOADVERIFYCODE = 'v2/invoice/mer/upload-verify-code';
+  
     /**
      * 开票员登录
      */
