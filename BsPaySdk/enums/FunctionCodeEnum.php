@@ -5,6 +5,18 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 上传短信验证码
+     */
+    static $V2_INVOICE_MER_VERIFYCODE_UPLOAD = 'v2/invoice/mer/verifycode/upload';
+    /**
+     * 获取人脸认证二维码
+     */
+    static $V2_INVOICE_MER_AUTHQRCODE_GRANT = 'v2/invoice/mer/authqrcode/grant';
+    /**
+     * 查询人脸认证结果
+     */
+    static $V2_INVOICE_MER_AUTHQRCODE_QUERY = 'v2/invoice/mer/authqrcode/query';
+    /**
      * 用户列表查询
      */
     static $V2_USER_LIST_QUERY = 'v2/user/list/query';
@@ -705,7 +717,7 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_BUSI_MODIFY_BUSISTATUS = 'v2/merchant/busi/modify/busistatus';
     /**
-     * 取现接口
+     * 取现
      */
     static $V2_TRADE_SETTLEMENT_ENCHASHMENT = 'v2/trade/settlement/enchashment';
     /**

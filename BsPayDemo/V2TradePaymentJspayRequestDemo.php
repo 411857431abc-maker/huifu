@@ -60,6 +60,8 @@ function getExtendInfos() {
     $extendInfoMap["alipay_data"]= getAlipayData();
     // 银联参数集合
     $extendInfoMap["unionpay_data"]= getUnionpayData();
+    // 数字人民币参数集合
+    // $extendInfoMap["dc_data"]= getDcData();
     // 是否延迟交易
     $extendInfoMap["delay_acct_flag"]= "N";
     // 手续费扣款标志
@@ -317,6 +319,14 @@ function getUnionpayData() {
     // $dto["term_info"] = "";
     // 银联用户标识
     // $dto["user_id"] = "";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getDcData() {
+    $dto = array();
+    // 数字货币银行编号
+    // $dto["digital_bank_no"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

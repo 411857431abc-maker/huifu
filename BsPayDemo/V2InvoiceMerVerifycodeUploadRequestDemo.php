@@ -10,13 +10,13 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2InvoiceMerUploadverifycodeRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2InvoiceMerVerifycodeUploadRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2InvoiceMerUploadverifycodeRequest;
+use BsPaySdk\request\V2InvoiceMerVerifycodeUploadRequest;
 
 // 2.组装请求参数
-$request = new V2InvoiceMerUploadverifycodeRequest();
+$request = new V2InvoiceMerVerifycodeUploadRequest();
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 请求时间

@@ -10,7 +10,7 @@ use BsPaySdk\enums\FunctionCodeEnum;
  * @author sdk-generator
  * @Description
  */
-class V2InvoiceMerUploadverifycodeRequest extends BaseRequest
+class V2InvoiceMerVerifycodeUploadRequest extends BaseRequest
 {
 
     /**
@@ -39,7 +39,7 @@ class V2InvoiceMerUploadverifycodeRequest extends BaseRequest
     private $verifyCode;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_INVOICE_MER_UPLOADVERIFYCODE;
+        return FunctionCodeEnum::$V2_INVOICE_MER_VERIFYCODE_UPLOAD;
     }
 
 
