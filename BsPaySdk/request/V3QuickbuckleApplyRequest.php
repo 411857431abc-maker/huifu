@@ -10,7 +10,7 @@ use BsPaySdk\enums\FunctionCodeEnum;
  * @author sdk-generator
  * @Description
  */
-class V2QuickbuckleApplyRequest extends BaseRequest
+class V3QuickbuckleApplyRequest extends BaseRequest
 {
 
     /**
@@ -30,29 +30,17 @@ class V2QuickbuckleApplyRequest extends BaseRequest
      */
     private $outCustId;
     /**
-     * 订单号
-     */
-    private $orderId;
-    /**
-     * 订单日期
-     */
-    private $orderDate;
-    /**
      * 银行卡号
      */
-    private $cardId;
+    private $cardNo;
     /**
      * 银行卡开户姓名
      */
     private $cardName;
     /**
-     * 银行卡绑定证件类型
-     */
-    private $certType;
-    /**
      * 银行卡绑定身份证
      */
-    private $certId;
+    private $certNo;
     /**
      * 个人证件有效期类型
      */
@@ -68,26 +56,14 @@ class V2QuickbuckleApplyRequest extends BaseRequest
     /**
      * 银行卡绑定手机号
      */
-    private $cardMp;
-    /**
-     * CVV2信用卡交易专用需要密文传输。&lt;br/&gt;使用汇付RSA公钥加密(加密前3位，加密后最长2048位），[参见参考文档](https://paas.huifu.com/partners/guide/#/api_jiami_jiemi)；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：Ly+fnExeyPOTzfOtgRRur77nJB9TAe4PGgK9M……fc6XJXZss&#x3D;&lt;/font&gt;
-     */
-    private $vipCode;
-    /**
-     * 卡有效期信用卡交易专用，格式：MMYY，需要密文传输；&lt;br/&gt;使用汇付RSA公钥加密(加密前4位，加密后最长2048位），[参见参考文档](https://paas.huifu.com/partners/guide/#/api_jiami_jiemi)；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：Ly+fnExeyPOTzfOtgRRur77nJB9TAe4PGgK9M……fc6XJXZss&#x3D;JXZss&#x3D;&lt;/font&gt;
-     */
-    private $expiration;
+    private $mobileNo;
     /**
      * 挂网协议编号授权信息(招行绑卡需要上送)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：34463343&lt;/font&gt;
      */
     private $protocolNo;
-    /**
-     * 设备信息域 
-     */
-    private $trxDeviceInf;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_QUICKBUCKLE_APPLY;
+        return FunctionCodeEnum::$V3_QUICKBUCKLE_APPLY;
     }
 
 
@@ -123,28 +99,12 @@ class V2QuickbuckleApplyRequest extends BaseRequest
         $this->outCustId = $outCustId;
     }
 
-    public function getOrderId() {
-        return $this->orderId;
+    public function getCardNo() {
+        return $this->cardNo;
     }
 
-    public function setOrderId($orderId) {
-        $this->orderId = $orderId;
-    }
-
-    public function getOrderDate() {
-        return $this->orderDate;
-    }
-
-    public function setOrderDate($orderDate) {
-        $this->orderDate = $orderDate;
-    }
-
-    public function getCardId() {
-        return $this->cardId;
-    }
-
-    public function setCardId($cardId) {
-        $this->cardId = $cardId;
+    public function setCardNo($cardNo) {
+        $this->cardNo = $cardNo;
     }
 
     public function getCardName() {
@@ -155,20 +115,12 @@ class V2QuickbuckleApplyRequest extends BaseRequest
         $this->cardName = $cardName;
     }
 
-    public function getCertType() {
-        return $this->certType;
+    public function getCertNo() {
+        return $this->certNo;
     }
 
-    public function setCertType($certType) {
-        $this->certType = $certType;
-    }
-
-    public function getCertId() {
-        return $this->certId;
-    }
-
-    public function setCertId($certId) {
-        $this->certId = $certId;
+    public function setCertNo($certNo) {
+        $this->certNo = $certNo;
     }
 
     public function getCertValidityType() {
@@ -195,28 +147,12 @@ class V2QuickbuckleApplyRequest extends BaseRequest
         $this->certEndDate = $certEndDate;
     }
 
-    public function getCardMp() {
-        return $this->cardMp;
+    public function getMobileNo() {
+        return $this->mobileNo;
     }
 
-    public function setCardMp($cardMp) {
-        $this->cardMp = $cardMp;
-    }
-
-    public function getVipCode() {
-        return $this->vipCode;
-    }
-
-    public function setVipCode($vipCode) {
-        $this->vipCode = $vipCode;
-    }
-
-    public function getExpiration() {
-        return $this->expiration;
-    }
-
-    public function setExpiration($expiration) {
-        $this->expiration = $expiration;
+    public function setMobileNo($mobileNo) {
+        $this->mobileNo = $mobileNo;
     }
 
     public function getProtocolNo() {
@@ -225,14 +161,6 @@ class V2QuickbuckleApplyRequest extends BaseRequest
 
     public function setProtocolNo($protocolNo) {
         $this->protocolNo = $protocolNo;
-    }
-
-    public function getTrxDeviceInf() {
-        return $this->trxDeviceInf;
-    }
-
-    public function setTrxDeviceInf($trxDeviceInf) {
-        $this->trxDeviceInf = $trxDeviceInf;
     }
 
 }
