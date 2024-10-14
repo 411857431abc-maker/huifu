@@ -5,11 +5,67 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 服务单关闭
+     */
+    static $V2_TRADE_PAYAFTERUSE_CREDITBIZORDER_CLOSE = 'v2/trade/payafteruse/creditbizorder/close';
+    /**
+     * 服务单查询
+     */
+    static $V2_TRADE_PAYAFTERUSE_CREDITBIZORDER_QUERY = 'v2/trade/payafteruse/creditbizorder/query';
+    /**
+     * 服务单创建
+     */
+    static $V2_TRADE_PAYAFTERUSE_CREDITBIZORDER_CREATE = 'v2/trade/payafteruse/creditbizorder/create';
+    /**
+     * 分期扣款查询
+     */
+    static $V2_TRADE_PAYAFTERUSE_INSTALLMENT_QUERY = 'v2/trade/payafteruse/installment/query';
+    /**
+     * 分期扣款
+     */
+    static $V2_TRADE_PAYAFTERUSE_INSTALLMENT_PAY = 'v2/trade/payafteruse/installment/pay';
+    /**
+     * 分期交易退款查询
+     */
+    static $V2_TRADE_PAYAFTERUSE_INSTALLMENT_REFUNDQUERY = 'v2/trade/payafteruse/installment/refundquery';
+    /**
+     * 分期交易退款
+     */
+    static $V2_TRADE_PAYAFTERUSE_INSTALLMENT_REFUND = 'v2/trade/payafteruse/installment/refund';
+    /**
+     * 分期单创建
+     */
+    static $V2_TRADE_PAYAFTERUSE_INSTALLMENT_CREATE = 'v2/trade/payafteruse/installment/create';
+    /**
+     * 快捷支付
+     */
+    static $V3_TRADE_ONLINEPAYMENT_QUICKPAY_PAY = 'v3/trade/onlinepayment/quickpay/pay';
+    /**
+     * 快捷短信发送
+     */
+    static $V3_TRADE_ONLINEPAYMENT_QUICKPAY_SMSSEND = 'v3/trade/onlinepayment/quickpay/smssend';
+    /**
+     * 电子账户余额查询
+     */
+    static $V2_BANK_BALANCE_QUERY = 'v2/bank/balance/query';
+    /**
+     * 不明来账列表查询
+     */
+    static $V2_TRADE_PAYMENT_ZXE_UNKNOWNINCOME_QUERY = 'v2/trade/payment/zxe/unknownincome/query';
+    /**
+     * 不明来账处理结果查询
+     */
+    static $V2_TRADE_PAYMENT_ZXE_UNKNOWNINCOME_DISPOSEQUERY = 'v2/trade/payment/zxe/unknownincome/disposequery';
+    /**
+     * 不明来账处理
+     */
+    static $V2_TRADE_PAYMENT_ZXE_UNKNOWNINCOME_DISPOSE = 'v2/trade/payment/zxe/unknownincome/dispose';
+    /**
      * 云MIS订单详情查询接口
      */
     static $V2_TRADE_CLOUDMIS_ORDER_DETAIL = 'v2/trade/cloudmis/order/detail';
     /**
-     * 终端云MIS接入
+     * 终端云MIS交易
      */
     static $V2_TRADE_CLOUDMIS_DEVICE_INFORMATION_MIS = 'v2/trade/cloudmis/device/information/mis';
     /**
@@ -226,7 +282,7 @@ class FunctionCodeEnum
      */
     static $V2_INVOICE_SELFSCANOPEN = 'v2/invoice/selfscanopen';
     /**
-     * 发票开具申请查询
+     * 发票开具状态查询
      */
     static $V2_INVOICE_QUERYAPPLY = 'v2/invoice/queryapply';
     /**
