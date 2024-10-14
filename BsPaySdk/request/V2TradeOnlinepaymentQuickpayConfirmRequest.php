@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 分期交易退款
+ * 快捷支付确认
  *
  * @author sdk-generator
  * @Description
  */
-class V2TradePayafteruseInstallmentRefundRequest extends BaseRequest
+class V2TradeOnlinepaymentQuickpayConfirmRequest extends BaseRequest
 {
 
     /**
@@ -26,12 +26,20 @@ class V2TradePayafteruseInstallmentRefundRequest extends BaseRequest
      */
     private $huifuId;
     /**
-     * 申请退款金额
+     * 短信验证码
      */
-    private $ordAmt;
+    private $smsCode;
+    /**
+     * 商品描述
+     */
+    private $goodsDesc;
+    /**
+     * 外部地址
+     */
+    private $notifyUrl;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TRADE_PAYAFTERUSE_INSTALLMENT_REFUND;
+        return FunctionCodeEnum::$V2_TRADE_ONLINEPAYMENT_QUICKPAY_CONFIRM;
     }
 
 
@@ -59,12 +67,28 @@ class V2TradePayafteruseInstallmentRefundRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getOrdAmt() {
-        return $this->ordAmt;
+    public function getSmsCode() {
+        return $this->smsCode;
     }
 
-    public function setOrdAmt($ordAmt) {
-        $this->ordAmt = $ordAmt;
+    public function setSmsCode($smsCode) {
+        $this->smsCode = $smsCode;
+    }
+
+    public function getGoodsDesc() {
+        return $this->goodsDesc;
+    }
+
+    public function setGoodsDesc($goodsDesc) {
+        $this->goodsDesc = $goodsDesc;
+    }
+
+    public function getNotifyUrl() {
+        return $this->notifyUrl;
+    }
+
+    public function setNotifyUrl($notifyUrl) {
+        $this->notifyUrl = $notifyUrl;
     }
 
 }

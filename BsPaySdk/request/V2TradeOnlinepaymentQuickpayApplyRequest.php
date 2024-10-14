@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 快捷短信发送
+ * 快捷支付申请
  *
  * @author sdk-generator
  * @Description
  */
-class V3TradeOnlinepaymentQuickpaySmssendRequest extends BaseRequest
+class V2TradeOnlinepaymentQuickpayApplyRequest extends BaseRequest
 {
 
     /**
@@ -38,24 +38,24 @@ class V3TradeOnlinepaymentQuickpaySmssendRequest extends BaseRequest
      */
     private $transAmt;
     /**
-     * 异步通知地址
+     * 银行扩展字段
      */
-    private $notifyUrl;
+    private $extendPayData;
     /**
-     * 网联数据
+     * 安全信息
      */
-    private $nuccData;
+    private $riskCheckData;
     /**
      * 设备数据
      */
     private $terminalDeviceData;
     /**
-     * 安全信息
+     * 异步通知地址
      */
-    private $riskCheckData;
+    private $notifyUrl;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V3_TRADE_ONLINEPAYMENT_QUICKPAY_SMSSEND;
+        return FunctionCodeEnum::$V2_TRADE_ONLINEPAYMENT_QUICKPAY_APPLY;
     }
 
 
@@ -107,20 +107,20 @@ class V3TradeOnlinepaymentQuickpaySmssendRequest extends BaseRequest
         $this->transAmt = $transAmt;
     }
 
-    public function getNotifyUrl() {
-        return $this->notifyUrl;
+    public function getExtendPayData() {
+        return $this->extendPayData;
     }
 
-    public function setNotifyUrl($notifyUrl) {
-        $this->notifyUrl = $notifyUrl;
+    public function setExtendPayData($extendPayData) {
+        $this->extendPayData = $extendPayData;
     }
 
-    public function getNuccData() {
-        return $this->nuccData;
+    public function getRiskCheckData() {
+        return $this->riskCheckData;
     }
 
-    public function setNuccData($nuccData) {
-        $this->nuccData = $nuccData;
+    public function setRiskCheckData($riskCheckData) {
+        $this->riskCheckData = $riskCheckData;
     }
 
     public function getTerminalDeviceData() {
@@ -131,12 +131,12 @@ class V3TradeOnlinepaymentQuickpaySmssendRequest extends BaseRequest
         $this->terminalDeviceData = $terminalDeviceData;
     }
 
-    public function getRiskCheckData() {
-        return $this->riskCheckData;
+    public function getNotifyUrl() {
+        return $this->notifyUrl;
     }
 
-    public function setRiskCheckData($riskCheckData) {
-        $this->riskCheckData = $riskCheckData;
+    public function setNotifyUrl($notifyUrl) {
+        $this->notifyUrl = $notifyUrl;
     }
 
 }
