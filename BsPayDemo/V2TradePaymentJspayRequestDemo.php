@@ -130,7 +130,7 @@ function getStoreInfo() {
     // 门店行政区划码
     // $dto["area_code"] = "";
     // 门店详细地址
-    // $dto["ass"] = "";
+    // $dto["address"] = "";
 
     return $dto;
 }

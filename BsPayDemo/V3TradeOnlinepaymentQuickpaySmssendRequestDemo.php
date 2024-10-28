@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 快捷支付申请 - 示例
+ * 快捷短信发送 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -10,13 +10,13 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradeOnlinepaymentQuickpayApplyRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V3TradeOnlinepaymentQuickpaySmssendRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2TradeOnlinepaymentQuickpayApplyRequest;
+use BsPaySdk\request\V3TradeOnlinepaymentQuickpaySmssendRequest;
 
 // 2.组装请求参数
-$request = new V2TradeOnlinepaymentQuickpayApplyRequest();
+$request = new V3TradeOnlinepaymentQuickpaySmssendRequest();
 // 请求日期
 $request->setReqDate(date("Ymd"));
 // 请求流水号
@@ -29,14 +29,14 @@ $request->setUserHuifuId("6666000149909053");
 $request->setCardBindId("10049847200");
 // 订单金额
 $request->setTransAmt("10.00");
-// 银行扩展字段
-$request->setExtendPayData(getExtendPayData());
-// 安全信息
-$request->setRiskCheckData(getRiskCheckData());
-// 设备数据
-$request->setTerminalDeviceData(getTerminalDeviceData());
 // 异步通知地址
 $request->setNotifyUrl("http://tianyi.demo.test.cn/core/extend/BsPaySdk/notify_quick.php");
+// 网联数据
+// $request->setNuccData(getNuccData());
+// 设备数据
+$request->setTerminalDeviceData(getTerminalDeviceData());
+// 安全信息
+$request->setRiskCheckData(getRiskCheckData());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -68,23 +68,15 @@ function getExtendInfos() {
     // $extendInfoMap["acct_split_bunch"]= getAcctSplitBunchRucan();
     // 是否延迟交易
     // $extendInfoMap["delay_acct_flag"]= "";
+    // 账户号
+    // $extendInfoMap["acct_id"]= "";
     // 手续费扣款标志
     // $extendInfoMap["fee_flag"]= "";
+    // 备注
+    // $extendInfoMap["remark"]= "";
     // 补贴支付信息
     // $extendInfoMap["combinedpay_data"]= getCombinedpayData();
     return $extendInfoMap;
-}
-
-function getExtendPayData() {
-    $dto = array();
-    // 业务种类
-    // $dto["biz_tp"] = "test";
-    // 商品简称
-    // $dto["goods_short_name"] = "test";
-    // 网关支付受理渠道
-    $dto["gw_chnnl_tp"] = "99";
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 function getAcctInfos() {
@@ -105,12 +97,60 @@ function getAcctInfos() {
 
 function getAcctSplitBunchRucan() {
     $dto = array();
-    // 分账信息列表
-    // $dto["acct_infos"] = getAcctInfos();
     // 百分比分账标志
     // $dto["percentage_flag"] = "";
     // 是否净值分账
     // $dto["is_clean_split"] = "";
+    // 分账信息列表
+    // $dto["acct_infos"] = getAcctInfos();
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getNuccData() {
+    $dto = array();
+    // 商品简称
+    // $dto["goods_short_name"] = "test";
+    // 网关支付受理渠道
+    // $dto["gw_chnnl_tp"] = "test";
+    // 业务种类
+    // $dto["biz_tp"] = "test";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getTerminalDeviceData() {
+    $dto = array();
+    // 设备类型
+    $dto["device_type"] = "1";
+    // 交易设备ip
+    $dto["device_ip"] = "106.33.180.238";
+    // 交易设备mac
+    // $dto["device_mac"] = "";
+    // 交易设备imei
+    // $dto["device_imei"] = "";
+    // 交易设备imsi
+    // $dto["device_imsi"] = "";
+    // 交易设备iccid
+    // $dto["device_icc_id"] = "";
+    // 交易设备wifimac
+    // $dto["device_wifi_mac"] = "";
+    // 交易设备gps
+    // $dto["device_gps"] = "";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getRiskCheckData() {
+    $dto = array();
+    // ip地址
+    $dto["ip_addr"] = "106.33.180.238";
+    // 基站地址
+    // $dto["base_station"] = "";
+    // 纬度
+    // $dto["latitude"] = "";
+    // 经度
+    // $dto["longitude"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
@@ -129,42 +169,6 @@ function getCombinedpayData() {
     $dtoList = array();
     array_push($dtoList, $dto);
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-}
-
-function getRiskCheckData() {
-    $dto = array();
-    // ip地址
-    $dto["ip_addr"] = "106.33.180.238";
-    // 基站地址
-    // $dto["base_station"] = "";
-    // 纬度
-    // $dto["latitude"] = "";
-    // 经度
-    // $dto["longitude"] = "";
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-}
-
-function getTerminalDeviceData() {
-    $dto = array();
-    // 设备类型
-    $dto["device_type"] = "1";
-    // 交易设备ip
-    $dto["device_ip"] = "106.33.180.238";
-    // 交易设备gps
-    // $dto["device_gps"] = "";
-    // 交易设备iccid
-    // $dto["device_icc_id"] = "";
-    // 交易设备imei
-    // $dto["device_imei"] = "";
-    // 交易设备imsi
-    // $dto["device_imsi"] = "";
-    // 交易设备mac
-    // $dto["device_mac"] = "";
-    // 交易设备wifimac
-    // $dto["device_wifi_mac"] = "";
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 

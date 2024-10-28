@@ -5,7 +5,7 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 发票开具申请查询
+ * 发票开具状态查询
  *
  * @author sdk-generator
  * @Description
@@ -22,13 +22,9 @@ class V2InvoiceQueryapplyRequest extends BaseRequest
      */
     private $reqDate;
     /**
-     * 渠道号汇付商户号为空时，必传；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：6666000109812124&lt;/font&gt;
+     * 汇付商户号
      */
-    private $channelId;
-    /**
-     * 流水号
-     */
-    private $seqId;
+    private $huifuId;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_INVOICE_QUERYAPPLY;
@@ -51,20 +47,12 @@ class V2InvoiceQueryapplyRequest extends BaseRequest
         $this->reqDate = $reqDate;
     }
 
-    public function getChannelId() {
-        return $this->channelId;
+    public function getHuifuId() {
+        return $this->huifuId;
     }
 
-    public function setChannelId($channelId) {
-        $this->channelId = $channelId;
-    }
-
-    public function getSeqId() {
-        return $this->seqId;
-    }
-
-    public function setSeqId($seqId) {
-        $this->seqId = $seqId;
+    public function setHuifuId($huifuId) {
+        $this->huifuId = $huifuId;
     }
 
 }
