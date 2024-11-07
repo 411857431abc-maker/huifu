@@ -5,6 +5,10 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 分期支付
+     */
+    static $V2_TRADE_INSTALLMENT_PAYMENT = 'v2/trade/installment/payment';
+    /**
      * 快捷支付
      */
     static $V3_TRADE_ONLINEPAYMENT_QUICKPAY_PAY = 'v3/trade/onlinepayment/quickpay/pay';
