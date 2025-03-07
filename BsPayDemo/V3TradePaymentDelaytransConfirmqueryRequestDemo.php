@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 查询扣款信息 - 示例
+ * 交易确认查询 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -10,15 +10,19 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradePayscoreDeductQueryRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V3TradePaymentDelaytransConfirmqueryRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2TradePayscoreDeductQueryRequest;
+use BsPaySdk\request\V3TradePaymentDelaytransConfirmqueryRequest;
 
 // 2.组装请求参数
-$request = new V2TradePayscoreDeductQueryRequest();
-// 汇付商户号
-$request->setHuifuId("6666000108854952");
+$request = new V3TradePaymentDelaytransConfirmqueryRequest();
+// 原请求日期
+$request->setOrgReqDate("20240513");
+// 原请求流水号
+$request->setOrgReqSeqId("20240513105825239x0lp7ldbus4sji");
+// 商户号
+$request->setHuifuId("6666000109133323");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -40,12 +44,6 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
-    // 汇付服务订单号
-    // $extendInfoMap["out_order_no"]= "";
-    // 创建服务订单返回的汇付全局流水号
-    // $extendInfoMap["org_hf_seq_id"]= "";
-    // 服务订单创建请求流水号
-    // $extendInfoMap["org_req_seq_id"]= "";
     return $extendInfoMap;
 }
 

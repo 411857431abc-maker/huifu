@@ -10,7 +10,7 @@ use BsPaySdk\enums\FunctionCodeEnum;
  * @author sdk-generator
  * @Description
  */
-class V2TradeSettlementEnchashmentRequest extends BaseRequest
+class V2TradeSettlementEncashmentRequest extends BaseRequest
 {
 
     /**
@@ -39,7 +39,7 @@ class V2TradeSettlementEnchashmentRequest extends BaseRequest
     private $tokenNo;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TRADE_SETTLEMENT_ENCHASHMENT;
+        return FunctionCodeEnum::$V2_TRADE_SETTLEMENT_ENCASHMENT;
     }
 
 

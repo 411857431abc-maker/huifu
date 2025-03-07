@@ -5,6 +5,18 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 取现
+     */
+    static $V2_TRADE_SETTLEMENT_ENCASHMENT = 'v2/trade/settlement/encashment';
+    /**
+     * 交易确认查询
+     */
+    static $V3_TRADE_PAYMENT_DELAYTRANS_CONFIRMQUERY = 'v3/trade/payment/delaytrans/confirmquery';
+    /**
+     * 红字发票开具接口
+     */
+    static $V2_INVOICE_REDOPEN = 'v2/invoice/redopen';
+    /**
      * 分期支付
      */
     static $V2_TRADE_INSTALLMENT_PAYMENT = 'v2/trade/installment/payment';
@@ -323,7 +335,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_PAYMENT_ZXE_INCASH_QUERY = 'v2/trade/payment/zxe/incash/query';
     /**
-     * 电子账户账务明细查询
+     * E账户账务明细查询
      */
     static $V2_TRADE_PAYMENT_ZXE_ACCTDETAIL_QUERY = 'v2/trade/payment/zxe/acctdetail/query';
     /**
@@ -375,7 +387,7 @@ class FunctionCodeEnum
      */
     static $V2_WALLET_CARD_QUERY = 'v2/wallet/card/query';
     /**
-     * 新增绑定银行卡
+     * 新增绑定卡
      */
     static $V2_WALLET_CARD_ADD = 'v2/wallet/card/add';
     /**
@@ -443,7 +455,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_PAYSCORE_SERVICEORDER_QUERY = 'v2/trade/payscore/serviceorder/query';
     /**
-     * 创建支付分订单
+     * 创建支付分
      */
     static $V2_TRADE_PAYSCORE_SERVICEORDER_CREATE = 'v2/trade/payscore/serviceorder/create';
     /**
@@ -511,7 +523,7 @@ class FunctionCodeEnum
      */
     static $V2_QUICKBUCKLE_WITHHOLD_QUERY = 'v2/quickbuckle/withhold/query';
     /**
-     * 汇付入账确认
+     * 汇付入账通知
      */
     static $V2_TRADE_ONLINEPAYMENT_TRANSFER_REMITTANCE = 'v2/trade/onlinepayment/transfer/remittance';
     /**
@@ -891,7 +903,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_PAYMENT_USERMARK2_QUERY = 'v2/trade/payment/usermark2/query';
     /**
-     * 交易退款查询接口
+     * 扫码交易退款查询
      */
     static $V2_TRADE_PAYMENT_SCANPAY_REFUNDQUERY = 'v2/trade/payment/scanpay/refundquery';
     /**
@@ -899,11 +911,11 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_PAYMENT_SCANPAY_REFUND = 'v2/trade/payment/scanpay/refund';
     /**
-     * 交易关单接口
+     * 扫码交易关单
      */
     static $V2_TRADE_PAYMENT_SCANPAY_CLOSE = 'v2/trade/payment/scanpay/close';
     /**
-     * 交易查询接口
+     * 扫码交易查询
      */
     static $V2_TRADE_PAYMENT_SCANPAY_QUERY = 'v2/trade/payment/scanpay/query';
     /**
@@ -931,7 +943,7 @@ class FunctionCodeEnum
      */
     static $V2_QUICKBUCKLE_CONFIRM = 'v2/quickbuckle/confirm';
     /**
-     * 交易确认退款接口
+     * 交易确认退款
      */
     static $V2_TRADE_PAYMENT_DELAYTRANS_CONFIRMREFUND = 'v2/trade/payment/delaytrans/confirmrefund';
     /**
@@ -939,11 +951,11 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_PAYMENT_DELAYTRANS_CONFIRMQUERY = 'v2/trade/payment/delaytrans/confirmquery';
     /**
-     * 交易确认接口
+     * 交易确认
      */
     static $V2_TRADE_PAYMENT_DELAYTRANS_CONFIRM = 'v2/trade/payment/delaytrans/confirm';
     /**
-     * 账户余额信息查询接口
+     * 账户余额信息查询
      */
     static $V2_TRADE_ACCTPAYMENT_BALANCE_QUERY = 'v2/trade/acctpayment/balance/query';
     /**
@@ -963,7 +975,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_CHECK_REPLAY = 'v2/trade/check/replay';
     /**
-     * 交易关单查询接口
+     * 扫码交易关单查询
      */
     static $V2_TRADE_PAYMENT_SCANPAY_CLOSEQUERY = 'v2/trade/payment/scanpay/closequery';
     /**
@@ -971,15 +983,15 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_BASICDATA_SETTLEMENT_QUERY = 'v2/merchant/basicdata/settlement/query';
     /**
-     * 聚合正扫接口
+     * 应用场景
      */
     static $V2_TRADE_PAYMENT_JSPAY = 'v2/trade/payment/jspay';
     /**
-     * 聚合反扫接口
+     * 聚合反扫
      */
     static $V2_TRADE_PAYMENT_MICROPAY = 'v2/trade/payment/micropay';
     /**
-     * 商户分期配置详情查询
+     * 商户分期配置查询
      */
     static $V2_PCREDIT_FEE_DETAIL = 'v2/pcredit/fee/detail';
     /**
@@ -1035,7 +1047,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_HOSTING_PAYMENT_PREORDER = 'v2/trade/hosting/payment/preorder';
     /**
-     * 出金交易查询接口
+     * 出金交易查询
      */
     static $V2_TRADE_SETTLEMENT_QUERY = 'v2/trade/settlement/query';
     /**

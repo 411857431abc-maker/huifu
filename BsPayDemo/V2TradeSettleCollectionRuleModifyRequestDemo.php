@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 登记扣款信息 - 示例
+ * 修改归集配置 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -10,19 +10,21 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradePayscoreDeductRegitsterRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradeSettleCollectionRuleModifyRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2TradePayscoreDeductRegitsterRequest;
+use BsPaySdk\request\V2TradeSettleCollectionRuleModifyRequest;
 
 // 2.组装请求参数
-$request = new V2TradePayscoreDeductRegitsterRequest();
+$request = new V2TradeSettleCollectionRuleModifyRequest();
 // 请求日期
 $request->setReqDate(date("Ymd"));
-// 商户申请单号
+// 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
-// 汇付商户号
-$request->setHuifuId("6666000108854952");
+// 转出方商户号
+$request->setOutHuifuId("6666000152758213");
+// 转出方账户号
+$request->setOutAcctId("F03142591");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -44,12 +46,10 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
-    // 汇付服务订单号
-    // $extendInfoMap["out_order_no"]= "";
-    // 创建服务订单返回的汇付全局流水号
-    // $extendInfoMap["org_hf_seq_id"]= "";
-    // 服务订单创建请求流水号
-    // $extendInfoMap["org_req_seq_id"]= "";
+    // 转出方账户留存金额
+    $extendInfoMap["remained_amt"]= "0.00";
+    // 是否关闭
+    $extendInfoMap["close"]= "";
     return $extendInfoMap;
 }
 

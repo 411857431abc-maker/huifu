@@ -31,6 +31,8 @@ $request->setCertNo("321084198912066512");
 $request->setCertValidityType("1");
 // 个人证件有效期开始日期
 $request->setCertBeginDate("20200117");
+// 个人国籍个人证件类型为外国人居留证时，必填，参见《[国籍编码](https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/download_file/area/%E5%9B%BD%E7%B1%8D.xlsx)》&lt;font color&#x3D;&quot;green&quot;&gt;示例值：CHN&lt;/font&gt;
+// $request->setCertNationality("test");
 // 手机号
 $request->setMobileNo("13764462205");
 // 地址开通中信E管家必填
@@ -67,11 +69,11 @@ function getExtendInfos() {
     // 拓展方字段
     $extendInfoMap["expand_id"]= "";
     // 文件列表
-    $extendInfoMap["file_list"]= getFileList();
+    $extendInfoMap["file_list"]= getA2b3ad80C6e54290Ad01D1bd6ad4753b();
     return $extendInfoMap;
 }
 
-function getFileList() {
+function getA2b3ad80C6e54290Ad01D1bd6ad4753b() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F04";

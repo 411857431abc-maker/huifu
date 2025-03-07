@@ -10,7 +10,7 @@ use BsPaySdk\enums\FunctionCodeEnum;
  * @author sdk-generator
  * @Description
  */
-class V2TradeHostingPaymentPreorderAliRequest extends BaseRequest
+class V2TradeHostingPaymentPreorderRequest extends BaseRequest
 {
 
     /**

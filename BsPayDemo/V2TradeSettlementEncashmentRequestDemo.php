@@ -10,13 +10,13 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradeSettlementEnchashmentRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradeSettlementEncashmentRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2TradeSettlementEnchashmentRequest;
+use BsPaySdk\request\V2TradeSettlementEncashmentRequest;
 
 // 2.组装请求参数
-$request = new V2TradeSettlementEnchashmentRequest();
+$request = new V2TradeSettlementEncashmentRequest();
 // 请求日期
 $request->setReqDate(date("Ymd"));
 // 请求流水号

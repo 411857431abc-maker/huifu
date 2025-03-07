@@ -27,16 +27,12 @@ $request->setHuifuId("6666000110468104");
 $request->setTransAmt("0.01");
 // 订单类型
 $request->setOrderType("REFUND");
-// 原请求流水号
+// 原请求流水号order_flag&#x3D;Y时必填；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：2022012514120615009&lt;/font&gt;
 $request->setOrgReqSeqId("202308312345678931");
-// 原请求日期
+// 原请求日期格式:yyyyMMdd；order_flag&#x3D;Y时必填；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：20220125&lt;/font&gt;
 $request->setOrgReqDate("20230831");
 // 异步通知地址
 $request->setNotifyUrl("http://www.baidu.com");
-// 商品描述
-// $request->setGoodsDesc("test");
-// 汇款凭证文件id
-// $request->setCertificateFileId("test");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -63,17 +59,17 @@ function getExtendInfos() {
     // 备注
     $extendInfoMap["remark"]= "大额支付补入账验证";
     // 银行信息数据
-    $extendInfoMap["bank_info_data"]= getBankInfoData();
+    $extendInfoMap["bank_info_data"]= getB08e9ba8D88347f9A142D9b1fafb4e03();
     // 延时标记
     // $extendInfoMap["delay_acct_flag"]= "";
     // 分账对象
-    // $extendInfoMap["acct_split_bunch"]= getAcctSplitBunch();
+    // $extendInfoMap["acct_split_bunch"]= getEebc6e3a5eff4b11895cC49b66a59c30();
     // 实际打款信息
-    // $extendInfoMap["actual_remit_data"]= getActualRemitData();
+    // $extendInfoMap["actual_remit_data"]= get1e12e80a87644cb8964b58c5edbb79e6();
     return $extendInfoMap;
 }
 
-function getBankInfoData() {
+function getB08e9ba8D88347f9A142D9b1fafb4e03() {
     $dto = array();
     // 省份对公代发必填，[参见省市地区码](https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/download_file/area/%E6%96%97%E6%8B%B1%E4%BB%A3%E5%8F%91%E7%9C%81%E4%BB%BD%E5%9C%B0%E5%8C%BA%E7%BC%96%E7%A0%81.xlsx)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0013&lt;/font&gt;
     $dto["province"] = "0031";
@@ -91,7 +87,7 @@ function getBankInfoData() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getAcctInfos() {
+function getB01b07d9B4d94a099a60F25781cc910f() {
     $dto = array();
     // 支付金额
     // $dto["div_amt"] = "";
@@ -103,15 +99,15 @@ function getAcctInfos() {
     return $dtoList;
 }
 
-function getAcctSplitBunch() {
+function getEebc6e3a5eff4b11895cC49b66a59c30() {
     $dto = array();
     // 分账信息列表
-    // $dto["acct_infos"] = getAcctInfos();
+    // $dto["acct_infos"] = getB01b07d9B4d94a099a60F25781cc910f();
 
-    return $dto;
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getActualRemitData() {
+function get1e12e80a87644cb8964b58c5edbb79e6() {
     $dto = array();
     // 实际打款日期
     // $dto["actual_remit_date"] = "test";
@@ -121,14 +117,16 @@ function getActualRemitData() {
     // $dto["actual_remit_amt"] = "test";
     // 实际打款方银行卡号
     // $dto["actual_remit_card_no"] = "test";
-    // 实际打款卡号银行名称
-    // $dto["actual_bank_name"] = "test";
     // 汇款凭证文件ID
     // $dto["certificate_file_id"] = "test";
     // 退款卡标识
     // $dto["refund_card_flag"] = "test";
+    // 实际打款卡号银行名称
+    // $dto["actual_bank_name"] = "";
 
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 
