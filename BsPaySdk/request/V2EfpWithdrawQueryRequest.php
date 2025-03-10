@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 新增终端报备
+ * 全渠道资金付款提现记录查询
  *
  * @author sdk-generator
  * @Description
  */
-class V2TerminaldeviceDeviceinfoAddRequest extends BaseRequest
+class V2EfpWithdrawQueryRequest extends BaseRequest
 {
 
     /**
@@ -22,12 +22,20 @@ class V2TerminaldeviceDeviceinfoAddRequest extends BaseRequest
      */
     private $reqDate;
     /**
-     * 商户号
+     * 商户汇付id
      */
     private $huifuId;
+    /**
+     * 原请求流水号
+     */
+    private $orgReqSeqId;
+    /**
+     * 原请求日期
+     */
+    private $orgReqDate;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TERMINALDEVICE_DEVICEINFO_ADD;
+        return FunctionCodeEnum::$V2_EFP_WITHDRAW_QUERY;
     }
 
 
@@ -53,6 +61,22 @@ class V2TerminaldeviceDeviceinfoAddRequest extends BaseRequest
 
     public function setHuifuId($huifuId) {
         $this->huifuId = $huifuId;
+    }
+
+    public function getOrgReqSeqId() {
+        return $this->orgReqSeqId;
+    }
+
+    public function setOrgReqSeqId($orgReqSeqId) {
+        $this->orgReqSeqId = $orgReqSeqId;
+    }
+
+    public function getOrgReqDate() {
+        return $this->orgReqDate;
+    }
+
+    public function setOrgReqDate($orgReqDate) {
+        $this->orgReqDate = $orgReqDate;
     }
 
 }

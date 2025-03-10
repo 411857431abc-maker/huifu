@@ -5,6 +5,30 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 防断链子商户号列表查询
+     */
+    static $V2_MERCHANT_ATPREVENT_QUERYSUBMERLIST = 'v2/merchant/atPrevent/querySubMerList';
+    /**
+     * 防断链入驻
+     */
+    static $V2_MERCHANT_ATPREVENT_APPLY = 'v2/merchant/atPrevent/apply';
+    /**
+     * 全渠道资金提现申请
+     */
+    static $V2_EFP_ENCASH = 'v2/efp/encash';
+    /**
+     * 全渠道资金付款提现记录查询
+     */
+    static $V2_EFP_WITHDRAW_QUERY = 'v2/efp/withdraw/query';
+    /**
+     * 全渠道资金付款申请
+     */
+    static $V2_EFP_SURROGATE = 'v2/efp/surrogate';
+    /**
+     * 托管交易关单
+     */
+    static $V2_TRADE_HOSTING_PAYMENT_CLOSE = 'v2/trade/hosting/payment/close';
+    /**
      * 取现
      */
     static $V2_TRADE_SETTLEMENT_ENCASHMENT = 'v2/trade/settlement/encashment';
@@ -539,11 +563,11 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_SETTLEMENT_ENCHASHMENT_DMAMT_QUERY = 'v2/trade/settlement/enchashment/dmamt/query';
     /**
-     * 子账户开通配置(2022)
+     * 子账户开通配置
      */
     static $V2_MERCHANT_SETTLE_CONFIG = 'v2/merchant/settle/config';
     /**
-     * 修改子账户配置(2022)
+     * 修改子账户配置
      */
     static $V2_MERCHANT_SETTLE_MODIFY = 'v2/merchant/settle/modify';
     /**
@@ -855,11 +879,11 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_BASICDATA_STATUS_QUERY = 'v2/merchant/basicdata/status/query';
     /**
-     * 商户业务开通修改(2022)
+     * 商户业务开通修改
      */
     static $V2_MERCHANT_BUSI_MODIFY = 'v2/merchant/busi/modify';
     /**
-     * 商户详细信息查询(2022)
+     * 商户详细信息查询
      */
     static $V2_MERCHANT_BASICDATA_QUERY = 'v2/merchant/basicdata/query';
     /**
@@ -871,7 +895,7 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_INTEGRATE_UPDATE = 'v2/merchant/integrate/update';
     /**
-     * 商户基本信息修改(2022)
+     * 商户基本信息修改
      */
     static $V2_MERCHANT_BASICDATA_MODIFY = 'v2/merchant/basicdata/modify';
     /**
@@ -879,11 +903,11 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_ACTIVITY_QUERY = 'v2/merchant/activity/query';
     /**
-     * 企业商户基本信息入驻(2022)
+     * 企业商户进件
      */
     static $V2_MERCHANT_BASICDATA_ENT = 'v2/merchant/basicdata/ent';
     /**
-     * 个人商户基本信息入驻(2022)
+     * 个人商户进件
      */
     static $V2_MERCHANT_BASICDATA_INDV = 'v2/merchant/basicdata/indv';
     /**
@@ -927,7 +951,7 @@ class FunctionCodeEnum
      */
     static $V2_TRADE_ONLINEPAYMENT_QUICKPAY_CONFIRM = 'v2/trade/onlinepayment/quickpay/confirm';
     /**
-     * 快捷支付页面版接口
+     * 快捷支付页面版
      */
     static $V2_TRADE_ONLINEPAYMENT_QUICKPAY_PAGEINFO = 'v2/trade/onlinepayment/quickpay/pageinfo';
     /**
@@ -1079,7 +1103,7 @@ class FunctionCodeEnum
      */
     static $V2_MERCHANT_ACTIVITY_ADD = 'v2/merchant/activity/add';
     /**
-     * 商户业务开通(2022)
+     * 商户业务开通
      */
     static $V2_MERCHANT_BUSI_OPEN = 'v2/merchant/busi/open';
     /**

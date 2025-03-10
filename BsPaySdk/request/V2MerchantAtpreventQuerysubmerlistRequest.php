@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 终端绑定
+ * 防断链子商户号列表查询
  *
  * @author sdk-generator
  * @Description
  */
-class V2TerminaldeviceManageBindRequest extends BaseRequest
+class V2MerchantAtpreventQuerysubmerlistRequest extends BaseRequest
 {
 
     /**
@@ -18,20 +18,16 @@ class V2TerminaldeviceManageBindRequest extends BaseRequest
      */
     private $reqSeqId;
     /**
-     * 请求时间
+     * 请求日期
      */
     private $reqDate;
     /**
-     * 汇付ID
+     * 商户汇付Id
      */
     private $huifuId;
-    /**
-     * 终端号
-     */
-    private $deviceId;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TERMINALDEVICE_MANAGE_BIND;
+        return FunctionCodeEnum::$V2_MERCHANT_ATPREVENT_QUERYSUBMERLIST;
     }
 
 
@@ -57,14 +53,6 @@ class V2TerminaldeviceManageBindRequest extends BaseRequest
 
     public function setHuifuId($huifuId) {
         $this->huifuId = $huifuId;
-    }
-
-    public function getDeviceId() {
-        return $this->deviceId;
-    }
-
-    public function setDeviceId($deviceId) {
-        $this->deviceId = $deviceId;
     }
 
 }

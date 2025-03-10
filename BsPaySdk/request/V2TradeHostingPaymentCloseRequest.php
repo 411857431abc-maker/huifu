@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 绑定终端信息查询
+ * 托管交易关单
  *
  * @author sdk-generator
  * @Description
  */
-class V2TerminaldeviceDeviceinfoQueryRequest extends BaseRequest
+class V2TradeHostingPaymentCloseRequest extends BaseRequest
 {
 
     /**
@@ -18,24 +18,24 @@ class V2TerminaldeviceDeviceinfoQueryRequest extends BaseRequest
      */
     private $reqSeqId;
     /**
-     * 请求时间
+     * 请求日期
      */
     private $reqDate;
     /**
-     * 汇付客户Id
+     * 商户号
      */
     private $huifuId;
     /**
-     * 分页大小
+     * 原请求日期
      */
-    private $pageSize;
+    private $orgReqDate;
     /**
-     * 当前页码
+     * 原请求流水号
      */
-    private $pageNum;
+    private $orgReqSeqId;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TERMINALDEVICE_DEVICEINFO_QUERY;
+        return FunctionCodeEnum::$V2_TRADE_HOSTING_PAYMENT_CLOSE;
     }
 
 
@@ -63,20 +63,20 @@ class V2TerminaldeviceDeviceinfoQueryRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getPageSize() {
-        return $this->pageSize;
+    public function getOrgReqDate() {
+        return $this->orgReqDate;
     }
 
-    public function setPageSize($pageSize) {
-        $this->pageSize = $pageSize;
+    public function setOrgReqDate($orgReqDate) {
+        $this->orgReqDate = $orgReqDate;
     }
 
-    public function getPageNum() {
-        return $this->pageNum;
+    public function getOrgReqSeqId() {
+        return $this->orgReqSeqId;
     }
 
-    public function setPageNum($pageNum) {
-        $this->pageNum = $pageNum;
+    public function setOrgReqSeqId($orgReqSeqId) {
+        $this->orgReqSeqId = $orgReqSeqId;
     }
 
 }

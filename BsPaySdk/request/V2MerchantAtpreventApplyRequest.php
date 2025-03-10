@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 服务商终端列表查询
+ * 防断链入驻
  *
  * @author sdk-generator
  * @Description
  */
-class V2TerminaldeviceManageQueryRequest extends BaseRequest
+class V2MerchantAtpreventApplyRequest extends BaseRequest
 {
 
     /**
@@ -18,12 +18,16 @@ class V2TerminaldeviceManageQueryRequest extends BaseRequest
      */
     private $reqSeqId;
     /**
-     * 请求时间
+     * 请求日期
      */
     private $reqDate;
+    /**
+     * 商户汇付Id
+     */
+    private $huifuId;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TERMINALDEVICE_MANAGE_QUERY;
+        return FunctionCodeEnum::$V2_MERCHANT_ATPREVENT_APPLY;
     }
 
 
@@ -41,6 +45,14 @@ class V2TerminaldeviceManageQueryRequest extends BaseRequest
 
     public function setReqDate($reqDate) {
         $this->reqDate = $reqDate;
+    }
+
+    public function getHuifuId() {
+        return $this->huifuId;
+    }
+
+    public function setHuifuId($huifuId) {
+        $this->huifuId = $huifuId;
     }
 
 }

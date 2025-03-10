@@ -5,12 +5,12 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 注销终端
+ * 全渠道资金提现申请
  *
  * @author sdk-generator
  * @Description
  */
-class V2TerminaldeviceDeviceinfoCancelRequest extends BaseRequest
+class V2EfpEncashRequest extends BaseRequest
 {
 
     /**
@@ -18,20 +18,24 @@ class V2TerminaldeviceDeviceinfoCancelRequest extends BaseRequest
      */
     private $reqSeqId;
     /**
-     * 请求时间
+     * 请求日期
      */
     private $reqDate;
     /**
-     * 汇付客户Id
+     * 商户汇付id
      */
     private $huifuId;
     /**
-     * 终端号
+     * 交易金额.单位:元，2位小数
      */
-    private $deviceId;
+    private $cashAmt;
+    /**
+     * 取现卡序列号
+     */
+    private $tokenNo;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_TERMINALDEVICE_DEVICEINFO_CANCEL;
+        return FunctionCodeEnum::$V2_EFP_ENCASH;
     }
 
 
@@ -59,12 +63,20 @@ class V2TerminaldeviceDeviceinfoCancelRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getDeviceId() {
-        return $this->deviceId;
+    public function getCashAmt() {
+        return $this->cashAmt;
     }
 
-    public function setDeviceId($deviceId) {
-        $this->deviceId = $deviceId;
+    public function setCashAmt($cashAmt) {
+        $this->cashAmt = $cashAmt;
+    }
+
+    public function getTokenNo() {
+        return $this->tokenNo;
+    }
+
+    public function setTokenNo($tokenNo) {
+        $this->tokenNo = $tokenNo;
     }
 
 }
