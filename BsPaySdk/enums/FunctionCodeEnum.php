@@ -5,6 +5,10 @@ namespace BsPaySdk\enums;
 class FunctionCodeEnum
 {
     /**
+     * 发票邮件重发接口
+     */
+    static $V2_INVOICE_RESENDMAIL = 'v2/invoice/resendMail';
+    /**
      * 防断链子商户号列表查询
      */
     static $V2_MERCHANT_ATPREVENT_QUERYSUBMERLIST = 'v2/merchant/atPrevent/querySubMerList';

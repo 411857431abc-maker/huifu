@@ -38,10 +38,6 @@ class V2TradePayafteruseInstallmentPayRequest extends BaseRequest
      */
     private $riskCheckData;
     /**
-     * 交易有效期
-     */
-    private $timeExpire;
-    /**
      * 支付宝扩展参数集合
      */
     private $alipayData;
@@ -97,14 +93,6 @@ class V2TradePayafteruseInstallmentPayRequest extends BaseRequest
 
     public function setRiskCheckData($riskCheckData) {
         $this->riskCheckData = $riskCheckData;
-    }
-
-    public function getTimeExpire() {
-        return $this->timeExpire;
-    }
-
-    public function setTimeExpire($timeExpire) {
-        $this->timeExpire = $timeExpire;
     }
 
     public function getAlipayData() {

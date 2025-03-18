@@ -24,7 +24,7 @@ $request->setReqDate(date("Ymd"));
 // 开发者的应用ID
 $request->setAppId("2019090666961966");
 // 证书文件列表
-$request->setFileList(getFileList());
+$request->setFileList(getEbe71eceF1a04373A7e1C99bb697b700());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -49,7 +49,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getFileList() {
+function getEbe71eceF1a04373A7e1C99bb697b700() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F120";
