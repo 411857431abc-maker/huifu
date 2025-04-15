@@ -44,13 +44,11 @@ $request->setOriIvcCode("90222082");
 // 原发票号码openType&#x3D;1时必填；参见[发票右上角](https://paas.huifu.com/open/doc/api/#/fp/api_fp_yanglitu.md)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：20685767&lt;/font&gt;
 $request->setOriIvcNumber("150000020026");
 // 开票商品信息
-$request->setGoodsInfos(getCc865b09A9d1454588fd0ec915ac54b3());
-// 开票人信息
-$request->setPayerInfo(getB166bc1dA4484a67A2d763b011609a76());
+$request->setGoodsInfos(get1c25f631D7734ad0Bfe823da7968c0f2());
 // 不动产销售特殊字段specialFlag为05时，必填；jsonArray格式
-// $request->setEstateSales(get834e08f62dcd4cdaBc97F6aadd5b60f7());
+// $request->setEstateSales(get305c27dd202b4bf4B2e203dce31d7ec4());
 // 不动产租赁特殊字段specialFlag为16时，必填；jsonArray格式
-// $request->setEstateLease(get95c5269197664358A5b57488affb02da());
+// $request->setEstateLease(get616ba0918c104e75A8666e879dd88a10());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -96,6 +94,8 @@ function getExtendInfos() {
     $extendInfoMap["special_flag"]= "00";
     // 红字信息表编号
     $extendInfoMap["red_info_number"]= "";
+    // 开票人信息
+    $extendInfoMap["payer_info"]= getB61e2485D61f4b3bA6699eec840c7544();
     // 开票结果异步通知地址
     $extendInfoMap["callback_url"]= "virgo://http://192.168.85.157:30031/sspm/testVirgo";
     // 强制开票标识
@@ -103,7 +103,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getCc865b09A9d1454588fd0ec915ac54b3() {
+function get1c25f631D7734ad0Bfe823da7968c0f2() {
     $dto = array();
     // 发票行性质
     $dto["ivc_nature"] = "0";
@@ -143,7 +143,7 @@ function getCc865b09A9d1454588fd0ec915ac54b3() {
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getB166bc1dA4484a67A2d763b011609a76() {
+function getB61e2485D61f4b3bA6699eec840c7544() {
     $dto = array();
     // 开票人
     $dto["payer_name"] = "开票人";
@@ -155,7 +155,7 @@ function getB166bc1dA4484a67A2d763b011609a76() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function get834e08f62dcd4cdaBc97F6aadd5b60f7() {
+function get305c27dd202b4bf4B2e203dce31d7ec4() {
     $dto = array();
     // 不动产地址
     // $dto["addr"] = "test";
@@ -177,7 +177,7 @@ function get834e08f62dcd4cdaBc97F6aadd5b60f7() {
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function get95c5269197664358A5b57488affb02da() {
+function get616ba0918c104e75A8666e879dd88a10() {
     $dto = array();
     // 不动产地址
     // $dto["addr"] = "test";
