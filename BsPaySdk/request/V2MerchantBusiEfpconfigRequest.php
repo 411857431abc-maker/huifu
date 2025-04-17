@@ -50,7 +50,7 @@ class V2MerchantBusiEfpconfigRequest extends BaseRequest
      */
     private $signUserInfo;
     /**
-     * 入账来源开通全域资金时需填写； 01:抖音02:美团03:快手04:拼多多05:小红书06:淘宝天猫飞猪07:微信视频号08:京东09:饿了么 11:得物 12:唯品会 13:携程;14:支付宝直连;15:微信直连 多个逗号分隔；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：01,02,05&lt;/font&gt;；
+     * 入账来源开通全域资金时需填写；01:抖音 02:美团 03:快手 04:拼多多 05:小红书 06:淘宝/天猫/飞猪 07:微信视频号/微信小店 08:京东 09:饿了么 11:得物 12:唯品会 13:携程 14:支付宝直连 15:微信直连 16:滴滴加油 17:团油 18:通联 19:易宝 多个逗号分隔；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：01,02,05&lt;/font&gt;；
      */
     private $acctSource;
     /**
@@ -109,6 +109,22 @@ class V2MerchantBusiEfpconfigRequest extends BaseRequest
      * 微信直连合作证明材料入账来源包含15:微信直连时必填 文件类型F595；详见[文件类型说明](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_wjlx)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
      */
     private $wxzlCooperationProvePic;
+    /**
+     * 滴滴加油合作证明材料入账来源包含16:滴滴加油时必填 文件类型F596；详见[文件类型说明](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_wjlx)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
+     */
+    private $ddjyCooperationProvePic;
+    /**
+     * 团油合作证明材料入账来源包含17:团油时必填 文件类型F597；详见[文件类型说明](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_wjlx)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
+     */
+    private $tyCooperationProvePic;
+    /**
+     * 通联合作证明材料入账来源包含18:通联时必填 文件类型F598；详见[文件类型说明](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_wjlx)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
+     */
+    private $tlCooperationProvePic;
+    /**
+     * 易宝合作证明材料入账来源包含19:易宝时必填 文件类型F599；详见[文件类型说明](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_wjlx)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：57cc7f00-600a-33ab-b614-6221bbf2e530&lt;/font&gt;
+     */
+    private $ybCooperationProvePic;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_MERCHANT_BUSI_EFPCONFIG;
@@ -305,6 +321,38 @@ class V2MerchantBusiEfpconfigRequest extends BaseRequest
 
     public function setWxzlCooperationProvePic($wxzlCooperationProvePic) {
         $this->wxzlCooperationProvePic = $wxzlCooperationProvePic;
+    }
+
+    public function getDdjyCooperationProvePic() {
+        return $this->ddjyCooperationProvePic;
+    }
+
+    public function setDdjyCooperationProvePic($ddjyCooperationProvePic) {
+        $this->ddjyCooperationProvePic = $ddjyCooperationProvePic;
+    }
+
+    public function getTyCooperationProvePic() {
+        return $this->tyCooperationProvePic;
+    }
+
+    public function setTyCooperationProvePic($tyCooperationProvePic) {
+        $this->tyCooperationProvePic = $tyCooperationProvePic;
+    }
+
+    public function getTlCooperationProvePic() {
+        return $this->tlCooperationProvePic;
+    }
+
+    public function setTlCooperationProvePic($tlCooperationProvePic) {
+        $this->tlCooperationProvePic = $tlCooperationProvePic;
+    }
+
+    public function getYbCooperationProvePic() {
+        return $this->ybCooperationProvePic;
+    }
+
+    public function setYbCooperationProvePic($ybCooperationProvePic) {
+        $this->ybCooperationProvePic = $ybCooperationProvePic;
     }
 
 }
