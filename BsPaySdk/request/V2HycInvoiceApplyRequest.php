@@ -26,25 +26,13 @@ class V2HycInvoiceApplyRequest extends BaseRequest
      */
     private $huifuId;
     /**
-     * 交易流水列表
-     */
-    private $batchList;
-    /**
-     * 接收人手机号
-     */
-    private $receiveMobile;
-    /**
-     * 接收人姓名
-     */
-    private $receiveName;
-    /**
-     * 快递地址
-     */
-    private $courierAddress;
-    /**
      * 开票类目
      */
     private $invoiceCategory;
+    /**
+     * 汇付全局流水号集合
+     */
+    private $hfSeqIds;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_HYC_INVOICE_APPLY;
@@ -75,44 +63,20 @@ class V2HycInvoiceApplyRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getBatchList() {
-        return $this->batchList;
-    }
-
-    public function setBatchList($batchList) {
-        $this->batchList = $batchList;
-    }
-
-    public function getReceiveMobile() {
-        return $this->receiveMobile;
-    }
-
-    public function setReceiveMobile($receiveMobile) {
-        $this->receiveMobile = $receiveMobile;
-    }
-
-    public function getReceiveName() {
-        return $this->receiveName;
-    }
-
-    public function setReceiveName($receiveName) {
-        $this->receiveName = $receiveName;
-    }
-
-    public function getCourierAddress() {
-        return $this->courierAddress;
-    }
-
-    public function setCourierAddress($courierAddress) {
-        $this->courierAddress = $courierAddress;
-    }
-
     public function getInvoiceCategory() {
         return $this->invoiceCategory;
     }
 
     public function setInvoiceCategory($invoiceCategory) {
         $this->invoiceCategory = $invoiceCategory;
+    }
+
+    public function getHfSeqIds() {
+        return $this->hfSeqIds;
+    }
+
+    public function setHfSeqIds($hfSeqIds) {
+        $this->hfSeqIds = $hfSeqIds;
     }
 
 }
