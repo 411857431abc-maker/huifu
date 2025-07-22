@@ -174,7 +174,7 @@ function getDe548fa487934ee186afEa5616d3ccec() {
     // 身份证
     $dto["cert_no"] = "513701201104022297";
 
-    return $dto;
+      return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 function getA2ffaf5c578d4b6bB755C3b8e7d5b8ad() {
