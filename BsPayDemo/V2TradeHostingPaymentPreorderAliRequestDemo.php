@@ -10,13 +10,13 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradeHostingPaymentPreorderRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2TradeHostingPaymentPreorderAliRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2TradeHostingPaymentPreorderRequest;
+use BsPaySdk\request\V2TradeHostingPaymentPreorderAliRequest;
 
 // 2.组装请求参数
-$request = new V2TradeHostingPaymentPreorderRequest();
+$request = new V2TradeHostingPaymentPreorderAliRequest();
 // 商户号
 $request->setHuifuId("6666000109133323");
 // 请求日期

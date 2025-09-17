@@ -22,21 +22,17 @@ class V2FlexibleTradeQueryRequest extends BaseRequest
      */
     private $reqDate;
     /**
-     * 原请求流水号原请求流水号与原请求全局流水号二选一必填，示例值：2021091708126665001
+     * 原请求流水号
      */
     private $orgReqSeqId;
     /**
-     * 原请求日期原请求流水号必填则原请求日期必填，格式：yyyyMMdd；示例值：20210917
+     * 原请求日期
      */
     private $orgReqDate;
     /**
      * 汇付商户号
      */
     private $huifuId;
-    /**
-     * 原交易全局流水号原请求流水号与原请求全局流水号二选一必填，  &lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值： 003100TOP1A230816150903P990ac139c0600000&lt;/font&gt;
-     */
-    private $orgHfSeqId;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_FLEXIBLE_TRADE_QUERY;
@@ -81,14 +77,6 @@ class V2FlexibleTradeQueryRequest extends BaseRequest
 
     public function setHuifuId($huifuId) {
         $this->huifuId = $huifuId;
-    }
-
-    public function getOrgHfSeqId() {
-        return $this->orgHfSeqId;
-    }
-
-    public function setOrgHfSeqId($orgHfSeqId) {
-        $this->orgHfSeqId = $orgHfSeqId;
     }
 
 }
