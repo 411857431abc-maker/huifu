@@ -23,8 +23,6 @@ $request = new V2InvoicePermissionGrantRequest();
 $request->setReqDate(date("Ymd"));
 // 开票方汇付ID
 $request->setHuifuId("6666000149801800");
-// 开通类型
-$request->setStatus("Y");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -33,7 +31,6 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
-$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理

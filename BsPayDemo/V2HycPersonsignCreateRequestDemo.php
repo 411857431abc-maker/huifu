@@ -26,7 +26,7 @@ $request->setHuifuId("6666000145962643");
 // 落地公司机构号
 $request->setMinorAgentId("L20231113140106443");
 // 乐接活请求参数jsonObject格式 合作平台为乐接活时必传
-// $request->setLjhData(get9da578f4F26f413a84051de657eb1c07());
+// $request->setLjhData(get994c979bC5cb4a098e051ddeb2fdcf26());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -35,7 +35,6 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
-$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -58,7 +57,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function get9da578f4F26f413a84051de657eb1c07() {
+function get994c979bC5cb4a098e051ddeb2fdcf26() {
     $dto = array();
     // 合同模板id合作平台为乐接活时必填 数字格式
     // $dto["contract_template_id"] = "test";

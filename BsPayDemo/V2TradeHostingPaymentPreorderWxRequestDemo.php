@@ -30,7 +30,7 @@ $request->setTransAmt("0.13");
 // 商品描述
 $request->setGoodsDesc("app跳微信消费");
 // 微信小程序扩展参数集合
-$request->setMiniappData(get50a16b756e9f4049866045ba95867e3e());
+$request->setMiniappData(get89e1260aC2a2430286f681c1d345d987());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -39,7 +39,6 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
-$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -60,23 +59,23 @@ function getExtendInfos() {
     // 是否延迟交易
     $extendInfoMap["delay_acct_flag"]= "Y";
     // 分账对象
-    $extendInfoMap["acct_split_bunch"]= getEdc0148eE93744c893439bd821fc43ad();
+    $extendInfoMap["acct_split_bunch"]= getAbb36b9851ec4c89B724991f36bbb537();
     // 交易失效时间
     // $extendInfoMap["time_expire"]= "";
     // 业务信息
-    // $extendInfoMap["biz_info"]= get35bc1601Bbc5479784b211331242cfae();
+    // $extendInfoMap["biz_info"]= get1e91233c3b514d21901161ff2c17461e();
     // 交易异步通知地址
     $extendInfoMap["notify_url"]= "https://callback.service.com/xx";
+    // 回调地址
+    // $extendInfoMap["callback_url"]= "";
     // 微信参数集合
-    // $extendInfoMap["wx_data"]= get7c4aa8daB6d1451c90cfA6751e4d9f0d();
+    // $extendInfoMap["wx_data"]= get0cccdfed4c4840adAe13C1b4160ea624();
     // 设备信息
-    // $extendInfoMap["terminal_device_data"]= getBdcc7a87Bd574726Ae464bc885001747();
-    // 手续费场景标识
-    // $extendInfoMap["fee_sign"]= "";
+    // $extendInfoMap["terminal_device_data"]= getE8d01f1d074c4d33Ab52E96c0ae4aead();
     return $extendInfoMap;
 }
 
-function get5262a85dDb4b49b099bbE54ed86e108e() {
+function getFc087f7305f4441d8d44B944f81342e0() {
     $dto = array();
     // 分账金额
     $dto["div_amt"] = "0.01";
@@ -92,10 +91,10 @@ function get5262a85dDb4b49b099bbE54ed86e108e() {
     return $dtoList;
 }
 
-function getEdc0148eE93744c893439bd821fc43ad() {
+function getAbb36b9851ec4c89B724991f36bbb537() {
     $dto = array();
     // 分账明细
-    $dto["acct_infos"] = get5262a85dDb4b49b099bbE54ed86e108e();
+    $dto["acct_infos"] = getFc087f7305f4441d8d44B944f81342e0();
     // 百分比分账标志
     // $dto["percentage_flag"] = "";
     // 是否净值分账
@@ -104,7 +103,7 @@ function getEdc0148eE93744c893439bd821fc43ad() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function get50a16b756e9f4049866045ba95867e3e() {
+function get89e1260aC2a2430286f681c1d345d987() {
     $dto = array();
     // 是否生成scheme_code
     $dto["need_scheme"] = "Y";
@@ -116,7 +115,7 @@ function get50a16b756e9f4049866045ba95867e3e() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getE57e418fDfb94900923c2706a59737ff() {
+function getF9c587ff49624ecdA2d766be46176bbb() {
     $dto = array();
     // 指定支付者
     // $dto["limit_payer"] = "";
@@ -126,7 +125,7 @@ function getE57e418fDfb94900923c2706a59737ff() {
     return $dto;
 }
 
-function get5d523d34B85c47f691acBbd78621478c() {
+function get240df619021e46c982d4C5e7eb417f52() {
     $dto = array();
     // 姓名
     // $dto["name"] = "";
@@ -138,17 +137,17 @@ function get5d523d34B85c47f691acBbd78621478c() {
     return $dto;
 }
 
-function get35bc1601Bbc5479784b211331242cfae() {
+function get1e91233c3b514d21901161ff2c17461e() {
     $dto = array();
     // 付款人验证（微信）
-    // $dto["payer_check_wx"] = getE57e418fDfb94900923c2706a59737ff();
+    // $dto["payer_check_wx"] = getF9c587ff49624ecdA2d766be46176bbb();
     // 个人付款人信息
-    // $dto["person_payer"] = get5d523d34B85c47f691acBbd78621478c();
+    // $dto["person_payer"] = get240df619021e46c982d4C5e7eb417f52();
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function get0721682d885649fa92cfD1e681717a29() {
+function get53ae6690B1634528B5ec19860aff0a5e() {
     $dto = array();
     // 商品编码
     // $dto["goods_id"] = "";
@@ -166,10 +165,10 @@ function get0721682d885649fa92cfD1e681717a29() {
     return $dtoList;
 }
 
-function getD712cf5d2f73456b8fab949fd2e1a700() {
+function get5363f4df67b44a51B0d30b90fb0242dc() {
     $dto = array();
     // 单品列表
-    // $dto["goods_detail"] = get0721682d885649fa92cfD1e681717a29();
+    // $dto["goods_detail"] = get53ae6690B1634528B5ec19860aff0a5e();
     // 订单原价(元)
     // $dto["cost_price"] = "";
     // 商品小票ID
@@ -178,7 +177,7 @@ function getD712cf5d2f73456b8fab949fd2e1a700() {
     return $dto;
 }
 
-function get3aa653d3Ea7c439796442e4081f90632() {
+function get5dfa6188Ce324403A8ef7d1054e8d2b9() {
     $dto = array();
     // 门店id
     // $dto["id"] = "";
@@ -192,15 +191,15 @@ function get3aa653d3Ea7c439796442e4081f90632() {
     return $dto;
 }
 
-function get8ecdd17236d443efA658588f1ef4423e() {
+function get8e7acadb53e34c8c849561ed6576e6b1() {
     $dto = array();
     // 门店信息
-    // $dto["store_info"] = get3aa653d3Ea7c439796442e4081f90632();
+    // $dto["store_info"] = get5dfa6188Ce324403A8ef7d1054e8d2b9();
 
     return $dto;
 }
 
-function get7c4aa8daB6d1451c90cfA6751e4d9f0d() {
+function get0cccdfed4c4840adAe13C1b4160ea624() {
     $dto = array();
     // 子商户应用ID
     // $dto["sub_appid"] = "";
@@ -211,7 +210,7 @@ function get7c4aa8daB6d1451c90cfA6751e4d9f0d() {
     // 商品描述
     // $dto["body"] = "";
     // 商品详情
-    // $dto["detail"] = getD712cf5d2f73456b8fab949fd2e1a700();
+    // $dto["detail"] = get5363f4df67b44a51B0d30b90fb0242dc();
     // 设备号
     // $dto["device_info"] = "";
     // 订单优惠标记
@@ -221,7 +220,7 @@ function get7c4aa8daB6d1451c90cfA6751e4d9f0d() {
     // 开发票入口开放标识
     // $dto["receipt"] = "";
     // 场景信息
-    // $dto["scene_info"] = get8ecdd17236d443efA658588f1ef4423e();
+    // $dto["scene_info"] = get8e7acadb53e34c8c849561ed6576e6b1();
     // 终端ip
     // $dto["spbill_create_ip"] = "";
     // 单品优惠标识
@@ -234,7 +233,7 @@ function get7c4aa8daB6d1451c90cfA6751e4d9f0d() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getBdcc7a87Bd574726Ae464bc885001747() {
+function getE8d01f1d074c4d33Ab52E96c0ae4aead() {
     $dto = array();
     // 汇付机具号
     // $dto["devs_id"] = "test";

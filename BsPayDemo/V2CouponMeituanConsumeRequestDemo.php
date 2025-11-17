@@ -26,7 +26,7 @@ $request->setHuifuId("6666000106057033");
 // 门店绑定流水号
 $request->setBindId("9c2d91f68ba045a998df46ffe395a9ca");
 // 核销券
-$request->setReceiptCodeInfos(get68087d8eDdd149ef940aF4ddd4dffe4c());
+$request->setReceiptCodeInfos(get1220ae0e014040c9Af4d128bcbe56d8a());
 // 登录账号
 $request->setAppShopAccount("123");
 // 登录用户名
@@ -39,7 +39,6 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
-$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -62,7 +61,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function get68087d8eDdd149ef940aF4ddd4dffe4c() {
+function get1220ae0e014040c9Af4d128bcbe56d8a() {
     $dto = array();
     // 券码
     $dto["receipt_code"] = "5729740654";
