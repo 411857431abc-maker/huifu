@@ -21,6 +21,8 @@ $request = new V2HycContractQueryRequest();
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 请求日期
 $request->setReqDate(date("Ymd"));
+// 合同编号
+$request->setContractId("202401120202733426");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -43,8 +45,6 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
-    // 合同编号
-    $extendInfoMap["contract_id"]= "202401120202733426";
     // 合作平台
     // $extendInfoMap["lg_platform_type"]= "";
     return $extendInfoMap;
