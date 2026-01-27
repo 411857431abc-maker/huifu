@@ -40,7 +40,7 @@ $request->setTerminalDeviceData(buildTerminalDeviceData());
 
 // 3. 发起API调用
 $payment = new Payment();
-$result = $payment->query($request);
+$result = $payment->refund($request);
 $respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());

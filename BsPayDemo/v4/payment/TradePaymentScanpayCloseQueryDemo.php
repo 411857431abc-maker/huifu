@@ -32,7 +32,7 @@ $request->setOrgReqSeqId("202110210012100005");
 
 // 3. 发起API调用
 $payment = new Payment();
-$result = $payment->query($request);
+$result = $payment->closeQuery($request);
 $respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
