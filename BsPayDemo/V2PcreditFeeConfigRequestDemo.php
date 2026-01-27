@@ -29,6 +29,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -44,64 +45,16 @@ function getExtendInfos() {
     $extendInfoMap = array();
     // 异步通知地址
     $extendInfoMap["async_return_url"]= "http://192.168.85.157:30031/sspm/testVirgo";
-    // 银行分期费率
-    $extendInfoMap["bank_fq_list"]= getBankFqList();
     // 花呗分期费率
-    $extendInfoMap["hb_fq_fee_list"]= getHbFqFeeList();
+    $extendInfoMap["hb_fq_fee_list"]= get05b26244F3754368911e63e76d5d79a8();
+    // 白条分期配置对象
+    // $extendInfoMap["jdbt_data"]= get5ed415516215448cAa71B459248bb501();
+    // 银联聚分期配置对象
+    // $extendInfoMap["yljfq_data"]= get3d393069Ef9f439fA8845a37ee62815b();
     return $extendInfoMap;
 }
 
-function getBankFqFeeList() {
-    $dto = array();
-    // 银行编号
-    $dto["bank_code"] = "01040000";
-    // 银行名称
-    $dto["bank_name"] = "";
-    // 银联收单分期费率（%）
-    $dto["bank_acq_period"] = "6";
-    // 用户付息费率
-    $dto["bank_fee_rate"] = "2";
-    // 交易手续费外扣标记
-    $dto["out_fee_flag"] = "";
-    // 手续费外扣的汇付商户号
-    $dto["out_fee_huifu_id"] = "";
-    // 银联分期3期开关
-    $dto["three_period_switch"] = "Y";
-    // 银联分期3期总费率（%）
-    $dto["three_period"] = "10";
-    // 银联分期6期开关
-    $dto["six_period_switch"] = "Y";
-    // 银联分期6期总费率（%）
-    $dto["six_period"] = "16";
-    // 银联分期12期开关
-    $dto["twelve_period_switch"] = "Y";
-    // 银联分期12期总费率（%）
-    $dto["twelve_period"] = "0.0001";
-
-    $dtoList = array();
-    array_push($dtoList, $dto);
-    return $dtoList;
-}
-
-function getBankFqList() {
-    $dto = array();
-    // 银联入网模式
-    $dto["ent_way"] = "1";
-    // 商户汇付Id
-    $dto["huifu_id"] = "6666000003156435";
-    // 银行卡分期状态
-    $dto["bank_card_fq_status"] = "1";
-    // 银行卡分期费率
-    $dto["bank_fq_fee_list"] = getBankFqFeeList();
-    // 贴息模式
-    $dto["fee_model"] = "1";
-
-    $dtoList = array();
-    array_push($dtoList, $dto);
-    return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-}
-
-function getHbFqFeeList() {
+function get05b26244F3754368911e63e76d5d79a8() {
     $dto = array();
     // 商户汇付Id
     $dto["huifu_id"] = "6666000003156435";
@@ -129,10 +82,118 @@ function getHbFqFeeList() {
     $dto["out_fee_flag"] = "";
     // 手续费外扣的汇付商户号
     $dto["out_fee_huifu_id"] = "";
+    // 花呗分期24期开关
+    // $dto["hb_twentyfour_period_switch"] = "";
+    // 花呗收单分期24期费率（%）
+    // $dto["hb_twentyfour_acq_period"] = "";
+    // 花呗分期24期利率（%）
+    // $dto["hb_twentyfour_period"] = "";
 
     $dtoList = array();
     array_push($dtoList, $dto);
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getBf2960d0062d419582e82c814aaee6b9() {
+    $dto = array();
+    // 支付场景
+    // $dto["pay_scene"] = "test";
+    // 业务开通标识
+    // $dto["open_flag"] = "test";
+    // 手续费率(%)
+    // $dto["fee_rate"] = "";
+    // 手续费扣取方式
+    // $dto["fee_rec_type"] = "";
+    // 交易手续费扣款标记
+    // $dto["fee_flag"] = "";
+    // 手续费外扣的汇付商户号
+    // $dto["out_fee_huifu_id"] = "";
+    // 手续费外扣的汇付账户号
+    // $dto["out_fee_acct_id"] = "";
+    // 斗拱终端付息方式
+    // $dto["discount_model"] = "";
+
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return $dtoList;
+}
+
+function get5ed415516215448cAa71B459248bb501() {
+    $dto = array();
+    // 商户汇付Id
+    // $dto["huifu_id"] = "test";
+    // 签约人类型
+    // $dto["sign_user_type"] = "test";
+    // 签约人手机号
+    // $dto["mobile_no"] = "test";
+    // 挂网协议地址3-挂网协议必填；示例值：https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/dg_gwxy/PaymentServiceAgreement_xxxx.html
+    // $dto["agreement_url"] = "test";
+    // 京东白条费率数据
+    // $dto["jdbt_fee_data"] = getBf2960d0062d419582e82c814aaee6b9();
+    // 签约人姓名
+    // $dto["name"] = "";
+    // 签约人身份证号
+    // $dto["cert_no"] = "";
+    // 协议类型
+    // $dto["agreement_type"] = "";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getA022abb7Afe746bb8a807f05ed2d6608() {
+    $dto = array();
+    // 支付场景
+    // $dto["pay_scene"] = "test";
+    // 业务开通标识
+    // $dto["open_flag"] = "test";
+    // 贴息模式
+    // $dto["discount_model"] = "";
+    // 手续费率(%)
+    // $dto["fee_rate"] = "";
+    // 手续费扣取方式
+    // $dto["fee_rec_type"] = "";
+    // 交易手续费扣款标记
+    // $dto["fee_flag"] = "";
+    // 手续费外扣的汇付商户号
+    // $dto["out_fee_huifu_id"] = "";
+    // 手续费外扣的汇付账户号
+    // $dto["out_fee_acct_id"] = "";
+
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return $dtoList;
+}
+
+function getC4eed850Ec61447c977420b8d9e86d56() {
+    $dto = array();
+    // 文件id
+    // $dto["file_id"] = "test";
+    // 文件类型
+    // $dto["file_type"] = "";
+
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return $dtoList;
+}
+
+function get3d393069Ef9f439fA8845a37ee62815b() {
+    $dto = array();
+    // 商户汇付Id
+    // $dto["huifu_id"] = "test";
+    // 签约人类型
+    // $dto["sign_user_type"] = "test";
+    // 签约人手机号
+    // $dto["mobile_no"] = "test";
+    // 银联聚分期费率数据
+    // $dto["yljfq_fee_data"] = getA022abb7Afe746bb8a807f05ed2d6608();
+    // 签约人姓名
+    // $dto["name"] = "";
+    // 签约人身份证号
+    // $dto["cert_no"] = "";
+    // 补充业务信息
+    // $dto["file_list"] = getC4eed850Ec61447c977420b8d9e86d56();
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 

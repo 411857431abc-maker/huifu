@@ -31,6 +31,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -50,6 +51,8 @@ function getExtendInfos() {
     $extendInfoMap["page_num"]= "1";
     // 账户号
     // $extendInfoMap["acct_id"]= "";
+    // 账户类型
+    $extendInfoMap["acct_type"]= "01";
     return $extendInfoMap;
 }
 

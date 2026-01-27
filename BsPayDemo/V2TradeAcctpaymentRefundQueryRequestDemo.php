@@ -18,11 +18,11 @@ use BsPaySdk\request\V2TradeAcctpaymentRefundQueryRequest;
 // 2.组装请求参数
 $request = new V2TradeAcctpaymentRefundQueryRequest();
 // 退款请求流水号
-$request->setOrgReqSeqId("20211021787214848332");
+$request->setOrgReqSeqId("20240515134124629vmalwxl5nxajgd");
 // 余额支付退款请求日期
-$request->setOrgReqDate("20211021");
+$request->setOrgReqDate("20240515");
 // 商户号
-$request->setHuifuId("6666000018344461");
+$request->setHuifuId("6666000109133323");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -31,6 +31,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理

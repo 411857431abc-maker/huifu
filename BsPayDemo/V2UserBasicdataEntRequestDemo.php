@@ -23,8 +23,6 @@ $request->setReqSeqId(date("YmdHis").mt_rand());
 $request->setReqDate(date("Ymd"));
 // 企业用户名称
 $request->setRegName("企业商户名称8225");
-// 经营简称
-$request->setShortName("企业商户");
 // 营业执照编号
 $request->setLicenseCode("20220222013747149");
 // 证照有效期类型
@@ -53,10 +51,14 @@ $request->setLegalCertValidityType("1");
 $request->setLegalCertBeginDate("20120801");
 // 法人证件有效期截止日期日期格式：yyyyMMdd; 非长期有效时必填，长期有效为空；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：20320905&lt;/font&gt;
 $request->setLegalCertEndDate("20300801");
+// 法人国籍法人的证件类型为外国人居留证时，必填，参见《[国籍编码](https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/download_file/area/%E5%9B%BD%E7%B1%8D.xlsx)》&lt;font color&#x3D;&quot;green&quot;&gt;示例值：CHN&lt;/font&gt;
+// $request->setLegalCertNationality("test");
 // 联系人姓名
 $request->setContactName("小的");
 // 联系人手机号
 $request->setContactMobile("13764462211");
+// 管理员账号如需短信通知则必填；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：Lg20220222013747&lt;/font&gt;
+$request->setLoginName("Lg2022022201374721361");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -65,6 +67,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -78,10 +81,10 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
+    // 经营简称
+    $extendInfoMap["short_name"]= "企业商户";
     // 联系人电子邮箱
     $extendInfoMap["contact_email"]= "jeff.peng@huifu.com";
-    // 管理员账号
-    $extendInfoMap["login_name"]= "Lg2022022201374721361";
     // 操作员
     $extendInfoMap["operator_id"]= "";
     // 是否发送短信标识
@@ -89,11 +92,15 @@ function getExtendInfos() {
     // 扩展方字段
     $extendInfoMap["expand_id"]= "";
     // 文件列表
-    // $extendInfoMap["file_list"]= getFileList();
+    // $extendInfoMap["file_list"]= getF4bde40271004009B265Ae9d23bf5967();
+    // 公司类型
+    // $extendInfoMap["ent_type"]= "";
+    // 所属行业
+    // $extendInfoMap["mcc"]= "";
     return $extendInfoMap;
 }
 
-function getFileList() {
+function getF4bde40271004009B265Ae9d23bf5967() {
     $dto = array();
     // 文件类型
     // $dto["file_type"] = "test";

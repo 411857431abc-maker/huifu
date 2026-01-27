@@ -23,8 +23,8 @@ $request->setReqSeqId(date("YmdHis").mt_rand());
 $request->setReqDate(date("Ymd"));
 // 下载图片的url
 $request->setMediaUrl("https://api.mch.weixin.qq.com/v3/merchant-service/images/ChsyMDAwMDAwMjAyMjEwMTkyMjAwMzI0MjEzODUYACCN78OaBigBMAE4AQ%3D%3D");
-// 微信商户号
-$request->setMchId("1502074861");
+// 投诉单号
+// $request->setComplaintId("test");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -33,6 +33,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理

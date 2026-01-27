@@ -22,9 +22,9 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 汇付商户Id
-$request->setHuifuId("6666000003078984");
+$request->setHuifuId("6666000109133323");
 // 用户ID
-$request->setOutCustId("6666000103633606");
+$request->setOutCustId("asdtrw123123123");
 // 卡令牌
 $request->setTokenNo("10000085852");
 
@@ -35,6 +35,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理

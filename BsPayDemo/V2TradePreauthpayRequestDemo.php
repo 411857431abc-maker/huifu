@@ -30,7 +30,7 @@ $request->setTransAmt("0.02");
 // 商品描述
 $request->setGoodsDesc("1234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567");
 // 安全信息
-$request->setRiskCheckData(getRiskCheckData());
+$request->setRiskCheckData(get82649f29E7ed468bB63dCac763d0c52e());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -39,6 +39,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -60,10 +61,6 @@ function getExtendInfos() {
     $extendInfoMap["org_req_seq_id"]= "";
     // 预授权汇付全局流水号
     $extendInfoMap["pre_auth_hf_seq_id"]= "0029000topB221031163126P798c0a8305400000";
-    // 交易发起时间
-    $extendInfoMap["send_time"]= "12345678901234567";
-    // 是否立即入账
-    $extendInfoMap["is_settled"]= "1";
     // 备注
     $extendInfoMap["remark"]= "123451111";
     // 批次号
@@ -73,13 +70,13 @@ function getExtendInfos() {
     // 扩展域
     // $extendInfoMap["mer_priv"]= "";
     // 设备信息
-    $extendInfoMap["terminal_device_data"]= getTerminalDeviceData();
+    $extendInfoMap["terminal_device_data"]= get4c12547917694abaBa1cBb866c7d5361();
     // 异步通知地址
     $extendInfoMap["notify_url"]= "http://www.baidu.com";
     return $extendInfoMap;
 }
 
-function getRiskCheckData() {
+function get82649f29E7ed468bB63dCac763d0c52e() {
     $dto = array();
     // 基站地址
     $dto["base_station"] = "192.168.1.1";
@@ -93,7 +90,7 @@ function getRiskCheckData() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getTerminalDeviceData() {
+function get4c12547917694abaBa1cBb866c7d5361() {
     $dto = array();
     // 商户终端序列号
     $dto["app_version"] = "";

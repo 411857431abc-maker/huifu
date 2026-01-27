@@ -35,6 +35,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -52,11 +53,25 @@ function getExtendInfos() {
     $extendInfoMap["launch_refund_day"]= "";
     // 拒绝退款原因
     $extendInfoMap["reject_reason"]= "";
-    // 文件列表
-    $extendInfoMap["file_info"]= "{\"reject_media_pic1\":\"a8a096a3-0dd4-3b0e-886c-9afb20d23b1a\",\"reject_media_pic2\":\"a8a096a3-0dd4-3b0e-886c-9afb20d23b2a\",\"reject_media_pic3\":\"a8a096a3-0dd4-3b0e-886c-9afb20d23b3a\",\"reject_media_pic4\":\"a8a096a3-0dd4-3b0e-886c-9afb20d23b4a\"}";
     // 备注
     $extendInfoMap["remark"]= "我是备注1111101";
+    // 文件列表
+    $extendInfoMap["file_info"]= get8e7653eaD27d4c589fdd887b957250c4();
     return $extendInfoMap;
+}
+
+function get8e7653eaD27d4c589fdd887b957250c4() {
+    $dto = array();
+    // 拒绝退款的举证图片1
+    $dto["reject_media_pic1"] = "a8a096a3-0dd4-3b0e-886c-9afb20d23b1a";
+    // 拒绝退款的举证图片2
+    $dto["reject_media_pic2"] = "a8a096a3-0dd4-3b0e-886c-9afb20d23b2a";
+    // 拒绝退款的举证图片3
+    $dto["reject_media_pic3"] = "a8a096a3-0dd4-3b0e-886c-9afb20d23b3a";
+    // 拒绝退款的举证图片4
+    $dto["reject_media_pic4"] = "a8a096a3-0dd4-3b0e-886c-9afb20d23b4a";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 

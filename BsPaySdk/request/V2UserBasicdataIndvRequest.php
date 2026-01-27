@@ -42,9 +42,17 @@ class V2UserBasicdataIndvRequest extends BaseRequest
      */
     private $certBeginDate;
     /**
+     * 个人国籍个人证件类型为外国人居留证时，必填，参见《[国籍编码](https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/download_file/area/%E5%9B%BD%E7%B1%8D.xlsx)》&lt;font color&#x3D;&quot;green&quot;&gt;示例值：CHN&lt;/font&gt;
+     */
+    private $certNationality;
+    /**
      * 手机号
      */
     private $mobileNo;
+    /**
+     * 地址开通中信E管家必填
+     */
+    private $address;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_USER_BASICDATA_INDV;
@@ -107,12 +115,28 @@ class V2UserBasicdataIndvRequest extends BaseRequest
         $this->certBeginDate = $certBeginDate;
     }
 
+    public function getCertNationality() {
+        return $this->certNationality;
+    }
+
+    public function setCertNationality($certNationality) {
+        $this->certNationality = $certNationality;
+    }
+
     public function getMobileNo() {
         return $this->mobileNo;
     }
 
     public function setMobileNo($mobileNo) {
         $this->mobileNo = $mobileNo;
+    }
+
+    public function getAddress() {
+        return $this->address;
+    }
+
+    public function setAddress($address) {
+        $this->address = $address;
     }
 
 }

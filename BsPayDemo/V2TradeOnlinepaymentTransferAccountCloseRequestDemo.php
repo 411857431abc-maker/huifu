@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 银行大额转账关单 - 示例
+ * 银行大额支付关单 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -35,6 +35,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理

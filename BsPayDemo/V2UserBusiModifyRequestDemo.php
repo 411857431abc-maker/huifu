@@ -21,10 +21,14 @@ $request = new V2UserBusiModifyRequest();
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 请求日期
 $request->setReqDate(date("Ymd"));
-// 渠道商汇付Id
-$request->setUpperHuifuId("6666000104633228");
 // 汇付ID
 $request->setHuifuId("6666000104896342");
+// 乐接活配置当合作平台为乐接活，必填
+// $request->setLjhData(getF16764f14f514214A6c992f6ef88cb6a());
+// 签约人信息当电子回单配置开关为开通时必填
+// $request->setSignUserInfo(getA9829568830041feA38402dde40b1502());
+// 汇薪云配置当合作平台为汇薪云时，该参数必填
+// $request->setHxyData(get02efe9fb7936437cB41e42619fde080a());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -33,6 +37,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -47,34 +52,44 @@ function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
     // 结算信息配置
-    $extendInfoMap["settle_config"]= getSettleConfig();
+    $extendInfoMap["settle_config"]= get0b95204f18f94c0a9b1bCdc7bfea9041();
     // 结算卡信息
-    $extendInfoMap["card_info"]= getCardInfo();
+    $extendInfoMap["card_info"]= getB2ebaf4083b248fbA09bC68c336ff46b();
     // 取现配置列表
-    $extendInfoMap["cash_config"]= getCashConfig();
+    $extendInfoMap["cash_config"]= get8867c4fe3d174764AfcbFde3d8ac3f5e();
     // 文件列表
-    $extendInfoMap["file_list"]= getFileList();
+    $extendInfoMap["file_list"]= get9a122eaa98ba429cAfba93f15ac521e8();
     // 延迟入账开关
     // $extendInfoMap["delay_flag"]= "";
     // 异步请求地址
     $extendInfoMap["async_return_url"]= "//http://service.example.com/to/path";
+    // 斗拱e账户功能配置
+    // $extendInfoMap["elec_acct_config"]= getAabe2c69761e46b6B9af3ef4f139b965();
+    // 灵活用工开关
+    // $extendInfoMap["open_tax_flag"]= "";
+    // 合作平台
+    // $extendInfoMap["lg_platform_type"]= "";
+    // 电子回单配置
+    // $extendInfoMap["elec_receipt_config"]= get12066244652442cbB9a312a36ad47cd5();
     return $extendInfoMap;
 }
 
-function getSettleConfig() {
+function get0b95204f18f94c0a9b1bCdc7bfea9041() {
     $dto = array();
     // 开通状态
     $dto["settle_status"] = "1";
     // 结算周期
     $dto["settle_cycle"] = "D1";
-    // 结算批次号settle_pattern为P0时选填；&lt;br/&gt;0点昨日余额结算批次:0,&lt;/br&gt;1点余额结算批次:100,&lt;/br&gt;2点余额结算批次:200,&lt;/br&gt;3点余额结算批次:300,&lt;/br&gt;4点余额结算批次:400,&lt;/br&gt;5点余额结算批次:500,&lt;/br&gt;6点余额结算批次:600,&lt;/br&gt;7点余额结算批次:700,&lt;/br&gt;8点余额结算批次:800,&lt;/br&gt;9点余额结算批次:900,&lt;/br&gt;10点余额结算批次:1000,&lt;/br&gt;11点余额结算批次:1100,&lt;/br&gt;12点余额结算批次:1200&lt;/br&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：1000&lt;/font&gt;
+    // 结算批次号settle_pattern为P0时必填；[参见结算批次说明](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_jspc)
     $dto["settle_batch_no"] = "0";
     // 是否优先到账settle_pattern为P0时选填， Y：是 N：否（为空默认取值）；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：Y&lt;/font&gt;
     $dto["is_priority_receipt"] = "Y";
-    // 自定义结算处理时间settle_pattern为P1时必填， 格式：HHmmss；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：103000&lt;/font&gt;
+    // 自定义结算处理时间settle_pattern为P1/P2时必填，注意：00:00到00:30不能指定；格式：HHmmss；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：103000&lt;/font&gt;
     $dto["settle_time"] = "";
-    // 节假日结算手续费率(%)
+    // 节假日结算手续费率settle_cycle为D1时必填。单位%，需保留小数点后两位。取值范围[0.00，100.00]，不收费请填写0.00；settle_cycle&#x3D;T1时，不生效 ；settle_cycle为D1时，遇节假日按此费率结算 ；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.05&lt;/font&gt;
     $dto["fixed_ratio"] = "0.1";
+    // 节假日结算手续费固定金额settle_cycle为D1时必填。单位元，需保留小数点后两位。不收费请填写0.00；settle_cycle结算周期为D1时，遇节假日按此费率结算 ；&lt;br/&gt; &lt;font color&#x3D;&quot;green&quot;&gt;示例值：1.00&lt;/font&gt;
+    // $dto["constant_amt"] = "test";
     // 起结金额
     $dto["min_amt"] = "0.1";
     // 结算手续费外扣时的账户类型
@@ -89,32 +104,32 @@ function getSettleConfig() {
     $dto["settle_abstract"] = "吃吃";
     // 结算方式
     $dto["settle_pattern"] = "P0";
+    // 工作日结算手续费率
+    // $dto["workday_fixed_ratio"] = "";
+    // 工作日结算手续费固定金额
+    // $dto["workday_constant_amt"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getCardInfo() {
+function getB2ebaf4083b248fbA09bC68c336ff46b() {
     $dto = array();
-    // 结算类型
+    // 卡类型
     $dto["card_type"] = "0";
     // 卡户名
-    $dto["card_name"] = "陈立健";
+    $dto["card_name"] = "陈立一";
     // 卡号
-    $dto["card_no"] = "6217001210064762121";
+    $dto["card_no"] = "6217001210064762000";
     // 银行所在省
     $dto["prov_id"] = "310000";
     // 银行所在市
     $dto["area_id"] = "310100";
-    // 银行号对公时必填，[参见银行编码](https://paas.huifu.com/partners/api/#/csfl/api_csfl_yhbm)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：01020000&lt;/font&gt;
-    $dto["bank_code"] = "01050000";
-    // 支行联行号对公时联行号、支行名称二选一必填，[点击查看](https://paas.huifu.com/partners/api/#/csfl/api_csfl_yhzhbm)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：102290026507&lt;/font&gt;
+    // 支行联行号当card_type&#x3D;0时必填，[点击查看](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_yhzhbm)；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：102290026507&lt;/font&gt;
     $dto["branch_code"] = "105305264815";
-    // 支行名称对公时联行号、支行名称二选一必填，&lt;font color&#x3D;&quot;green&quot;&gt;示例值：中国工商银行上海市中山北路支行&lt;/font&gt;
-    $dto["branch_name"] = "中国建设银行股份有限公司上海平凉路支行";
     // 持卡人证件类型
     $dto["cert_type"] = "00";
     // 持卡人证件号码
-    $dto["cert_no"] = "110101197003077513";
+    $dto["cert_no"] = "110101197003077000";
     // 持卡人证件有效期类型
     $dto["cert_validity_type"] = "0";
     // 持卡人证件有效期起始日期
@@ -122,34 +137,42 @@ function getCardInfo() {
     // 持卡人证件有效期截止日期
     $dto["cert_end_date"] = "20410806";
     // 银行卡绑定手机号
-    $dto["mp"] = "15556622368";
+    $dto["mp"] = "15556622000";
+    // 默认结算卡标志
+    // $dto["is_settle_default"] = "";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getCashConfig() {
+function get8867c4fe3d174764AfcbFde3d8ac3f5e() {
     $dto = array();
     // 开通状态
     $dto["switch_state"] = "1";
-    // 取现手续费率（%）fix_amt与fee_rate至少填写一项，单位%，需保留小数点后两位，取值范围[0.00,100.00]，不收费请填写0.00；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.05&lt;/font&gt;&lt;br/&gt;注：如果fix_amt与fee_rate都填写了则手续费&#x3D;fix_amt+支付金额*fee_rate
+    // 提现手续费（固定/元）fix_amt与fee_rate至少填写一项， 需保留小数点后两位，不收费请填写0.00；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：1.00&lt;/font&gt;注：当cash_type&#x3D;D1时为节假日取现手续费
+    $dto["fix_amt"] = "3";
+    // 提现手续费率（%）fix_amt与fee_rate至少填写一项，需保留小数点后两位，取值范围[0.00,100.00]，不收费请填写0.00；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.05&lt;/font&gt;注：1、如果fix_amt与fee_rate都填写了则手续费&#x3D;fix_amt+支付金额\*fee_rate2、当cash_type&#x3D;D1时为节假日取现手续费
     $dto["fee_rate"] = "0.05";
+    // D1工作日取现手续费固定金额单位元，需保留小数点后两位。不收费请填写0.00；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：1.00&lt;/font&gt;cash_type&#x3D;D1时，不生效 ；cash_type取现类型为D1时，遇工作日按此费率结算，若未配置则默认按照节假日手续费计算
+    // $dto["weekday_fix_amt"] = "test";
+    // D1工作日取现手续费率单位%，需保留小数点后两位。取值范围[0.00，100.00]，不收费请填写0.00；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：0.05&lt;/font&gt;cash_type&#x3D;D1时，不生效 ；cash_type取现类型为D1时，遇工作日按此费率结算 ，若未配置则默认按照节假日手续费计算
+    // $dto["weekday_fee_rate"] = "test";
     // 业务类型
     $dto["cash_type"] = "D0";
-    // 提现手续费（固定/元）
-    $dto["fix_amt"] = "3";
     // 是否交易手续费外扣
     $dto["out_fee_flag"] = "1";
     // 手续费承担方
     $dto["out_fee_huifu_id"] = "6666000104633228";
     // 交易手续费外扣的账户类型
     $dto["out_fee_acct_type"] = "05";
+    // 是否优先到账
+    // $dto["is_priority_receipt"] = "";
 
     $dtoList = array();
     array_push($dtoList, $dto);
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getFileList() {
+function get9a122eaa98ba429cAfba93f15ac521e8() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F02";
@@ -161,6 +184,102 @@ function getFileList() {
     $dtoList = array();
     array_push($dtoList, $dto);
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function get41c793b0A31e44729fb0E0962cfbc890() {
+    $dto = array();
+    // 银行所在省
+    // $dto["prov_id"] = "test";
+    // 银行所在市
+    // $dto["area_id"] = "test";
+    // 银行编码
+    // $dto["bank_code"] = "test";
+    // 支行联行号
+    // $dto["branch_code"] = "test";
+    // 支行名称
+    // $dto["branch_name"] = "test";
+    // 结算账户名
+    // $dto["card_name"] = "test";
+    // 银行卡号
+    // $dto["card_no"] = "test";
+    // 卡类型
+    // $dto["card_type"] = "test";
+    // 银行绑定手机号
+    // $dto["mp"] = "";
+    // 默认卡标识
+    // $dto["default_cash_flag"] = "";
+    // 用户授权协议版本号
+    // $dto["auth_version"] = "";
+    // 用户授权协议号
+    // $dto["auth_no"] = "";
+
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return $dtoList;
+}
+
+function getAabe2c69761e46b6B9af3ef4f139b965() {
+    $dto = array();
+    // 电子账户开关
+    // $dto["switch_state"] = "test";
+    // 账户类型
+    // $dto["acct_type"] = "test";
+    // 电子账户提现手续费承担方
+    // $dto["cash_fee_party"] = "test";
+    // 场景
+    // $dto["scene"] = "test";
+    // 角色类型(角色编号)
+    // $dto["role_type"] = "test";
+    // 电子账户开通状态
+    // $dto["bank_status"] = "test";
+    // 银行卡信息
+    // $dto["elec_card_list"] = get41c793b0A31e44729fb0E0962cfbc890();
+    // 银行信息
+    // $dto["bank_message"] = "";
+    // 中信签约短信流水号
+    // $dto["elec_acct_sign_seq_id"] = "";
+    // 签约成功标志
+    // $dto["sign_success_flag"] = "";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getF16764f14f514214A6c992f6ef88cb6a() {
+    $dto = array();
+    // 税源地id当合作平台为乐接活，必填
+    // $dto["tax_area_id"] = "test";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function get12066244652442cbB9a312a36ad47cd5() {
+    $dto = array();
+    // 电子回单开关
+    // $dto["switch_state"] = "test";
+
+    return $dto;
+}
+
+function getA9829568830041feA38402dde40b1502() {
+    $dto = array();
+    // 签约人类型
+    // $dto["type"] = "test";
+    // 签约人手机号
+    // $dto["mobile_no"] = "test";
+    // 签约人身份证
+    // $dto["cert_no"] = "";
+    // 签约人姓名
+    // $dto["name"] = "";
+
+    return $dto;
+}
+
+function get02efe9fb7936437cB41e42619fde080a() {
+    $dto = array();
+    // 落地公司机构号当合作平台为汇薪云时，该参数必填。如果仅有一个可不填
+    // $dto["minor_agent_id"] = "test";
+
+    return $dto;
 }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 商户分期配置详情查询 - 示例
+ * 商户分期配置查询 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -31,6 +31,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理

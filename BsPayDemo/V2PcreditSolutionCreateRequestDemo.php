@@ -44,7 +44,7 @@ $request->setBudgetWarningMailList("111@alipay.com");
 // 预算提醒手机号列表
 $request->setBudgetWarningMobileNoList("13940001100");
 // 子门店信息集合
-$request->setSubShopInfoList(getSubShopInfoList());
+$request->setSubShopInfoList(get5b9e78e1B07f4c27Aea4A87833d62a7e());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -53,6 +53,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -71,7 +72,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getSubShopInfoList() {
+function get5b9e78e1B07f4c27Aea4A87833d62a7e() {
     $dto = array();
     // 二级商户号
     $dto["sub_mer_id"] = "A4854135335181517376";

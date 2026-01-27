@@ -24,7 +24,7 @@ $request->setReqDate(date("Ymd"));
 // 汇付Id
 $request->setHuifuId("6666000003078984");
 // 顾客用户号 
-$request->setOutCustId("6666000103633619");
+$request->setOutCustId("asdtrw123123123");
 // 银行号
 $request->setBankId("01030000");
 // 银行卡开户姓名 
@@ -51,6 +51,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -72,6 +73,8 @@ function getExtendInfos() {
     $extendInfoMap["protocol_no"]= "";
     // 风控信息
     // $extendInfoMap["risk_info"]= getRiskInfo();
+    // 回调页面地址
+    // $extendInfoMap["verify_front_url"]= "";
     return $extendInfoMap;
 }
 

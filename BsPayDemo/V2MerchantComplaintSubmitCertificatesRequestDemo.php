@@ -28,7 +28,7 @@ $request->setRelievingId("653739ab36362810b7203b304d6f3883");
 // 解限风险类型
 $request->setRelieveRiskType("SMID_MERCHANT");
 // 提交的凭证数据
-$request->setRelieveCertDataList(getRelieveCertDataList());
+$request->setRelieveCertDataList(get28cea73e4b8543ad899a4d2cdd0659ab());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -37,6 +37,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -53,7 +54,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getRelieveCertDataList() {
+function get28cea73e4b8543ad899a4d2cdd0659ab() {
     $dto = array();
     // 凭证的唯一ID
     $dto["request_id"] = "1efc8c73afd64fc1b1fc50a834a54be0";

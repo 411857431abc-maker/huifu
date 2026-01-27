@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 商户统一进件接口 - 示例
+ * 商户统一进件接口(2022) - 示例
  *
  * @author sdk-generator
  * @Description
@@ -53,6 +53,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -106,7 +107,7 @@ function getExtendInfos() {
     // $extendInfoMap["sign_user_info"]= getSignUserInfo();
     // 管理员账号
     $extendInfoMap["login_name"]= "LG02022072707540497330158089012";
-    // 是否发送短信通知商户标识
+    // 是否通知商户标识
     $extendInfoMap["sms_send_flag"]= "1";
     // 协议信息实体
     $extendInfoMap["agreement_info"]= getAgreementInfo();
@@ -118,7 +119,7 @@ function getExtendInfos() {
     $extendInfoMap["wx_realname_info"]= getWxRealnameInfo();
     // 支付宝配置对象
     $extendInfoMap["ali_conf_list"]= getAliConfList();
-    // 银联配置对象
+    // 银联二维码配置
     $extendInfoMap["union_conf_list"]= getUnionConfList();
     // 银联小微入驻信息实体
     $extendInfoMap["union_micro_info"]= getUnionMicroInfo();
@@ -128,7 +129,7 @@ function getExtendInfos() {
     $extendInfoMap["bank_card_conf"]= getBankCardConf();
     // 花呗分期费率配置实体
     $extendInfoMap["hb_fq_fee_config"]= getHbFqFeeConfig();
-    // 营销补贴
+    // 补贴支付
     $extendInfoMap["combine_pay_config"]= getCombinePayConfig();
     // 商户业务类型
     // $extendInfoMap["mer_bus_type"]= "";
@@ -197,9 +198,9 @@ function getCardInfo() {
     $dto = array();
     // 结算类型
     $dto["card_type"] = "2";
-    // 银行所在省
+    // 银行所在省参考银行省份编码；参考[地区码](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_dqbm)，&lt;font color&#x3D;&quot;green&quot;&gt;示例值：310000&lt;/font&gt;；如修改省市要级联修改&lt;br/&gt;当card_type&#x3D;0时非必填， 当card_type&#x3D;1或2时必填
     $dto["prov_id"] = "310000";
-    // 银行所在市
+    // 银行所在市参考省市区编码；参考[地区码](https://paas.huifu.com/open/doc/api/#/csfl/api_csfl_dqbm)，&lt;font color&#x3D;&quot;green&quot;&gt;示例值：310100 &lt;/font&gt;；如修改省市要级联修改&lt;br/&gt;当card_type&#x3D;0时非必填， 当card_type&#x3D;1或2时必填
     $dto["area_id"] = "310100";
     // 结算账户名
     $dto["card_name"] = "张华";
@@ -221,7 +222,7 @@ function getCardInfo() {
     $dto["cert_no"] = "110101199305182000";
     // 持卡人证件类型
     $dto["cert_type"] = "00";
-    // 银行卡绑定手机号
+    // 结算人手机号
     $dto["mp"] = "1865590000";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);

@@ -30,6 +30,14 @@ class V2TradeAcctpaymentRefundRequest extends BaseRequest
      */
     private $orgReqDate;
     /**
+     * 原余额支付请求流水号org_hf_seq_id和orgReqSeqId二选一；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：2021091708126665001&lt;/font&gt;
+     */
+    private $orgReqSeqId;
+    /**
+     * 原余额支付支付全局流水号org_hf_seq_id和orgReqSeqId二选一；&lt;br/&gt;&lt;font color&#x3D;&quot;green&quot;&gt;示例值：00470topo1A211015160805P090ac132fef00000&lt;/font&gt;
+     */
+    private $orgHfSeqId;
+    /**
      * 退款金额
      */
     private $ordAmt;
@@ -69,6 +77,22 @@ class V2TradeAcctpaymentRefundRequest extends BaseRequest
 
     public function setOrgReqDate($orgReqDate) {
         $this->orgReqDate = $orgReqDate;
+    }
+
+    public function getOrgReqSeqId() {
+        return $this->orgReqSeqId;
+    }
+
+    public function setOrgReqSeqId($orgReqSeqId) {
+        $this->orgReqSeqId = $orgReqSeqId;
+    }
+
+    public function getOrgHfSeqId() {
+        return $this->orgHfSeqId;
+    }
+
+    public function setOrgHfSeqId($orgHfSeqId) {
+        $this->orgHfSeqId = $orgHfSeqId;
     }
 
     public function getOrdAmt() {

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 账户余额信息查询接口 - 示例
+ * 账户余额信息查询 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -29,6 +29,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -44,6 +45,8 @@ function getExtendInfos() {
     $extendInfoMap = array();
     // 请求流水号
     $extendInfoMap["req_seq_id"]= date("YmdHis").mt_rand();
+    // 账务日期
+    // $extendInfoMap["acct_date"]= "";
     return $extendInfoMap;
 }
 

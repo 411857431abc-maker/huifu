@@ -26,13 +26,21 @@ class V2MerchantSettleModifyRequest extends BaseRequest
      */
     private $huifuId;
     /**
-     * 渠道商汇付Id
+     * 上级汇付Id
      */
     private $upperHuifuId;
     /**
      * 子账户号
      */
     private $acctId;
+    /**
+     * 结算规则配置
+     */
+    private $settleConfig;
+    /**
+     * 结算卡信息配置新账户绑定的结算银行账户。jsonObject格式。若结算规则中上送token_no，则card_info不填。
+     */
+    private $cardInfo;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_MERCHANT_SETTLE_MODIFY;
@@ -77,6 +85,22 @@ class V2MerchantSettleModifyRequest extends BaseRequest
 
     public function setAcctId($acctId) {
         $this->acctId = $acctId;
+    }
+
+    public function getSettleConfig() {
+        return $this->settleConfig;
+    }
+
+    public function setSettleConfig($settleConfig) {
+        $this->settleConfig = $settleConfig;
+    }
+
+    public function getCardInfo() {
+        return $this->cardInfo;
+    }
+
+    public function setCardInfo($cardInfo) {
+        $this->cardInfo = $cardInfo;
     }
 
 }

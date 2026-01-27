@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 网银支付接口 - 示例
+ * 网银支付 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -22,17 +22,17 @@ $request->setReqSeqId(date("YmdHis").mt_rand());
 // 请求日期
 $request->setReqDate(date("Ymd"));
 // 商户号
-$request->setHuifuId("6666000108854952");
+$request->setHuifuId("6666000109133323");
 // 订单金额
 $request->setTransAmt("0.02");
 // 商品描述
 $request->setGoodsDesc("网银支付下单");
 // 网联扩展数据
-$request->setExtendPayData(getExtendPayData());
+$request->setExtendPayData(get41a3882943be433986df896d5ad9bbc7());
 // 设备信息
-$request->setTerminalDeviceData(getTerminalDeviceData());
+$request->setTerminalDeviceData(get6cbdad332b5f4dfe89d107e7e323b3ff());
 // 安全信息
-$request->setRiskCheckData(getRiskCheckData());
+$request->setRiskCheckData(get8334e31082524280943eE90c27c8c86e());
 // 异步通知地址
 $request->setNotifyUrl("http://www.chinapnr.com");
 
@@ -43,6 +43,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -56,32 +57,60 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
-    // 收款用户客户号
-    $extendInfoMap["user_huifu_id"]= "";
     // 收款汇付账户号
     $extendInfoMap["acct_id"]= "";
     // 订单类型
     $extendInfoMap["order_type"]= "P";
+    // 付款方银行编号
+    $extendInfoMap["bank_id"]= "";
     // 卡类型
     $extendInfoMap["card_type"]= "D";
+    // 备注
+    $extendInfoMap["remark"]= "网银支付接口";
     // 订单失效时间
     $extendInfoMap["time_expire"]= "";
     // 网关支付类型
     $extendInfoMap["gate_type"]= "01";
-    // 付款方银行编号
-    $extendInfoMap["bank_id"]= "";
     // 延时标记
     $extendInfoMap["delay_acct_flag"]= "N";
     // 分账对象
-    // $extendInfoMap["acct_split_bunch"]= getAcctSplitBunchRucan();
-    // 备注
-    $extendInfoMap["remark"]= "网银支付接口";
+    // $extendInfoMap["acct_split_bunch"]= get2e3d17e1485d440aA68a0dede46dd8b3();
+    // 手续费扣款标志
+    // $extendInfoMap["fee_flag"]= "";
     // 页面跳转地址
     $extendInfoMap["front_url"]= "http://www.chinapnr.com";
     return $extendInfoMap;
 }
 
-function getExtendPayData() {
+function getF5794a341ce740feB74dDfd50cfb54d0() {
+    $dto = array();
+    // 分账金额
+    // $dto["div_amt"] = "";
+    // 分账接收方ID
+    // $dto["huifu_id"] = "";
+    // 接收方账户号
+    // $dto["acct_id"] = "";
+    // 分账百分比%
+    // $dto["percentage_div"] = "";
+
+    $dtoList = array();
+    array_push($dtoList, $dto);
+    return $dtoList;
+}
+
+function get2e3d17e1485d440aA68a0dede46dd8b3() {
+    $dto = array();
+    // 分账明细
+    // $dto["acct_infos"] = getF5794a341ce740feB74dDfd50cfb54d0();
+    // 百分比分账标志
+    // $dto["percentage_flag"] = "";
+    // 是否净值分账
+    // $dto["is_clean_split"] = "";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function get41a3882943be433986df896d5ad9bbc7() {
     $dto = array();
     // 商品简称
     $dto["goods_short_name"] = "011111";
@@ -93,7 +122,7 @@ function getExtendPayData() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getTerminalDeviceData() {
+function get6cbdad332b5f4dfe89d107e7e323b3ff() {
     $dto = array();
     // 交易设备类型
     $dto["device_type"] = "1";
@@ -115,34 +144,12 @@ function getTerminalDeviceData() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getAcctInfos() {
-    $dto = array();
-    // 分账金额
-    // $dto["div_amt"] = "";
-    // 被分账方ID
-    // $dto["huifu_id"] = "";
-    // 被分账户号
-    // $dto["acct_id"] = "";
-
-    $dtoList = array();
-    array_push($dtoList, $dto);
-    return $dtoList;
-}
-
-function getAcctSplitBunchRucan() {
-    $dto = array();
-    // 分账明细
-    // $dto["acct_infos"] = getAcctInfos();
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-}
-
-function getRiskCheckData() {
+function get8334e31082524280943eE90c27c8c86e() {
     $dto = array();
     // ip地址
     $dto["ip_addr"] = "1";
     // 基站地址
-    // $dto["base_atation"] = "";
+    $dto["base_station"] = "2";
     // 纬度
     $dto["latitude"] = "3";
     // 经度

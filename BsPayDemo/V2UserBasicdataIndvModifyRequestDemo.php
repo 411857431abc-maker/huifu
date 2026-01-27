@@ -31,6 +31,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -55,11 +56,21 @@ function getExtendInfos() {
     // 手机号
     $extendInfoMap["mobile_no"]= "15556622000";
     // 文件列表
-    // $extendInfoMap["file_list"]= getFileList();
+    // $extendInfoMap["file_list"]= getB751a3d0C54d4718808cFd8fbde4bf08();
+    // 地址
+    // $extendInfoMap["address"]= "";
+    // 所属行业
+    // $extendInfoMap["mcc"]= "";
+    // 省
+    // $extendInfoMap["prov_id"]= "";
+    // 市
+    // $extendInfoMap["area_id"]= "";
+    // 区
+    // $extendInfoMap["district_id"]= "";
     return $extendInfoMap;
 }
 
-function getFileList() {
+function getB751a3d0C54d4718808cFd8fbde4bf08() {
     $dto = array();
     // 文件类型
     // $dto["file_type"] = "test";

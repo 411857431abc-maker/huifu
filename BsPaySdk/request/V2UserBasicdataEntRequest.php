@@ -26,10 +26,6 @@ class V2UserBasicdataEntRequest extends BaseRequest
      */
     private $regName;
     /**
-     * 经营简称
-     */
-    private $shortName;
-    /**
      * 营业执照编号
      */
     private $licenseCode;
@@ -86,6 +82,10 @@ class V2UserBasicdataEntRequest extends BaseRequest
      */
     private $legalCertEndDate;
     /**
+     * 法人国籍法人的证件类型为外国人居留证时，必填，参见《[国籍编码](https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/download_file/area/%E5%9B%BD%E7%B1%8D.xlsx)》&lt;font color&#x3D;&quot;green&quot;&gt;示例值：CHN&lt;/font&gt;
+     */
+    private $legalCertNationality;
+    /**
      * 联系人姓名
      */
     private $contactName;
@@ -93,6 +93,10 @@ class V2UserBasicdataEntRequest extends BaseRequest
      * 联系人手机号
      */
     private $contactMobile;
+    /**
+     * 管理员账号如需短信通知则必填；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：Lg20220222013747&lt;/font&gt;
+     */
+    private $loginName;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_USER_BASICDATA_ENT;
@@ -121,14 +125,6 @@ class V2UserBasicdataEntRequest extends BaseRequest
 
     public function setRegName($regName) {
         $this->regName = $regName;
-    }
-
-    public function getShortName() {
-        return $this->shortName;
-    }
-
-    public function setShortName($shortName) {
-        $this->shortName = $shortName;
     }
 
     public function getLicenseCode() {
@@ -243,6 +239,14 @@ class V2UserBasicdataEntRequest extends BaseRequest
         $this->legalCertEndDate = $legalCertEndDate;
     }
 
+    public function getLegalCertNationality() {
+        return $this->legalCertNationality;
+    }
+
+    public function setLegalCertNationality($legalCertNationality) {
+        $this->legalCertNationality = $legalCertNationality;
+    }
+
     public function getContactName() {
         return $this->contactName;
     }
@@ -257,6 +261,14 @@ class V2UserBasicdataEntRequest extends BaseRequest
 
     public function setContactMobile($contactMobile) {
         $this->contactMobile = $contactMobile;
+    }
+
+    public function getLoginName() {
+        return $this->loginName;
+    }
+
+    public function setLoginName($loginName) {
+        $this->loginName = $loginName;
     }
 
 }

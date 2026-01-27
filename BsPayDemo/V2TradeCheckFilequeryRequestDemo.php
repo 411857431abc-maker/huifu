@@ -22,9 +22,9 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 汇付客户Id
-$request->setHuifuId("6666000108854952");
+$request->setHuifuId("6666000109133323");
 // 文件生成日期
-$request->setFileDate("20220822");
+$request->setFileDate("20240428");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -33,6 +33,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -47,7 +48,7 @@ function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
     // 文件类型
-    // $extendInfoMap["file_type_query"]= "";
+    $extendInfoMap["bill_type"]= "TRADE_BILL";
     return $extendInfoMap;
 }
 

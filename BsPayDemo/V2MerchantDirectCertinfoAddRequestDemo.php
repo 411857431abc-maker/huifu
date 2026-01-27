@@ -28,7 +28,7 @@ $request->setPayWay("W");
 // 开发者的应用ID
 $request->setAppId("20220818198665087");
 // 文件列表
-$request->setFileList(getFileList());
+$request->setFileList(getD3445b35252c4ebd855b4f1aeb23cfbc());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -37,6 +37,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -61,7 +62,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getFileList() {
+function getD3445b35252c4ebd855b4f1aeb23cfbc() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F53";

@@ -23,10 +23,10 @@ $request->setReqSeqId(date("YmdHis").mt_rand());
 $request->setReqDate(date("Ymd"));
 // 汇付ID
 $request->setHuifuId("6666000105418240");
-// 联系人信息
-$request->setContactPersonInfo(getContactPersonInfo());
 // 主体信息
 $request->setAuthIdentityInfo(getAuthIdentityInfo());
+// 联系人信息
+$request->setContactPersonInfo(getContactPersonInfo());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -35,6 +35,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -57,44 +58,6 @@ function getExtendInfos() {
     // 受益人信息
     $extendInfoMap["ubo_info"]= getUboInfo();
     return $extendInfoMap;
-}
-
-function getContactPersonInfo() {
-    $dto = array();
-    // 联系人身份证号码
-    $dto["id_card_number"] = "120103198507275017";
-    // 联系人姓名
-    $dto["name"] = "谢季";
-    // 联系人手机号
-    $dto["mobile"] = "18900400032";
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
-}
-
-function getLegalPersonInfo() {
-    $dto = array();
-    // 证件持有人类型
-    $dto["legal_type"] = "SUPER";
-    // 证件类型
-    $dto["card_type"] = "00";
-    // 法人姓名
-    $dto["person_name"] = "李四";
-    // 证件号码
-    $dto["card_no"] = "110101199909291419";
-    // 证件生效时间
-    $dto["effect_time"] = "19990101";
-    // 证件过期时间
-    $dto["expire_time"] = "长期";
-    // 证件正面照
-    $dto["card_front_img"] = "afce08c5-1548-30f8-bf70-1752c3012f66";
-    // 证件反面照
-    $dto["card_back_img"] = "51dd13bb-6268-36d0-ac84-c4cdc19eccba";
-    // 授权函照片
-    $dto["auth_letter_img"] = "51dd13bb-6268-36d0-ac84-c4cdc19eccba";
-    // 是否为受益人
-    $dto["is_benefit_person"] = "N";
-
-    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 function getCertificateInfo() {
@@ -183,6 +146,44 @@ function getAuthIdentityInfo() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
+function getLegalPersonInfo() {
+    $dto = array();
+    // 证件持有人类型
+    $dto["legal_type"] = "SUPER";
+    // 证件类型
+    $dto["card_type"] = "00";
+    // 法人姓名
+    $dto["person_name"] = "李四";
+    // 证件号码
+    $dto["card_no"] = "110101199909291419";
+    // 证件生效时间
+    $dto["effect_time"] = "19990101";
+    // 证件过期时间
+    $dto["expire_time"] = "长期";
+    // 证件人像面
+    $dto["card_front_img"] = "afce08c5-1548-30f8-bf70-1752c3012f66";
+    // 证件国徽面
+    $dto["card_back_img"] = "51dd13bb-6268-36d0-ac84-c4cdc19eccba";
+    // 授权函照片
+    $dto["auth_letter_img"] = "51dd13bb-6268-36d0-ac84-c4cdc19eccba";
+    // 是否为受益人
+    $dto["is_benefit_person"] = "N";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
+function getContactPersonInfo() {
+    $dto = array();
+    // 联系人身份证号码
+    $dto["id_card_number"] = "120103198507275017";
+    // 联系人姓名
+    $dto["name"] = "谢季";
+    // 联系人手机号
+    $dto["mobile"] = "18900400032";
+
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+}
+
 function getUboInfo() {
     $dto = array();
     // 证件姓名
@@ -195,9 +196,9 @@ function getUboInfo() {
     $dto["ubo_period_begin"] = "19990101";
     // 证件有效期结束时间
     $dto["ubo_period_end"] = "20260606";
-    // 证件正面照片
+    // 证件人像面
     $dto["ubo_id_doc_copy"] = "afce08c5-1548-30f8-bf70-1752c3012f66";
-    // 证件反面照片
+    // 证件国徽面
     $dto["ubo_id_doc_copy_back"] = "51dd13bb-6268-36d0-ac84-c4cdc19eccba";
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);

@@ -24,8 +24,6 @@ $request->setReqSeqId(date("YmdHis").mt_rand());
 $request->setReqDate(date("Ymd"));
 // 图片类型
 $request->setFileType("F01");
-// 图片名称
-$request->setPicture("图片名称");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -34,6 +32,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request,new CURLFile(dirname(__FILE__)."/api_logo.png","image/png","api_logo.png"));
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -49,6 +48,8 @@ function getExtendInfos() {
     $extendInfoMap = array();
     // 商户号
     $extendInfoMap["huifu_id"]= "6666000103413615";
+    // 文件url链接
+    $extendInfoMap["file_url"]= "https://example.com/image.jpg";
     return $extendInfoMap;
 }
 

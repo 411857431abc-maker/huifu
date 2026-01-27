@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 交易确认退款接口 - 示例
+ * 交易确认退款 - 示例
  *
  * @author sdk-generator
  * @Description
@@ -22,11 +22,11 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 商户号
-$request->setHuifuId("6666000103423237");
+$request->setHuifuId("6666000109133323");
 // 原交易请求日期
-$request->setOrgReqDate("20221108");
+$request->setOrgReqDate("20240513");
 // 原交易请求流水号
-$request->setOrgReqSeqId("20221108349713659620211667908395");
+$request->setOrgReqSeqId("20240513105825239x0lp7ldbus4sji");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -35,6 +35,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -49,23 +50,25 @@ function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
     // 分账对象
-    $extendInfoMap["acct_split_bunch"]= getAcctSplitBunch();
+    $extendInfoMap["acct_split_bunch"]= get52147df86c694d86B9305a431b675f29();
     // 是否垫资退款
     // $extendInfoMap["loan_flag"]= "";
     // 垫资承担者
     // $extendInfoMap["loan_undertaker"]= "";
     // 垫资账户类型
     // $extendInfoMap["loan_acct_type"]= "";
+    // 备注
+    // $extendInfoMap["remark"]= "";
     return $extendInfoMap;
 }
 
-function getAcctInfos() {
+function get8b3eddeaB8474c7f905e858f0050be27() {
     $dto = array();
-    // 被分账方ID
-    $dto["huifu_id"] = "6666000003109208";
-    // 分账金额
+    // 分账接收方ID
+    $dto["huifu_id"] = "6666000109133323";
+    // 分账金额(元)
     $dto["div_amt"] = "0.01";
-    // 垫资金额
+    // 垫资金额(元)
     // $dto["part_loan_amt"] = "";
 
     $dtoList = array();
@@ -73,10 +76,10 @@ function getAcctInfos() {
     return $dtoList;
 }
 
-function getAcctSplitBunch() {
+function get52147df86c694d86B9305a431b675f29() {
     $dto = array();
     // 分账明细
-    $dto["acct_infos"] = getAcctInfos();
+    $dto["acct_infos"] = get8b3eddeaB8474c7f905e858f0050be27();
 
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }

@@ -5,7 +5,7 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 银行大额转账
+ * 银行大额支付
  *
  * @author sdk-generator
  * @Description
@@ -26,21 +26,9 @@ class V2TradeOnlinepaymentTransferAccountRequest extends BaseRequest
      */
     private $huifuId;
     /**
-     * 付款方名称
-     */
-    private $certificateName;
-    /**
-     * 付款方银行卡号
-     */
-    private $bankCardNo;
-    /**
      * 交易金额
      */
     private $transAmt;
-    /**
-     * 异步通知地址
-     */
-    private $notifyUrl;
     /**
      * 商品描述
      */
@@ -75,36 +63,12 @@ class V2TradeOnlinepaymentTransferAccountRequest extends BaseRequest
         $this->huifuId = $huifuId;
     }
 
-    public function getCertificateName() {
-        return $this->certificateName;
-    }
-
-    public function setCertificateName($certificateName) {
-        $this->certificateName = $certificateName;
-    }
-
-    public function getBankCardNo() {
-        return $this->bankCardNo;
-    }
-
-    public function setBankCardNo($bankCardNo) {
-        $this->bankCardNo = $bankCardNo;
-    }
-
     public function getTransAmt() {
         return $this->transAmt;
     }
 
     public function setTransAmt($transAmt) {
         $this->transAmt = $transAmt;
-    }
-
-    public function getNotifyUrl() {
-        return $this->notifyUrl;
-    }
-
-    public function setNotifyUrl($notifyUrl) {
-        $this->notifyUrl = $notifyUrl;
     }
 
     public function getGoodsDesc() {

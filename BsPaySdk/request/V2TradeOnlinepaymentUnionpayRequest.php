@@ -5,7 +5,7 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 银联统一在线收银台接口
+ * 银联统一在线收银台
  *
  * @author sdk-generator
  * @Description
@@ -37,6 +37,10 @@ class V2TradeOnlinepaymentUnionpayRequest extends BaseRequest
      * 安全信息
      */
     private $riskCheckData;
+    /**
+     * 三方支付数据jsonObject&lt;br/&gt;pay_scene&#x3D;U_JSAPI或pay_scene&#x3D;U_MINIAPP时，必填
+     */
+    private $thirdPayData;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_TRADE_ONLINEPAYMENT_UNIONPAY;
@@ -89,6 +93,14 @@ class V2TradeOnlinepaymentUnionpayRequest extends BaseRequest
 
     public function setRiskCheckData($riskCheckData) {
         $this->riskCheckData = $riskCheckData;
+    }
+
+    public function getThirdPayData() {
+        return $this->thirdPayData;
+    }
+
+    public function setThirdPayData($thirdPayData) {
+        $this->thirdPayData = $thirdPayData;
     }
 
 }

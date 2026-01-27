@@ -22,7 +22,7 @@ $request->setReqDate(date("Ymd"));
 // 请求流水号
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 汇付机构编号
-$request->setHuifuId("6666000121363028");
+$request->setHuifuId("6666000109133323");
 // 对账文件生成开关
 $request->setReconSendFlag("Y");
 // 对账单类型
@@ -35,6 +35,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -54,6 +55,14 @@ function getExtendInfos() {
     // $extendInfoMap["ftp_user"]= "";
     // SFTP密码
     // $extendInfoMap["ftp_pwd"]= "";
+    // 是否跟随结算时间
+    // $extendInfoMap["as_settle_flag"]= "";
+    // 跑批完成通知地址
+    // $extendInfoMap["notify_url"]= "";
+    // 用户数据范围
+    // $extendInfoMap["contain_user"]= "";
+    // 商户数据范围
+    // $extendInfoMap["contain_merchant"]= "";
     return $extendInfoMap;
 }
 

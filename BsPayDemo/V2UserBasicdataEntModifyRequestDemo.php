@@ -23,6 +23,8 @@ $request->setReqDate(date("Ymd"));
 $request->setReqSeqId(date("YmdHis").mt_rand());
 // 汇付客户Id
 $request->setHuifuId("6666000103862211");
+// 法人国籍法人的证件类型为外国人居留证时，必填，参见《[国籍编码](https://cloudpnrcdn.oss-cn-shanghai.aliyuncs.com/opps/api/prod/download_file/area/%E5%9B%BD%E7%B1%8D.xlsx)》&lt;font color&#x3D;&quot;green&quot;&gt;示例值：CHN&lt;/font&gt;
+// $request->setLegalCertNationality("test");
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -31,6 +33,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -44,14 +47,18 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
+    // 企业用户名称
+    // $extendInfoMap["reg_name"]= "";
     // 经营简称
     $extendInfoMap["short_name"]= "企业商户测试22";
+    // 公司类型
+    // $extendInfoMap["ent_type"]= "";
     // 法人姓名
-    $extendInfoMap["legal_name"]= "陈立健";
+    $extendInfoMap["legal_name"]= "陈立一";
     // 法人证件类型
     $extendInfoMap["legal_cert_type"]= "00";
     // 法人证件号码
-    $extendInfoMap["legal_cert_no"]= "370684198903061155";
+    $extendInfoMap["legal_cert_no"]= "370684198903061000";
     // 法人证件有效期类型
     $extendInfoMap["legal_cert_validity_type"]= "0";
     // 法人证件有效期开始日期
@@ -63,7 +70,7 @@ function getExtendInfos() {
     // 联系人电子邮箱
     $extendInfoMap["contact_email"]= "chang@huifu.com";
     // 联系人手机号
-    $extendInfoMap["contact_mobile"]= "13764462288";
+    $extendInfoMap["contact_mobile"]= "13764462000";
     // 证照有效期类型
     $extendInfoMap["license_validity_type"]= "1";
     // 证照有效期起始日期
@@ -79,11 +86,13 @@ function getExtendInfos() {
     // 注册地址(详细信息)
     $extendInfoMap["reg_detail"]= "上海市宜山路";
     // 文件列表
-    $extendInfoMap["file_list"]= getFileList();
+    $extendInfoMap["file_list"]= get948fc9d07ecd4fbbB95c02d9a605d463();
+    // 所属行业
+    // $extendInfoMap["mcc"]= "";
     return $extendInfoMap;
 }
 
-function getFileList() {
+function get948fc9d07ecd4fbbB95c02d9a605d463() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F01";

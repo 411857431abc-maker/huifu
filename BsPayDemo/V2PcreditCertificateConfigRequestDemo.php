@@ -24,7 +24,7 @@ $request->setReqDate(date("Ymd"));
 // 开发者的应用ID
 $request->setAppId("2019090666961966");
 // 证书文件列表
-$request->setFileList(getFileList());
+$request->setFileList(getEbe71eceF1a04373A7e1C99bb697b700());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -33,6 +33,7 @@ $request->setExtendInfo($extendInfoMap);
 // 3. 发起API调用
 $client = new BsPayClient();
 $result = $client->postRequest($request);
+$respData = $result->getRspDatas();
 if (!$result || $result->isError()) {  //失败处理
     var_dump($result -> getErrorInfo());
 } else {    //成功处理
@@ -49,7 +50,7 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getFileList() {
+function getEbe71eceF1a04373A7e1C99bb697b700() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F120";
