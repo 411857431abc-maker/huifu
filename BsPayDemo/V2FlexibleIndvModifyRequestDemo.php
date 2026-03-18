@@ -48,15 +48,15 @@ function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
     // 基本信息
-    // $extendInfoMap["basic_info"]= get89ce7b26E1c04e3bBa8bC1d9a102b3d6();
+    // $extendInfoMap["basic_info"]= get85557b1d7f4945348f719444c35fef3e();
     // 取现配置列表
-    $extendInfoMap["cash_config"]= getDd1521f89e444a5a896fD23093c32397();
+    $extendInfoMap["cash_config"]= getFab986af2f5a46c293be27111b433af5();
     // 卡信息
-    $extendInfoMap["card_info"]= getD2bf186d56e94b07Bc6e8ba832210a92();
+    $extendInfoMap["card_info"]= get7e4fcf80B2eb4346Ae2709b1139d8a3f();
     return $extendInfoMap;
 }
 
-function get89ce7b26E1c04e3bBa8bC1d9a102b3d6() {
+function get85557b1d7f4945348f719444c35fef3e() {
     $dto = array();
     // 个人证件有效期类型
     // $dto["cert_validity_type"] = "";
@@ -70,7 +70,7 @@ function get89ce7b26E1c04e3bBa8bC1d9a102b3d6() {
     return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getDd1521f89e444a5a896fD23093c32397() {
+function getFab986af2f5a46c293be27111b433af5() {
     $dto = array();
     // 提现手续费（固定/元）fix_amt与fee_rate至少填写一项， 需保留小数点后两位，不收费请填写0.00；&lt;font color&#x3D;&quot;green&quot;&gt;示例值：1.00&lt;/font&gt;注：当cash_type&#x3D;D1时为节假日取现手续费
     $dto["fix_amt"] = "";
@@ -98,7 +98,7 @@ function getDd1521f89e444a5a896fD23093c32397() {
     return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getD2bf186d56e94b07Bc6e8ba832210a92() {
+function get7e4fcf80B2eb4346Ae2709b1139d8a3f() {
     $dto = array();
     // 卡号
     $dto["card_no"] = "6228481269040908115";

@@ -37,10 +37,6 @@ class V2UserBusiOpenRequest extends BaseRequest
      * 汇薪云配置当合作平台为汇薪云，必填
      */
     private $hxyData;
-    /**
-     * 签约人信息当电子回单配置开关为开通时必填
-     */
-    private $signUserInfo;
 
     public function getFunctionCode() {
         return FunctionCodeEnum::$V2_USER_BUSI_OPEN;
@@ -93,14 +89,6 @@ class V2UserBusiOpenRequest extends BaseRequest
 
     public function setHxyData($hxyData) {
         $this->hxyData = $hxyData;
-    }
-
-    public function getSignUserInfo() {
-        return $this->signUserInfo;
-    }
-
-    public function setSignUserInfo($signUserInfo) {
-        $this->signUserInfo = $signUserInfo;
     }
 
 }

@@ -65,11 +65,11 @@ function getExtendInfos() {
     $extendInfoMap["legal_cert_begin_date"]= "20121010";
     // 法人证件有效期截止日期
     $extendInfoMap["legal_cert_end_date"]= "20301010";
-    // 管理员姓名
+    // 联系人姓名
     $extendInfoMap["contact_name"]= "花朵";
-    // 管理员电子邮箱
+    // 联系人电子邮箱
     $extendInfoMap["contact_email"]= "chang@huifu.com";
-    // 管理员手机号
+    // 联系人手机号
     $extendInfoMap["contact_mobile"]= "13764462000";
     // 证照有效期类型
     $extendInfoMap["license_validity_type"]= "1";
@@ -86,13 +86,13 @@ function getExtendInfos() {
     // 注册地址(详细信息)
     $extendInfoMap["reg_detail"]= "上海市宜山路";
     // 文件列表
-    $extendInfoMap["file_list"]= getB5d1ffebC1a9465f89b8041e891a5c3d();
+    $extendInfoMap["file_list"]= get948fc9d07ecd4fbbB95c02d9a605d463();
     // 所属行业
     // $extendInfoMap["mcc"]= "";
     return $extendInfoMap;
 }
 
-function getB5d1ffebC1a9465f89b8041e891a5c3d() {
+function get948fc9d07ecd4fbbB95c02d9a605d463() {
     $dto = array();
     // 文件类型
     $dto["file_type"] = "F01";

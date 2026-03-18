@@ -26,9 +26,9 @@ $request->setHuifuId("6666000123123123");
 // 账单项目编号
 $request->setProjectNo("BN2025091279190693");
 // 用户资料信息列表
-// $request->setUserDocInfoList(getC2e8906531d04dc8981304f7acdb9361());
+// $request->setUserDocInfoList(get5c2e7c16296940238d680181de1820b9());
 // 账单收费项信息列表
-// $request->setPaymentInfoList(getAfd400dc0f48495881a97bc3c0f33fed());
+// $request->setPaymentInfoList(get892c7e04F78848c79b53333c9ca3135a());
 
 // 设置非必填字段
 $extendInfoMap = getExtendInfos();
@@ -56,28 +56,24 @@ function getExtendInfos() {
     return $extendInfoMap;
 }
 
-function getC2e8906531d04dc8981304f7acdb9361() {
+function get5c2e7c16296940238d680181de1820b9() {
     $dto = array();
     // 账单表单字段属性ID
     // $dto["key_no"] = "test";
     // 账单表单字段属性值
     // $dto["key_value"] = "";
 
-    $dtoList = array();
-    array_push($dtoList, $dto);
-    return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
-function getAfd400dc0f48495881a97bc3c0f33fed() {
+function get892c7e04F78848c79b53333c9ca3135a() {
     $dto = array();
     // 账单表单字段属性ID
     // $dto["key_no"] = "test";
     // 账单表单字段属性值
     // $dto["key_value"] = "";
 
-    $dtoList = array();
-    array_push($dtoList, $dto);
-    return json_encode($dtoList,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
+    return json_encode($dto,JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES);
 }
 
 

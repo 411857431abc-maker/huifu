@@ -86,11 +86,11 @@ class V2UserBasicdataEntRequest extends BaseRequest
      */
     private $legalCertNationality;
     /**
-     * 管理员姓名
+     * 联系人姓名
      */
     private $contactName;
     /**
-     * 管理员手机号
+     * 联系人手机号
      */
     private $contactMobile;
     /**
