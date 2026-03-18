@@ -5,7 +5,7 @@ namespace BsPaySdk\request;
 use BsPaySdk\enums\FunctionCodeEnum;
 
 /**
- * 电子发票业务开通
+ * 电子发票业务配置
  *
  * @author sdk-generator
  * @Description
