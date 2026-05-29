@@ -55,6 +55,8 @@ if (!$result || $result->isError()) {  //失败处理
 function getExtendInfos() {
     // 设置非必填字段
     $extendInfoMap = array();
+    // 是否设置默认开票员
+    // $extendInfoMap["is_default_set"]= "";
     return $extendInfoMap;
 }
 

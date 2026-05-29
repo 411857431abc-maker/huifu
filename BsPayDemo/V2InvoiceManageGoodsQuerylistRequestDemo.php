@@ -10,13 +10,13 @@ namespace BsPayDemo;
 
 // 1. 资源及配置加载
 require_once dirname(__FILE__) . "/loader.php";
-require_once  dirname(__FILE__). "/../BsPaySdk/request/V2MerchantFapiaoGoodsQueryRequest.php";
+require_once  dirname(__FILE__). "/../BsPaySdk/request/V2InvoiceManageGoodsQuerylistRequest.php";
 
 use BsPaySdk\core\BsPayClient;
-use BsPaySdk\request\V2MerchantFapiaoGoodsQueryRequest;
+use BsPaySdk\request\V2InvoiceManageGoodsQuerylistRequest;
 
 // 2.组装请求参数
-$request = new V2MerchantFapiaoGoodsQueryRequest();
+$request = new V2InvoiceManageGoodsQuerylistRequest();
 // 汇付商户号
 $request->setHuifuId("6666000149801800");
 

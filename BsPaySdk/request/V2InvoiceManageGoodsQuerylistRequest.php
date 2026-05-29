@@ -10,7 +10,7 @@ use BsPaySdk\enums\FunctionCodeEnum;
  * @author sdk-generator
  * @Description
  */
-class V2MerchantFapiaoGoodsQueryRequest extends BaseRequest
+class V2InvoiceManageGoodsQuerylistRequest extends BaseRequest
 {
 
     /**
@@ -19,7 +19,7 @@ class V2MerchantFapiaoGoodsQueryRequest extends BaseRequest
     private $huifuId;
 
     public function getFunctionCode() {
-        return FunctionCodeEnum::$V2_MERCHANT_FAPIAO_GOODS_QUERY;
+        return FunctionCodeEnum::$V2_INVOICE_MANAGE_GOODS_QUERYLIST;
     }
 
 
