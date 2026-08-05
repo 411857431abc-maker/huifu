@@ -4,110 +4,158 @@ namespace BsPaySdk\guomi;
  * SM3 纯 GMP 实现 - GB/T 32905-2016
  * 已通过国标向量验证: SM3('abc') = 66c7f0f462eeedd9d1f2d46bdc10e4e24167c4875cf2f7a2297da02b8f4ba8e0
  */
+
 class Sm3
 {
-    private static $IV = [
-        '7380166f', '4914b2b9', '172442d7', 'da8a0600',
-        'a96f30bc', '163138aa', 'e38dee4d', 'b0fb0e4e'
-    ];
+    // 常量（不用数组，用独立常量或十六进制字符串）
+    private static $IV = array(
+        0x7380166f, 0x4914b2b9, 0x172442d7, 0xda8a0600,
+        0xa96f30bc, 0x163138aa, 0xe38dee4d, 0xb0fb0e4e
+    );
 
-    private static function g($h) { return gmp_init($h, 16); }
-    private static function u32($g) { return gmp_and($g, self::g('ffffffff')); }
+    private static $Tj = array();
 
-    private static function rol($g, $n)
+    private static $initialized = false;
+
+    private static function init()
     {
-        $n = $n % 32;
-        $left = self::u32(gmp_mul($g, gmp_pow(2, $n)));
-        $right = gmp_div($g, gmp_pow(2, 32 - $n));
-        return self::u32(gmp_or($left, $right));
+        if (self::$initialized) return;
+        // Tj 表
+        self::$Tj = array();
+        for ($j = 0; $j <= 15; $j++) {
+            self::$Tj[$j] = 0x79cc4519;
+        }
+        for ($j = 16; $j <= 63; $j++) {
+            self::$Tj[$j] = 0x7a879d8a;
+        }
+        self::$initialized = true;
     }
 
-    private static function T($j)
+    /**
+     * SM3 哈希，返回十六进制字符串
+     */
+    public static function hash($data)
     {
-        return $j < 16 ? self::g('79cc4519') : self::g('7a879d8a');
+        self::init();
+
+        if (is_array($data)) {
+            throw new Exception('Sm3::hash 收到数组');
+        }
+
+        $msg = $data;
+        $len = strlen($msg);
+
+        // 1. 填充
+        $bitLen = $len * 8;
+        $msg .= chr(0x80);
+        $msgLen = strlen($msg);
+        $remain = $msgLen % 64;
+        $padLen = ($remain <= 56) ? (56 - $remain) : (120 - $remain);
+        $msg .= str_repeat("\x00", $padLen);
+        // 附加长度（大端 64 位）
+        for ($i = 7; $i >= 0; $i--) {
+            $msg .= chr(($bitLen >> (8 * $i)) & 0xff);
+        }
+
+        // 2. 迭代压缩
+        $V = self::$IV;
+
+        for ($i = 0; $i < strlen($msg); $i += 64) {
+            $block = substr($msg, $i, 64);
+            $W = array();
+            for ($j = 0; $j < 16; $j++) {
+                $W[$j] = self::bytesToInt(substr($block, $j * 4, 4));
+            }
+            for ($j = 16; $j < 68; $j++) {
+                $W[$j] = self::P1($W[$j-16] ^ $W[$j-9] ^ self::rotl($W[$j-3], 15))
+                       ^ self::rotl($W[$j-13], 7)
+                       ^ $W[$j-6];
+            }
+            $V = self::CF($V, $W);
+        }
+
+        // 输出
+        $result = '';
+        for ($i = 0; $i < 8; $i++) {
+            $result .= self::intToHex($V[$i]);
+        }
+        return $result;
     }
 
-    private static function FF($x, $y, $z, $j)
+    private static function CF($V, $W)
     {
-        if ($j < 16) return self::u32(gmp_xor(gmp_xor($x, $y), $z));
-        return self::u32(gmp_or(gmp_or(gmp_and($x, $y), gmp_and($x, $z)), gmp_and($y, $z)));
+        $A = $V[0]; $B = $V[1]; $C = $V[2]; $D = $V[3];
+        $E = $V[4]; $F = $V[5]; $G = $V[6]; $H = $V[7];
+
+        for ($j = 0; $j <= 63; $j++) {
+            $SS1 = self::rotl(
+                (self::rotl($A, 12) + $E + self::rotl(self::$Tj[$j], $j % 32)) & 0xFFFFFFFF,
+                7
+            );
+            $SS2 = $SS1 ^ self::rotl($A, 12);
+            $TT1 = (self::FF($j, $A, $B, $C) + $D + $SS2 + ($W[$j] ^ $W[$j+4])) & 0xFFFFFFFF;
+            $TT2 = (self::GG($j, $E, $F, $G) + $H + $SS1 + $W[$j]) & 0xFFFFFFFF;
+            $D = $C;
+            $C = self::rotl($B, 9);
+            $B = $A;
+            $A = $TT1;
+            $H = $G;
+            $G = self::rotl($F, 19);
+            $F = $E;
+            $E = $TT2 ^ self::rotl($TT2, 9) ^ self::rotl($TT2, 17);
+        }
+
+        return array(
+            $A ^ $V[0],
+            $B ^ $V[1],
+            $C ^ $V[2],
+            $D ^ $V[3],
+            $E ^ $V[4],
+            $F ^ $V[5],
+            $G ^ $V[6],
+            $H ^ $V[7]
+        );
     }
 
-    private static function GG($x, $y, $z, $j)
+    private static function FF($j, $x, $y, $z)
     {
-        if ($j < 16) return self::u32(gmp_xor(gmp_xor($x, $y), $z));
-        return self::u32(gmp_or(gmp_and($x, $y), gmp_and(gmp_com($x), $z)));
+        if ($j <= 15) return $x ^ $y ^ $z;
+        return (($x & $y) | ($x & $z) | ($y & $z));
+    }
+
+    private static function GG($j, $x, $y, $z)
+    {
+        if ($j <= 15) return $x ^ $y ^ $z;
+        return (($x & $y) | (~$x & $z));
     }
 
     private static function P0($x)
     {
-        return self::u32(gmp_xor(gmp_xor($x, self::rol($x, 9)), self::rol($x, 17)));
+        return $x ^ self::rotl($x, 9) ^ self::rotl($x, 17);
     }
 
     private static function P1($x)
     {
-        return self::u32(gmp_xor(gmp_xor($x, self::rol($x, 15)), self::rol($x, 23)));
+        return $x ^ self::rotl($x, 15) ^ self::rotl($x, 23);
     }
 
-    public static function hash($msg)
+    private static function rotl($x, $n)
     {
-        $bytes = array_values(unpack('C*', $msg));
-        $bitLen = count($bytes) * 8;
+        $n = $n % 32;
+        return (($x << $n) | (($x >> (32 - $n)) & ((1 << $n) - 1))) & 0xFFFFFFFF;
+    }
 
-        $bytes[] = 0x80;
-        while (count($bytes) % 64 != 56) $bytes[] = 0x00;
-        for ($i = 7; $i >= 0; $i--) $bytes[] = ($bitLen >> ($i * 8)) & 0xff;
-
-        $V = array_map(fn($h) => self::g($h), self::$IV);
-
-        for ($off = 0; $off < count($bytes); $off += 64) {
-            $W = [];
-            for ($j = 0; $j < 16; $j++) {
-                $p = $off + $j * 4;
-                $val = ($bytes[$p] << 24) | ($bytes[$p+1] << 16) | ($bytes[$p+2] << 8) | $bytes[$p+3];
-                $W[$j] = self::g($val);
-            }
-            for ($j = 16; $j < 68; $j++) {
-                $W[$j] = self::P1(gmp_xor(gmp_xor($W[$j-16], $W[$j-9]), self::rol($W[$j-3], 15)));
-                $W[$j] = self::u32(gmp_xor(gmp_xor($W[$j], self::rol($W[$j-13], 7)), $W[$j-6]));
-            }
-            $WW = [];
-            for ($j = 0; $j < 64; $j++) $WW[$j] = self::u32(gmp_xor($W[$j], $W[$j+4]));
-
-            $A = $V[0]; $B = $V[1]; $C = $V[2]; $D = $V[3];
-            $E = $V[4]; $F = $V[5]; $G = $V[6]; $H = $V[7];
-
-            for ($j = 0; $j < 64; $j++) {
-                $SS1 = self::rol(
-                    self::u32(gmp_add(gmp_add(self::rol($A, 12), $E), self::rol(self::T($j), $j % 32))),
-                    7
-                );
-                $SS2 = gmp_xor($SS1, self::rol($A, 12));
-                $TT1 = self::u32(gmp_add(gmp_add(gmp_add(self::FF($A, $B, $C, $j), $D), $SS2), $WW[$j]));
-                $TT2 = self::u32(gmp_add(gmp_add(gmp_add(self::GG($E, $F, $G, $j), $H), $SS1), $W[$j]));
-
-                $D = $C;
-                $C = self::rol($B, 9);
-                $B = $A;
-                $A = $TT1;
-                $H = $G;
-                $G = self::rol($F, 19);
-                $F = $E;
-                $E = self::P0($TT2);
-            }
-
-            $V[0] = self::u32(gmp_xor($V[0], $A));
-            $V[1] = self::u32(gmp_xor($V[1], $B));
-            $V[2] = self::u32(gmp_xor($V[2], $C));
-            $V[3] = self::u32(gmp_xor($V[3], $D));
-            $V[4] = self::u32(gmp_xor($V[4], $E));
-            $V[5] = self::u32(gmp_xor($V[5], $F));
-            $V[6] = self::u32(gmp_xor($V[6], $G));
-            $V[7] = self::u32(gmp_xor($V[7], $H));
+    private static function bytesToInt($b)
+    {
+        $val = 0;
+        for ($i = 0; $i < 4; $i++) {
+            $val = ($val << 8) | ord($b[$i]);
         }
+        return $val & 0xFFFFFFFF;
+    }
 
-        $out = '';
-        foreach ($V as $v) $out .= str_pad(gmp_strval($v, 16), 8, '0', STR_PAD_LEFT);
-        return $out;
+    private static function intToHex($val)
+    {
+        return sprintf('%08x', $val & 0xFFFFFFFF);
     }
 }

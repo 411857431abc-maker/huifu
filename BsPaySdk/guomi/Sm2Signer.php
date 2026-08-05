@@ -15,11 +15,6 @@ class Sm2Signer
     const GX = '32C4AE2C1F1981195F9904466A39C9948FE30BBFF2660BE1715A4589334C74C7';
     const GY = 'BC3736A2F4F6779C59BDCEE36B692153D0A9877CC62A474002DF32E52139F0A0';
 
-    /* ==================== 对外 API ==================== */
-
-    /**
-     * 签名，返回 DER 的 Base64
-     */
     public static function sign($msg, $priKeyB64, $userId = '1234567812345678')
     {
         if (is_array($msg)) {
@@ -52,17 +47,11 @@ class Sm2Signer
         return self::rsToDerB64($r, $s);
     }
 
-    /**
-     * 签名，返回 DER 十六进制字符串
-     */
     public static function signHex($msg, $priKeyB64, $userId = '1234567812345678')
     {
         return bin2hex(base64_decode(self::sign($msg, $priKeyB64, $userId)));
     }
 
-    /**
-     * 验签（公钥 Base64）
-     */
     public static function verify($msg, $sigB64, $pubKeyB64, $userId = '1234567812345678')
     {
         if (is_array($msg)) {
@@ -72,9 +61,6 @@ class Sm2Signer
         return self::verifyHex($msg, $sigB64, $pubHex, $userId);
     }
 
-    /**
-     * 验签（公钥 hex）
-     */
     public static function verifyHex($msg, $sigB64, $pubHex, $userId = '1234567812345678')
     {
         $N = gmp_init(self::N, 16);
@@ -103,9 +89,6 @@ class Sm2Signer
         return gmp_cmp($R, $r) == 0;
     }
 
-    /**
-     * 从私钥推导公钥 hex
-     */
     public static function derivePublicKeyHex($priKeyB64)
     {
         $dHex = self::parsePrivateKey($priKeyB64);
@@ -116,11 +99,6 @@ class Sm2Signer
         return self::pointToHex($pt);
     }
 
-    /* ==================== 核心计算 ==================== */
-
-    /**
-     * 计算 ZA（SM2 用户标识哈希）
-     */
     public static function computeZA($pubHex, $userId = '1234567812345678')
     {
         $entl = sprintf('%04X', strlen($userId) * 8);
@@ -129,9 +107,6 @@ class Sm2Signer
         return Sm2Compat::sm3($data);
     }
 
-    /**
-     * 计算 e = SM3(ZA || msg)
-     */
     public static function computeE($pubHex, $msg, $userId = '1234567812345678')
     {
         $za = self::computeZA($pubHex, $userId);
@@ -203,8 +178,8 @@ class Sm2Signer
     {
         $N = gmp_init(self::N, 16);
         $k = gmp_mod($k, $N);
-        $R = [null, null];
-        $Q = [$x, $y];
+        $R = array(null, null);
+        $Q = array($x, $y);
         while (gmp_cmp($k, 0) > 0) {
             if (gmp_mod($k, 2) == 1) $R = self::pointAdd($R[0], $R[1], $Q[0], $Q[1]);
             $Q = self::pointDouble($Q[0], $Q[1]);
@@ -216,14 +191,14 @@ class Sm2Signer
     public static function pointAdd($Px, $Py, $Qx, $Qy)
     {
         $p = gmp_init(self::P, 16);
-        if ($Px === null) return [$Qx, $Qy];
-        if ($Qx === null) return [$Px, $Py];
+        if ($Px === null) return array($Qx, $Qy);
+        if ($Qx === null) return array($Px, $Py);
         if (gmp_cmp($Px, $Qx) == 0 && gmp_cmp($Py, $Qy) == 0) return self::pointDouble($Px, $Py);
 
         $lam = gmp_mod(gmp_mul(gmp_sub($Qy, $Py), gmp_invert(gmp_sub($Qx, $Px), $p)), $p);
         $Rx = gmp_mod(gmp_sub(gmp_sub(gmp_mul($lam, $lam), $Px), $Qx), $p);
         $Ry = gmp_mod(gmp_sub(gmp_mul($lam, gmp_sub($Px, $Rx)), $Py), $p);
-        return [$Rx, $Ry];
+        return array($Rx, $Ry);
     }
 
     public static function pointDouble($Px, $Py)
@@ -233,10 +208,10 @@ class Sm2Signer
         $lam = gmp_mod(gmp_mul(gmp_add(gmp_mul(3, gmp_mul($Px, $Px)), $a), gmp_invert(gmp_mul(2, $Py), $p)), $p);
         $Rx = gmp_mod(gmp_sub(gmp_mul($lam, $lam), gmp_mul(2, $Px)), $p);
         $Ry = gmp_mod(gmp_sub(gmp_mul($lam, gmp_sub($Px, $Rx)), $Py), $p);
-        return [$Rx, $Ry];
+        return array($Rx, $Ry);
     }
 
-    /* ==================== DER 编解码 ==================== */
+    /* ==================== DER ==================== */
 
     private static function rsToDerB64($r, $s)
     {
@@ -250,16 +225,16 @@ class Sm2Signer
 
     private static function derToRs($der)
     {
-        if (ord($der[0]) !== 0x30) return [null, null];
+        if (ord($der[0]) !== 0x30) return array(null, null);
         $pos = 2;
-        if (ord($der[$pos++]) !== 0x02) return [null, null];
+        if (ord($der[$pos++]) !== 0x02) return array(null, null);
         $rLen = ord($der[$pos++]);
         $r = gmp_import(substr($der, $pos, $rLen), 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
         $pos += $rLen;
-        if (ord($der[$pos++]) !== 0x02) return [null, null];
+        if (ord($der[$pos++]) !== 0x02) return array(null, null);
         $sLen = ord($der[$pos++]);
         $s = gmp_import(substr($der, $pos, $sLen), 1, GMP_MSW_FIRST | GMP_BIG_ENDIAN);
-        return [$r, $s];
+        return array($r, $s);
     }
 
     private static function gmpToBin($g)
