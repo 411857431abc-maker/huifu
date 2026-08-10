@@ -156,7 +156,7 @@ class BsPayRequestV2 {
         } 
         //国密SM2加密
         else if ($merChantConfig->encrypt_type === EncryptTypeEnum::$TYPE_SM2) {
-            $sign = BsPayTools::sha_with_sm2_sign(json_encode($post_data), $merChantConfig->sm2_merch_private_key);
+            $sign = BsPayTools::sha_with_sm2_sign(json_encode($post_data, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE), $merChantConfig->sm2_merch_private_key);
         }
         $body['sign'] = $sign;
 		if(!empty($file)){
