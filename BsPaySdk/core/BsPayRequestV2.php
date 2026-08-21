@@ -1,7 +1,7 @@
 <?php
 namespace BsPaySdk\core;
 use BsPaySdk\config\MerConfig;
-use BsPaySdk\enums\EncryptTypeEnum;
+use BsPaySdk\enums\SignTypeEnum;
 
 class BsPayRequestV2 {
     # 请求头
@@ -98,7 +98,7 @@ class BsPayRequestV2 {
 
         # 对返回数据验签失败的逻辑分支
         #  RSA
-        if (empty($merConfig->encrypt_type) || $merConfig->encrypt_type === EncryptTypeEnum::$TYPE_RSA) {
+        if (empty($merConfig->sign_type) || $merConfig->sign_type === SignTypeEnum::$TYPE_RSA) {
             if (!BsPayTools::verifySign_sort($resp_sign, $resp_data, $merConfig->rsa_huifu_public_key)) {
                 $this->error = array(
                     'code' => 'RESP_SIGN_VERIFY_FAILED',
@@ -108,7 +108,7 @@ class BsPayRequestV2 {
             }
         }
         //国密SM2验签
-        else if ($merConfig->encrypt_type === EncryptTypeEnum::$TYPE_SM2) {
+        else if ($merConfig->sign_type === SignTypeEnum::$TYPE_SM2) {
             if (!BsPayTools::verifySignSm2($resp_sign, $resp_data, $merConfig->sm2_huifu_public_key)) {
                 $this->error = array(
                     'code' => 'RESP_SIGN_VERIFY_FAILED',
@@ -149,13 +149,13 @@ class BsPayRequestV2 {
         ksort($post_data);  // 根据key排序
         $body['data'] = $post_data;
         #  执行签名 默认为RSA
-        if (empty($merChantConfig->encrypt_type) || $merChantConfig->encrypt_type === EncryptTypeEnum::$TYPE_RSA) {
+        if (empty($merChantConfig->sign_type) || $merChantConfig->sign_type === SignTypeEnum::$TYPE_RSA) {
             $sign = BsPayTools::sha_with_rsa_sign(
                 json_encode($post_data, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE),    // 数据里有中文和斜杠都不转码
                 $merChantConfig->rsa_merch_private_key);
         } 
         //国密SM2加密
-        else if ($merChantConfig->encrypt_type === EncryptTypeEnum::$TYPE_SM2) {
+        else if ($merChantConfig->sign_type === SignTypeEnum::$TYPE_SM2) {
             $sign = BsPayTools::sha_with_sm2_sign(json_encode($post_data, JSON_UNESCAPED_SLASHES|JSON_UNESCAPED_UNICODE), $merChantConfig->sm2_merch_private_key);
         }
         $body['sign'] = $sign;

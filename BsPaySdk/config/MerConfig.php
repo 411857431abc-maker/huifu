@@ -7,7 +7,7 @@ class MerConfig {
      * 加密算法类型：'RSA'或'SM2'
      * 空默认为RSA加密
      */
-    public $encrypt_type = '';
+    public $sign_type = '';
 
     /**
      * @var string 商户rsa私钥，用来进行对斗拱接口调用的请求数据加签
