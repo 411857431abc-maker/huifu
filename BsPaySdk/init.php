@@ -44,6 +44,6 @@ require_once SDK_BASE . "/guomi/Sm2Signer.php";
 require_once SDK_BASE . "/guomi/Sm2Compat.php";
 require_once SDK_BASE . "/request/BaseRequest.php";
 require_once SDK_BASE . "/enums/FunctionCodeEnum.php";
-require_once SDK_BASE . "/enums/EncryptTypeEnum.php";
+require_once SDK_BASE . "/enums/SignTypeEnum.php";
 
 

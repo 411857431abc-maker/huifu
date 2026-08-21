@@ -1,7 +1,7 @@
 <?php
 namespace BsPaySdk\enums;
 
-class EncryptTypeEnum {
+class SignTypeEnum {
 
     /**
      * RSA加密
@@ -13,7 +13,7 @@ class EncryptTypeEnum {
      */
     static $TYPE_SM2 = "SM2";
 
-    static function checkEncryptType($type) {
+    static function checkSignType($type) {
         return $type === self::$TYPE_RSA || $type === self::$TYPE_SM2;
     }
 }
