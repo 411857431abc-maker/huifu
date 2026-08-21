@@ -39,7 +39,11 @@ require_once SDK_BASE . "/core/BsPayTools.php";
 require_once SDK_BASE . "/core/BsPay.php";
 require_once SDK_BASE . "/core/BsPayClient.php";
 require_once SDK_BASE . "/core/Payment.php";
+require_once SDK_BASE . "/guomi/Sm3.php";
+require_once SDK_BASE . "/guomi/Sm2Signer.php";
+require_once SDK_BASE . "/guomi/Sm2Compat.php";
 require_once SDK_BASE . "/request/BaseRequest.php";
 require_once SDK_BASE . "/enums/FunctionCodeEnum.php";
+require_once SDK_BASE . "/enums/EncryptTypeEnum.php";
 
 
