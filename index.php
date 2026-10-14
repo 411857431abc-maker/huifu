@@ -14,7 +14,7 @@ $config = [
     // 新汇付公钥
     'huifu_public_key'     => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjrBPkzfOoJ/nf/jlaWUWRZapR9VmpHHLE97ZWbxrp9DhIeckniuHq1e2kFPBzPIXDOeUGiodbUwWRyQcfykxkljk0dVRRQcCdiXituiEgXUR2fhjf9c6wkDqYBwnERu5Xk60lnbgXfhT5Y9roTw7z8euDRAZkgOV5YuAuO5uW0u2BE3XADpTC1YKq5ttXEukVLUl8gUfUVK4b3h8Mim9DyzYVdXj2IZXAxdi1LpIS2Of+21lTnxEy1A3ZFYR511lIdD2W/JZAb50Kele/cCHxgitU3ADkRvExap6K/5a5r0Vq20pZW1dm7qcR2FDxXoEy5rV0ZaI3QA3aLLms9eQ9wIDAQAB',
     // Webhook 终端密钥（如果新商户没有单独设置，可以保留原来的，或联系汇付获取）
-    'webhook_terminal_key' => '6f9a241bbfc044c4965b779c83d301f7',
+    'webhook_terminal_key' => 'NyPt4yX4Iu7I1mvLPKCORbOfKZBV9893',
     'api_base_url'         => 'https://api.huifu.com',
     'notify_url'           => 'https://web-production-60f26.up.railway.app',
 ];
