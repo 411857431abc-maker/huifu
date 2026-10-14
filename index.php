@@ -4,7 +4,6 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json; charset=utf-8');
 
-// ==================== 配置区域 ====================
 $config = [
     'sys_id'               => '6666000248404988',
     'product_id'           => 'XLSISV',
@@ -16,7 +15,7 @@ $config = [
     'notify_url'           => 'https://web-production-60f26.up.railway.app',
 ];
 
-// ==================== 工具函数 ====================
+// ==================== 密钥工具 ====================
 
 function toPrivateKeyPem($key) {
     if (strpos($key, '-----BEGIN') !== false) return $key;
@@ -28,6 +27,27 @@ function toPublicKeyPem($key) {
     return "-----BEGIN PUBLIC KEY-----\n" . wordwrap($key, 64, "\n", true) . "\n-----END PUBLIC KEY-----";
 }
 
+/**
+ * RSA 加密（用于加密业务数据，不是签名）
+ */
+function rsaEncrypt($data, $publicKeyBase64) {
+    $res = openssl_pkey_get_public(toPublicKeyPem($publicKeyBase64));
+    if (!$res) throw new Exception('汇付公钥无法加载');
+    $encrypted = '';
+    // 分块加密，防止数据超过 RSA 单次加密上限
+    $maxChunk = 245; // 2048位密钥用 PKCS1 padding 最多 245 字节
+    $result = '';
+    for ($i = 0; $i < strlen($data); $i += $maxChunk) {
+        $chunk = substr($data, $i, $maxChunk);
+        openssl_public_encrypt($chunk, $encrypted, $res, OPENSSL_PKCS1_PADDING);
+        $result .= $encrypted;
+    }
+    return base64_encode($result);
+}
+
+/**
+ * RSA 签名
+ */
 function rsaSign($data, $privateKeyBase64) {
     $res = openssl_pkey_get_private(toPrivateKeyPem($privateKeyBase64));
     if (!$res) throw new Exception('商户私钥无法加载');
@@ -35,19 +55,31 @@ function rsaSign($data, $privateKeyBase64) {
     return base64_encode($signature);
 }
 
+/**
+ * 构建斗拱 API 请求（核心修正：data 字段必须加密业务 JSON）
+ */
 function buildApiParams($bizParams, $config) {
-    $params = array_merge($bizParams, [
+    // 1. 业务参数打包成 JSON
+    $bizJson = json_encode($bizParams, JSON_UNESCAPED_UNICODE);
+
+    // 2. 用汇付公钥加密业务 JSON，得到 data 字段
+    $encryptedData = rsaEncrypt($bizJson, $config['huifu_public_key']);
+
+    // 3. 组装外层参数
+    $params = [
         'sys_id'     => $config['sys_id'],
         'product_id' => $config['product_id'],
-        'data'       => date('YmdHis'),
-    ]);
+        'data'       => $encryptedData,
+    ];
+
+    // 4. 签名（对 sys_id & product_id & data 拼接后签名）
     ksort($params);
     $signParts = [];
     foreach ($params as $k => $v) {
-        if ($v === '' || $v === null) continue;
         $signParts[] = $k . '=' . $v;
     }
     $params['sign'] = rsaSign(implode('&', $signParts), $config['merchant_private_key']);
+
     return $params;
 }
 
@@ -71,7 +103,7 @@ function sendRequest($url, $params) {
 // ==================== 路由 ====================
 $action = $_GET['action'] ?? '';
 
-// ---------- 分支 A：商户信息查询（基础测试，无业务权限要求） ----------
+// ---------- 测试：商户信息查询 ----------
 if ($action === 'test') {
     try {
         $bizParams = [
@@ -83,10 +115,10 @@ if ($action === 'test') {
         $result = sendRequest($config['api_base_url'] . '/v2/merchant/basicdata/query', $params);
 
         echo json_encode([
-            'status'       => 'success',
-            'http_code'    => $result['http_code'],
-            'curl_err'     => $result['curl_err'],
-            'raw_response' => $result['raw'],
+            'status'         => 'success',
+            'http_code'      => $result['http_code'],
+            'curl_err'       => $result['curl_err'],
+            'raw_response'   => $result['raw'],
             'request_params' => $params,
         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     } catch (Throwable $e) {
@@ -95,7 +127,7 @@ if ($action === 'test') {
     exit;
 }
 
-// ---------- 分支 B：发起支付请求 ----------
+// ---------- 发起支付 ----------
 if ($action === 'pay') {
     try {
         $bizParams = [
@@ -110,10 +142,10 @@ if ($action === 'pay') {
         $result = sendRequest($config['api_base_url'] . '/v2/trade/payment/jspay', $params);
 
         echo json_encode([
-            'status'       => 'success',
-            'http_code'    => $result['http_code'],
-            'curl_err'     => $result['curl_err'],
-            'raw_response' => $result['raw'],
+            'status'         => 'success',
+            'http_code'      => $result['http_code'],
+            'curl_err'       => $result['curl_err'],
+            'raw_response'   => $result['raw'],
             'request_params' => $params,
         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     } catch (Throwable $e) {
@@ -122,7 +154,7 @@ if ($action === 'pay') {
     exit;
 }
 
-// ---------- 分支 C：接收 Webhook 通知（默认） ----------
+// ---------- 接收 Webhook ----------
 $rawBody = file_get_contents('php://input');
 file_put_contents('php://stderr', "[Webhook] 收到消息: " . $rawBody . "\n");
 
@@ -133,7 +165,6 @@ if (!is_array($data)) {
     exit;
 }
 
-// MD5 验签
 if (!empty($config['webhook_terminal_key'])) {
     $receivedSign = $data['sign'] ?? '';
     $checkData = $data;
@@ -152,15 +183,6 @@ if (!empty($config['webhook_terminal_key'])) {
 
 $eventDefineNo = $data['eventDefineNo'] ?? $data['event_define_no'] ?? '';
 file_put_contents('php://stderr', "[Webhook] 事件类型: " . $eventDefineNo . "\n");
-
-switch ($eventDefineNo) {
-    case 'pay.dy':
-        file_put_contents('php://stderr', "[Webhook] 收到抖音支付成功通知\n");
-        break;
-    default:
-        file_put_contents('php://stderr', "[Webhook] 其他事件: " . $eventDefineNo . "\n");
-        break;
-}
 
 http_response_code(200);
 echo json_encode(['status'=>'ok']);
