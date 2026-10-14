@@ -15,6 +15,8 @@ $config = [
     'notify_url'           => 'https://web-production-60f26.up.railway.app',
 ];
 
+// ==================== 工具函数 ====================
+
 function toPrivateKeyPem($key) {
     if (strpos($key, '-----BEGIN') !== false) return $key;
     return "-----BEGIN PRIVATE KEY-----\n" . wordwrap($key, 64, "\n", true) . "\n-----END PRIVATE KEY-----";
@@ -28,16 +30,19 @@ function rsaSign($data, $privateKeyBase64) {
 }
 
 /**
- * 构建斗拱 API 请求（修正版：data 是 JSON 对象，签名只对 data 第一层字段）
+ * 构建斗拱 API 请求
+ * - data 是 JSON 对象
+ * - 签名对象是 data 第一层字段，按 ASCII 字典序排序，拼接 key=value&key=value
  */
 function buildApiParams($bizParams, $config) {
-    // 1. 排序 data 第一层字段（按 ASCII 字典序）
+    // 1. 按 ASCII 字典序排序
     ksort($bizParams);
 
-    // 2. 拼接签名串：只对 data 的第一层字段
+    // 2. 拼接签名串
     $signParts = [];
     foreach ($bizParams as $k => $v) {
         if ($v === '' || $v === null) continue;
+        if (is_array($v)) $v = json_encode($v, JSON_UNESCAPED_UNICODE);
         $signParts[] = $k . '=' . $v;
     }
     $signStr = implode('&', $signParts);
@@ -50,7 +55,7 @@ function buildApiParams($bizParams, $config) {
         'sys_id'     => $config['sys_id'],
         'product_id' => $config['product_id'],
         'sign'       => $sign,
-        'data'       => $bizParams,  // 直接传对象，不加密
+        'data'       => $bizParams,
     ];
 }
 
@@ -63,14 +68,27 @@ function sendRequest($url, $params) {
         CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT        => 30,
+        CURLOPT_HEADER         => true,  // 同时获取响应头
     ]);
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
     $curlErr  = curl_error($ch);
     curl_close($ch);
-    return ['http_code' => $httpCode, 'curl_err' => $curlErr, 'raw' => $response];
+
+    // 分离响应头和响应体
+    $headers = substr($response, 0, $headerSize);
+    $body    = substr($response, $headerSize);
+
+    return [
+        'http_code' => $httpCode,
+        'curl_err'  => $curlErr,
+        'headers'   => $headers,
+        'raw'       => $body,
+    ];
 }
 
+// ==================== 路由 ====================
 $action = $_GET['action'] ?? '';
 
 // ---------- 测试：商户信息查询 ----------
@@ -88,6 +106,7 @@ if ($action === 'test') {
             'status'         => 'success',
             'http_code'      => $result['http_code'],
             'curl_err'       => $result['curl_err'],
+            'headers'        => $result['headers'],
             'raw_response'   => $result['raw'],
             'request_params' => $params,
         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
@@ -115,6 +134,7 @@ if ($action === 'pay') {
             'status'         => 'success',
             'http_code'      => $result['http_code'],
             'curl_err'       => $result['curl_err'],
+            'headers'        => $result['headers'],
             'raw_response'   => $result['raw'],
             'request_params' => $params,
         ], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
