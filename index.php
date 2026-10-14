@@ -31,10 +31,10 @@ function rsaSign($data, $privateKeyBase64) {
  * 构建斗拱 API 请求（修正版：data 是 JSON 对象，签名只对 data 第一层字段）
  */
 function buildApiParams($bizParams, $config) {
-    // 1. 排序 data 第一层字段
+    // 1. 排序 data 第一层字段（按 ASCII 字典序）
     ksort($bizParams);
 
-    // 2. 拼接签名串
+    // 2. 拼接签名串：只对 data 的第一层字段
     $signParts = [];
     foreach ($bizParams as $k => $v) {
         if ($v === '' || $v === null) continue;
@@ -50,7 +50,7 @@ function buildApiParams($bizParams, $config) {
         'sys_id'     => $config['sys_id'],
         'product_id' => $config['product_id'],
         'sign'       => $sign,
-        'data'       => $bizParams,
+        'data'       => $bizParams,  // 直接传对象，不加密
     ];
 }
 
