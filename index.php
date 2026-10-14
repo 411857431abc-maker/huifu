@@ -4,12 +4,16 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 header('Content-Type: application/json; charset=utf-8');
 
+// ==================== 商户配置（已更新为新商户） ====================
 $config = [
-    'sys_id'               => '6666000248404988',
+    'sys_id'               => '6666000248448927',
     'product_id'           => 'XLSISV',
-    'huifu_id'             => '6666000248404988',
-    'merchant_private_key' => 'MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCoK3XkjCRwGLeg8g0uGLQodWz2jR4DmAQIvCYtuelRydCZWwVTLSR58r7Jq0mb+5uNOcZDtMn34WrOnVXybMDCptagvVfw5AQPIcitKoOFSEDyaiW/BGH6RMoKHSSRb7K1UBCIpEAomrnU78ucSexODZFkncKZJ8k7gt4sUxm2wBndGW4+0BySd7eps91q/nyxY2zFQt89uTOAfVApw7NAQ8LiFHKJvQjkLl+YtrudWyJVBaiRpsNVi8Bondc3FkdsKsupuZPrtbfZD8gobijNljY95S7TumMf7WL0Wtc0V2ZX+ChOtlDtDl6envdjRRV4nlTTMFwgtrEuw5LYE7lhAgMBAAECggEALJWxINGiy3FSJcJmiiUUhnFzXP5Wyb8guqwfNxpF6GAoBLBj/gRG2mnn+RGHZ2pSeCOsE8E3lpdVuMdvxODeTfzrhBwO15esF9LuIDLYQZrBVUOdFEJ2M2LPadUGH+TMLVO3vnJFbD5xLCoTAjF7C8p/FHza3b31lOiCPKAffhqLNOmWdm1gtGskw0B4CRyPlenV1RNEj1sGd7AqC38XZuGIgd3/StKXWyPhbEB5NUcnMT5DvHGRIXyzRwZIYlDXJB3hUnsZhPng+Q+jqlQgWp5qwDTnZDWPs/86I+tgkZnrwwBGTPC6qjbquFg+4oTw+JP520imSGAA4zqg8VdpvQKBgQDpqcOj3RHaFXtDEJ9yR12xXXMBXCs0QCsmG6//RydTF8Rh2OYqboDfCNjVff1WYKOiaQWol73DPaCZCRocexHSuCgU+SzIpeT91704pVeatSkUoD52dMuWMhbMoak/amYHd/yRnfdpymOYOC6kmudXaTp6IEz1khXxwz9XdKMy7wKBgQC4Pu8ERU8t948ZMsPGr8Cq/rKk+hJauedA4L+O+n4KSjlnBtDhtYO1UPcleHKQMJ1xgaE/P1xjGpZ/LQsCYEvOFEBly7K7zRSirrN0RQwN9Y4DASdd9mWo0q9RzwKQEZJJt+Q7KSorvKQ/tupUqEdLrIMgtcTGgNzBMwjClhqYrwKBgB4I3ETr3aeSq01rjZM66SgrQuUh28vTk7hKRs0hcESWAYAySSObIKWKlZSbpTy9H0t5BGkvWA0IluQU725Jw3i6gyxu+vqvmEeou4HUfvY74xPrpRvE14Zu2c9j2EV2f7bmDWkKTQskILkoP5aY8rOhqwqXrEzEgl2ZI0MykuexAoGAFSTbxzCxCoRrfqfNweJviPAbzkUIkDLfcBmawizLBCFKfyFQHWb4S3mUM0+kThnWJ62JtLlvv8vQU532snocmPTIAyaiR10criLAY2p9HKj+eCfMvcLGHd630fqgv6nUkPMylPt/ZG+Mpec28yowrGWK0tkpUOJ+8wkJS1Nwj+8CgYEA47sz2gnt0yRxKG6IQuqKV86hA0sYCU/pRDUrCmG0Wo/09D+tBRt80wad0V3KsPm3hYG9SlflZwr8IMT2+TiT4hxJqepZ+8yOFqeRneRmqntLjfddM9PZz1DDb3wa8xj5U+VLkxymzMnTLT+7r5E8NCE0Dpd4Lnda5PGDmrpbB6g=',
-    'huifu_public_key'     => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmoePLzNiJ58rx2zyjQ/ZRHNvPYFaaHpmYTLah9ODJJ12d/I4rvTdYnSGNae+f+PdAwLF318WSSR1yioTnkaeC1dqdoN5vqrDEcbhlVPo6YNECoh21w9Aw/HW1LOLvHasv1xF6L3I6Hwk6cSrrbTfRKxV2JAIhYKRMIhdueHzGIst2d7vbDi5Isci0wNGm7whhVWrCW72PC7ArE2itmZMM3GUSoJpuCBtj8vA8kG2h5CnaIG1xxG6OhAw1x1c239mdnf0AyjVZRgdR287CGl7eye9cy9mpaos4EivLEBgTR0UGzLe8hIE2KCoiX4fB2SaG08AUFWr/E4M3B7EPEgcrwIDAQAB',
+    'huifu_id'             => '6666000248448927',
+    // 新商户私钥（PKCS#8 格式，已去除头尾和换行）
+    'merchant_private_key' => 'MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCaEYzE/juK8btoLbhnc7X/mqGDwfAFCXYUE8PA3jaxKpqj+rPgNW0b1xofXYATWjr8Len/5shn0C8wAJpJ+wt98IJFtZO+yMBy/SmdE9LN9jOQWtyHS51usKkgGZWOjB0onxXuuz/RE1xXGjBKxQINgcr5jxy0GXHGOL4hsWi9HQuMr+w8Mkp3QbwSF4yseASPzpu2dNGgNeHlUFTQ20NjgSRKbBpo5QKSDXL7iR5xTmc9pjiD7L61+xSfiP7N4y34aN6IYLWiHO7Ayt6hH/DFqNKF+2z8D4bccW9O4IDiyCouK1hi7tjc13qBSmNRKZ6GUMDr5dAViVkPAb5qhOlrAgMBAAECggEAfCr8up7yue5MTY/beHTHDzM+TIP2vvh7E39CWqQ8i9h8PQAGDALC5pcbVH/0gqRLuYX/euAyT4h3H0a9EjajcmJte2T1p+L/Ry1FZnTdhmSP9h1kch28ycLS6y3zXKkLrvtXn8mFiykBWKmglgHkv6IFRc/TIEsJaOm+QkVK1m3b+sAsRuQcA/P+71I3xHNDftziRZw2ZBIWHjDanQH3oAapqszSeNXlTufYPik6lmbq5AQ2BSFoYCsqkChm8dsu1a8rcVzSpyFH/roU+6ZchfDEv+0Uuz0YqhCdrVxW05LHYfiCvZ8cieVk5yOaBQTM8zKCmro7ovVLRergSNAF8QKBgQDK1xdK3RD7ptB7vG6PADarwCErlvDhL4KRksTZl5SU56TplvwjN3yDaxTaprYu9/XMX5ml85khX9nWMKVbRCFcXraVU1yPAMmd3d3w3u+3ez9CeSkWpu/1A3LiYeXtqOayqJ4uh4xeVn41DKQ65U5Qc0WzG/TFul9Hv6KO4w7vxQKBgQDCckhcoPBDYpWC0SvUqlmto8/TWtGiSd2E4VFxBFiLP1TlxIPmOJbjzq9ub2+F9dMqVrra0Fiq2fnCDpjspX/v7/XYaLYT+tPPSrIg3WbTzmUhHMc5oMYFJe0/oOcg8qnNHPURAu+AU5BdwU3aSZDx7Sm3SlHtR27mtdBRx0NXbwKBgBuh8aphM08VCpHQub8BaHE9W0d06JvEvSTXublqzPL8G5s21mJ1zKCaldyzmV4MqY+N9oCFDvdc93AWcHBed6z9uiHdmV5h3RWEhBesRzvXrmZ/2vkbBNV8AsqUS550w/jSv7nW/WhcoBTaBAWB94k+KuCbjlzhZtl/YcXVaNOBAoGAHaVe8wB2oU9+jBtoG1x9n8PCA+9s1tl8NK5FxH1tIo3dW8rCcW9fUgxJIwVKc5ovP91JT+NEIYhqU/P1zN7Oyr5DNWOBnzo24Pv6fJhE/TYSpSHGHjss9cv6iCD4HEXjLaqkkptn+KDE+gZm4EknGDuYiKGELDEf73z47f77fXECgYBFf7uzHPUKTR8cfghE6aQZP704TCDmLqAMMP0MAFvcJ197CaCQETqe4oM7F4H97n5IJo2WPZLc5wDm/195IGEpaiy0G/QP7Q9mTiwN/Mtj1QUDqB0ER3OpQADH0adhR3Jo2YqWeBhF3dIxM5NRampmWBExsiO8j96KVjuC4yPldA==',
+    // 新汇付公钥
+    'huifu_public_key'     => 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjrBPkzfOoJ/nf/jlaWUWRZapR9VmpHHLE97ZWbxrp9DhIeckniuHq1e2kFPBzPIXDOeUGiodbUwWRyQcfykxkljk0dVRRQcCdiXituiEgXUR2fhjf9c6wkDqYBwnERu5Xk60lnbgXfhT5Y9roTw7z8euDRAZkgOV5YuAuO5uW0u2BE3XADpTC1YKq5ttXEukVLUl8gUfUVK4b3h8Mim9DyzYVdXj2IZXAxdi1LpIS2Of+21lTnxEy1A3ZFYR511lIdD2W/JZAb50Kele/cCHxgitU3ADkRvExap6K/5a5r0Vq20pZW1dm7qcR2FDxXoEy5rV0ZaI3QA3aLLms9eQ9wIDAQAB',
+    // Webhook 终端密钥（如果新商户没有单独设置，可以保留原来的，或联系汇付获取）
     'webhook_terminal_key' => '6f9a241bbfc044c4965b779c83d301f7',
     'api_base_url'         => 'https://api.huifu.com',
     'notify_url'           => 'https://web-production-60f26.up.railway.app',
@@ -32,7 +36,7 @@ function rsaSign($data, $privateKeyBase64) {
 /**
  * 构建斗拱 API 请求
  * - data 是 JSON 对象
- * - 签名对象是 data 第一层字段，按 ASCII 字典序排序，拼接 key=value&key=value
+ * - 签名对象是 data 第一层字段，按 ASCII 字典序排序
  */
 function buildApiParams($bizParams, $config) {
     // 1. 按 ASCII 字典序排序
@@ -68,7 +72,7 @@ function sendRequest($url, $params) {
         CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT        => 30,
-        CURLOPT_HEADER         => true,  // 同时获取响应头
+        CURLOPT_HEADER         => true,
     ]);
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -76,7 +80,6 @@ function sendRequest($url, $params) {
     $curlErr  = curl_error($ch);
     curl_close($ch);
 
-    // 分离响应头和响应体
     $headers = substr($response, 0, $headerSize);
     $body    = substr($response, $headerSize);
 
