@@ -15,39 +15,11 @@ $config = [
     'notify_url'           => 'https://web-production-60f26.up.railway.app',
 ];
 
-// ==================== 密钥工具 ====================
-
 function toPrivateKeyPem($key) {
     if (strpos($key, '-----BEGIN') !== false) return $key;
     return "-----BEGIN PRIVATE KEY-----\n" . wordwrap($key, 64, "\n", true) . "\n-----END PRIVATE KEY-----";
 }
 
-function toPublicKeyPem($key) {
-    if (strpos($key, '-----BEGIN') !== false) return $key;
-    return "-----BEGIN PUBLIC KEY-----\n" . wordwrap($key, 64, "\n", true) . "\n-----END PUBLIC KEY-----";
-}
-
-/**
- * RSA 加密（用于加密业务数据，不是签名）
- */
-function rsaEncrypt($data, $publicKeyBase64) {
-    $res = openssl_pkey_get_public(toPublicKeyPem($publicKeyBase64));
-    if (!$res) throw new Exception('汇付公钥无法加载');
-    $encrypted = '';
-    // 分块加密，防止数据超过 RSA 单次加密上限
-    $maxChunk = 245; // 2048位密钥用 PKCS1 padding 最多 245 字节
-    $result = '';
-    for ($i = 0; $i < strlen($data); $i += $maxChunk) {
-        $chunk = substr($data, $i, $maxChunk);
-        openssl_public_encrypt($chunk, $encrypted, $res, OPENSSL_PKCS1_PADDING);
-        $result .= $encrypted;
-    }
-    return base64_encode($result);
-}
-
-/**
- * RSA 签名
- */
 function rsaSign($data, $privateKeyBase64) {
     $res = openssl_pkey_get_private(toPrivateKeyPem($privateKeyBase64));
     if (!$res) throw new Exception('商户私钥无法加载');
@@ -56,31 +28,30 @@ function rsaSign($data, $privateKeyBase64) {
 }
 
 /**
- * 构建斗拱 API 请求（核心修正：data 字段必须加密业务 JSON）
+ * 构建斗拱 API 请求（修正版：data 是 JSON 对象，签名只对 data 第一层字段）
  */
 function buildApiParams($bizParams, $config) {
-    // 1. 业务参数打包成 JSON
-    $bizJson = json_encode($bizParams, JSON_UNESCAPED_UNICODE);
+    // 1. 排序 data 第一层字段
+    ksort($bizParams);
 
-    // 2. 用汇付公钥加密业务 JSON，得到 data 字段
-    $encryptedData = rsaEncrypt($bizJson, $config['huifu_public_key']);
-
-    // 3. 组装外层参数
-    $params = [
-        'sys_id'     => $config['sys_id'],
-        'product_id' => $config['product_id'],
-        'data'       => $encryptedData,
-    ];
-
-    // 4. 签名（对 sys_id & product_id & data 拼接后签名）
-    ksort($params);
+    // 2. 拼接签名串
     $signParts = [];
-    foreach ($params as $k => $v) {
+    foreach ($bizParams as $k => $v) {
+        if ($v === '' || $v === null) continue;
         $signParts[] = $k . '=' . $v;
     }
-    $params['sign'] = rsaSign(implode('&', $signParts), $config['merchant_private_key']);
+    $signStr = implode('&', $signParts);
 
-    return $params;
+    // 3. 生成签名
+    $sign = rsaSign($signStr, $config['merchant_private_key']);
+
+    // 4. 组装请求
+    return [
+        'sys_id'     => $config['sys_id'],
+        'product_id' => $config['product_id'],
+        'sign'       => $sign,
+        'data'       => $bizParams,
+    ];
 }
 
 function sendRequest($url, $params) {
@@ -88,7 +59,7 @@ function sendRequest($url, $params) {
     curl_setopt_array($ch, [
         CURLOPT_URL            => $url,
         CURLOPT_POST           => true,
-        CURLOPT_POSTFIELDS     => json_encode($params),
+        CURLOPT_POSTFIELDS     => json_encode($params, JSON_UNESCAPED_UNICODE),
         CURLOPT_HTTPHEADER     => ['Content-Type: application/json; charset=utf-8'],
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_TIMEOUT        => 30,
@@ -100,7 +71,6 @@ function sendRequest($url, $params) {
     return ['http_code' => $httpCode, 'curl_err' => $curlErr, 'raw' => $response];
 }
 
-// ==================== 路由 ====================
 $action = $_GET['action'] ?? '';
 
 // ---------- 测试：商户信息查询 ----------
@@ -157,7 +127,6 @@ if ($action === 'pay') {
 // ---------- 接收 Webhook ----------
 $rawBody = file_get_contents('php://input');
 file_put_contents('php://stderr', "[Webhook] 收到消息: " . $rawBody . "\n");
-
 $data = json_decode($rawBody, true);
 if (!is_array($data)) {
     http_response_code(400);
@@ -183,6 +152,5 @@ if (!empty($config['webhook_terminal_key'])) {
 
 $eventDefineNo = $data['eventDefineNo'] ?? $data['event_define_no'] ?? '';
 file_put_contents('php://stderr', "[Webhook] 事件类型: " . $eventDefineNo . "\n");
-
 http_response_code(200);
 echo json_encode(['status'=>'ok']);
